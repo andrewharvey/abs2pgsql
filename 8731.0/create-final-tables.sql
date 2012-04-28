@@ -23,12 +23,12 @@ WITH selection AS (
     new_houses,
     new_other_residential_building,
     total_dwellings,
-    value_of_new_houses * 1000,
-    value_of_new_other_residential_building * 1000,
-    value_of_alterations_and_additions_to_residential_buildings * 1000,
-    value_of_total_residential_building * 1000,
-    value_of_nonresidential_building * 1000,
-    value_of_total_building * 1000
+    value_of_new_houses * 1000 as value_of_new_houses,
+    value_of_new_other_residential_building * 1000 as value_of_new_other_residential_building,
+    value_of_alterations_and_additions_to_residential_buildings * 1000 as value_of_alterations_and_additions_to_residential_buildings,
+    value_of_total_residential_building * 1000 as value_of_total_residential_building,
+    value_of_nonresidential_building * 1000 as value_of_nonresidential_building,
+    value_of_total_building * 1000 as value_of_total_building
    FROM
      abs_8731_0_staging
    WHERE
@@ -58,12 +58,12 @@ WITH selection AS (
     new_houses,
     new_other_residential_building,
     total_dwellings,
-    value_of_new_houses * 1000,
-    value_of_new_other_residential_building * 1000,
-    value_of_alterations_and_additions_to_residential_buildings * 1000,
-    value_of_total_residential_building * 1000,
-    value_of_nonresidential_building * 1000,
-    value_of_total_building * 1000
+    value_of_new_houses * 1000 as value_of_new_houses,
+    value_of_new_other_residential_building * 1000 as value_of_new_other_residential_building,
+    value_of_alterations_and_additions_to_residential_buildings * 1000 as value_of_alterations_and_additions_to_residential_buildings,
+    value_of_total_residential_building * 1000 as value_of_total_residential_building,
+    value_of_nonresidential_building * 1000 as value_of_nonresidential_building,
+    value_of_total_building * 1000 as value_of_total_building
    FROM
      abs_8731_0_staging
    WHERE
@@ -93,12 +93,12 @@ WITH selection AS (
     new_houses,
     new_other_residential_building,
     total_dwellings,
-    value_of_new_houses * 1000,
-    value_of_new_other_residential_building * 1000,
-    value_of_alterations_and_additions_to_residential_buildings * 1000,
-    value_of_total_residential_building * 1000,
-    value_of_nonresidential_building * 1000,
-    value_of_total_building * 1000
+    value_of_new_houses * 1000 as value_of_new_houses,
+    value_of_new_other_residential_building * 1000 as value_of_new_other_residential_building,
+    value_of_alterations_and_additions_to_residential_buildings * 1000 as value_of_alterations_and_additions_to_residential_buildings,
+    value_of_total_residential_building * 1000 as value_of_total_residential_building,
+    value_of_nonresidential_building * 1000 as value_of_nonresidential_building,
+    value_of_total_building * 1000 as value_of_total_building
    FROM
      abs_8731_0_staging
    WHERE
@@ -128,12 +128,12 @@ WITH selection AS (
     new_houses,
     new_other_residential_building,
     total_dwellings,
-    value_of_new_houses * 1000,
-    value_of_new_other_residential_building * 1000,
-    value_of_alterations_and_additions_to_residential_buildings * 1000,
-    value_of_total_residential_building * 1000,
-    value_of_nonresidential_building * 1000,
-    value_of_total_building * 1000
+    value_of_new_houses * 1000 as value_of_new_houses,
+    value_of_new_other_residential_building * 1000 as value_of_new_other_residential_building,
+    value_of_alterations_and_additions_to_residential_buildings * 1000 as value_of_alterations_and_additions_to_residential_buildings,
+    value_of_total_residential_building * 1000 as value_of_total_residential_building,
+    value_of_nonresidential_building * 1000 as value_of_nonresidential_building,
+    value_of_total_building * 1000 as value_of_total_building
    FROM
      abs_8731_0_staging
    WHERE
@@ -163,12 +163,12 @@ WITH selection AS (
     new_houses,
     new_other_residential_building,
     total_dwellings,
-    value_of_new_houses * 1000,
-    value_of_new_other_residential_building * 1000,
-    value_of_alterations_and_additions_to_residential_buildings * 1000,
-    value_of_total_residential_building * 1000,
-    value_of_nonresidential_building * 1000,
-    value_of_total_building * 1000
+    value_of_new_houses * 1000 as value_of_new_houses,
+    value_of_new_other_residential_building * 1000 as value_of_new_other_residential_building,
+    value_of_alterations_and_additions_to_residential_buildings * 1000 as value_of_alterations_and_additions_to_residential_buildings,
+    value_of_total_residential_building * 1000 as value_of_total_residential_building,
+    value_of_nonresidential_building * 1000 as value_of_nonresidential_building,
+    value_of_total_building * 1000 as value_of_total_building
    FROM
      abs_8731_0_staging
    WHERE
