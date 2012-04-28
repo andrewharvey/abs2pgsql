@@ -9,12 +9,12 @@ CREATE TABLE abs_8731_0_state
   "new_other_residential_building" integer,
   "total_dwellings" integer,
 
-  "value_of_new_houses" integer,
-  "value_of_new_other_residential_building" integer,
-  "value_of_alterations_and_additions_to_residential_buildings" integer,
-  "value_of_total_residential_building" integer,
-  "value_of_nonresidential_building" integer,
-  "value_of_total_building" integer
+  "value_of_new_houses" bigint,
+  "value_of_new_other_residential_building" bigint,
+  "value_of_alterations_and_additions_to_residential_buildings" bigint,
+  "value_of_total_residential_building" bigint,
+  "value_of_nonresidential_building" bigint,
+  "value_of_total_building" bigint
 );
 
 WITH selection AS (
@@ -44,12 +44,12 @@ CREATE TABLE abs_8731_0_gccsa
   "new_other_residential_building" integer,
   "total_dwellings" integer,
 
-  "value_of_new_houses" integer,
-  "value_of_new_other_residential_building" integer,
-  "value_of_alterations_and_additions_to_residential_buildings" integer,
-  "value_of_total_residential_building" integer,
-  "value_of_nonresidential_building" integer,
-  "value_of_total_building" integer
+  "value_of_new_houses" bigint,
+  "value_of_new_other_residential_building" bigint,
+  "value_of_alterations_and_additions_to_residential_buildings" bigint,
+  "value_of_total_residential_building" bigint,
+  "value_of_nonresidential_building" bigint,
+  "value_of_total_building" bigint
 );
 
 WITH selection AS (
@@ -79,12 +79,12 @@ CREATE TABLE abs_8731_0_sa4
   "new_other_residential_building" integer,
   "total_dwellings" integer,
 
-  "value_of_new_houses" integer,
-  "value_of_new_other_residential_building" integer,
-  "value_of_alterations_and_additions_to_residential_buildings" integer,
-  "value_of_total_residential_building" integer,
-  "value_of_nonresidential_building" integer,
-  "value_of_total_building" integer
+  "value_of_new_houses" bigint,
+  "value_of_new_other_residential_building" bigint,
+  "value_of_alterations_and_additions_to_residential_buildings" bigint,
+  "value_of_total_residential_building" bigint,
+  "value_of_nonresidential_building" bigint,
+  "value_of_total_building" bigint
 );
 
 WITH selection AS (
@@ -114,12 +114,12 @@ CREATE TABLE abs_8731_0_sa3
   "new_other_residential_building" integer,
   "total_dwellings" integer,
 
-  "value_of_new_houses" integer,
-  "value_of_new_other_residential_building" integer,
-  "value_of_alterations_and_additions_to_residential_buildings" integer,
-  "value_of_total_residential_building" integer,
-  "value_of_nonresidential_building" integer,
-  "value_of_total_building" integer
+  "value_of_new_houses" bigint,
+  "value_of_new_other_residential_building" bigint,
+  "value_of_alterations_and_additions_to_residential_buildings" bigint,
+  "value_of_total_residential_building" bigint,
+  "value_of_nonresidential_building" bigint,
+  "value_of_total_building" bigint
 );
 
 WITH selection AS (
@@ -149,12 +149,12 @@ CREATE TABLE abs_8731_0_sa2
   "new_other_residential_building" integer,
   "total_dwellings" integer,
 
-  "value_of_new_houses" integer,
-  "value_of_new_other_residential_building" integer,
-  "value_of_alterations_and_additions_to_residential_buildings" integer,
-  "value_of_total_residential_building" integer,
-  "value_of_nonresidential_building" integer,
-  "value_of_total_building" integer
+  "value_of_new_houses" bigint,
+  "value_of_new_other_residential_building" bigint,
+  "value_of_alterations_and_additions_to_residential_buildings" bigint,
+  "value_of_total_residential_building" bigint,
+  "value_of_nonresidential_building" bigint,
+  "value_of_total_building" bigint
 );
 
 WITH selection AS (
