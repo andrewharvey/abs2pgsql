@@ -3,6 +3,7 @@ all : clean load
 clean :
 	psql -c "DROP TABLE IF EXISTS abs_8731_0_staging;"
 	psql -c "DROP TABLE IF EXISTS abs_8731_0_state;"
+	psql -c "DROP TABLE IF EXISTS abs_8731_0_gccsa;"
 	psql -c "DROP TABLE IF EXISTS abs_8731_0_sa4;"
 	psql -c "DROP TABLE IF EXISTS abs_8731_0_sa3;"
 	psql -c "DROP TABLE IF EXISTS abs_8731_0_sa2;"
