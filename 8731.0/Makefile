@@ -16,3 +16,6 @@ load :
 
 export :
 	./export.sh
+
+generate_classifications :
+	../classify/generate-classifications.sh 5 'new_houses\/area' 'sa2' 'abs_8731_0'
