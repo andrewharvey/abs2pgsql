@@ -29,6 +29,16 @@ The following ABS data releases require the ASGS schema to be loaded (see About)
 
 * 8731.0
 
+In addition to loading the data, the Makefiles also contain other targets.
+
+To export the loaded data to a CSV file use,
+
+    make export
+
+To generate a quantile classification of the data use,
+
+    make generate_classifications
+
 # License, Copyright and Attribution
 ## Non-Data files
 All files not within a "data" directory aren't tainted by Commonwealth of
