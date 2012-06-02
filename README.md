@@ -7,6 +7,12 @@ Standard) such fields reference the ASGS via the asgs schema as created by
 [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql). For these data
 releases you will need to have loaded the asgs schema into your database.
 
+## 2011 Census Datapack
+This repository contains my work so far in loading the ABS Census 2011
+DataPack data into PostgreSQL. It is still a work in progress. I'm
+publishing now because it is my entry at govhack.org, but I wouldn't
+recommend you use it just yet before I can clean it up post-event. Thanks.
+
 # Preparation
 All scripts expect you to set up PG* environment variables. These are used to
 control which PostgreSQL database, hostname, port, username, etc. is used to
@@ -54,6 +60,7 @@ The files are not originals from the ABS, rather they are derived works from the
 source XLS files produced by the ABS. They were created by a copy-paste from the
 XLS file from the ABS web site using LibreOffice. A subsequent s/,//g was used
 to remove commas from the numbers.
+
 #### 8731.0/data/Feb2012
 Australian Bureau of Statistics
 Building Approvals, Australia, February 2012
