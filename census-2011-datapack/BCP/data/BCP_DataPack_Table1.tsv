@@ -1,0 +1,47 @@
+Table number	Table name	Table population
+B01	Selected Person Characteristics by Sex	Persons
+B02	Selected Medians and Averages	
+B03	Place of Usual Residence on Census Night by Age	Persons
+B04	Age by Sex	Persons
+B05	Registered Marital Status by Age by Sex	Persons aged 15 years and over 
+B06	Social Marital Status by Age by Sex	Persons aged 15 years and over 
+B07	Indigenous Status by Age by Sex 	Persons
+B08	Ancestry by Birthplace of Parents	Responses and persons 
+B09	Country of Birth of Person by Sex	Persons
+B10	Country of Birth of Person by Year of Arrival in Australia	Persons born overseas
+B11	Proficiency in Spoken English/Language by Year of Arrival in Australia by Sex	Persons born overseas
+B12	Proficiency in Spoken English/Language of Parents by Age of Dependent Children	Dependent children in couple families
+B13	Language Spoken at Home by Sex	Persons
+B14	Religious Affiliation by Sex	Persons
+B15	Type of Educational Institution Attending (Full/Part-Time Student Status by Age) by Sex	Persons attending an educational institution 
+B16	Highest Year of School completed by Age by Sex	Persons aged 15 years and over who are no longer attending primary or secondary school.
+B17	Total Personal Income (Weekly) by Age by Sex	Persons aged 15 years and over 
+B18	Core Activity need for Assistance by Age by Sex	Persons 
+B19	Voluntary Work for an Organisation or Group by Age by Sex 	Persons aged 15 years and over 
+B20	Unpaid Domestic Work:  Number of House by Age by Sex 	Persons aged 15 years and over 
+B21	Unpaid Assistance to a Person with a Disability by Age by Sex	Persons aged 15 years and over 
+B22	Unpaid Child Care by Age by Sex	Persons aged 15 years and over 
+B23	Relationship in Household by Age by Sex	Persons in occupied private dwellings
+B24	Number of Children Ever Born by Age of Parent	Females aged 15 years and over
+B25	Family Composition	Families and persons in families in occupied private dwellings
+B26	Total Family Income (Weekly) by Family Composition	Families in family households
+B27	Family Blending	Couple families with children
+B28	Total Household Income (Weekly) by Household Composition	Occupied private dwellings
+B29	Number of Motor Vehicles by Dwellings	Occupied private dwellings
+B30	Household composition by Number of Persons Usually Resident	Occupied private dwellings
+B31	Dwelling Structure	Occupied and unoccupied private dwellings and persons in occupied private dwellings
+B32	Tenure Type and Landlord Type by Dwelling Structure	Occupied private dwellings
+B33	Mortgage Repayment (Monthly) by Dwelling Structure	Occupied private dwellings being purchased
+B34	Rent (Weekly) by Landlord Type	Occupied private dwellings being rented
+B35	Type of Internet Connection by Dwelling Structure	Occupied private dwellings
+B36	Dwelling Structure by Number of Bedrooms	Occupied private dwellings
+B37	Selected Labour Force, Education and Migration Characteristics by Sex	Persons
+B38	Place of Usual Residence 1 Year Ago by Sex	Persons 1 year and over
+B39	Place of Usual Residence 5 Years Ago by Sex	Persons 5 years and over
+B40	Non-School Qualification:  Level of Education by Age by Sex	Persons aged 15 years and over with a qualification
+B41	Non-School Qualification:  Field of Study by Age by Sex	Persons aged 15 years and over with a qualification
+B42	Labour Force Status by Age by Sex	Persons aged 15 years and over 
+B43	Industry of Employment by Age by Sex	Employed persons aged 15 years and over 
+B44	Industry of Employment by Occupation	Employed persons aged 15 years and over 
+B45	Occupation by Age by Sex	Employed persons aged 15 years and over 
+B46	Method of Travel to Work by Sex	Employed persons aged 15 years and over 
