@@ -809,7 +809,7 @@ CREATE TYPE census_2011.non_school_level_of_education AS ENUM (
 CREATE TYPE census_2011.field_of_study AS ENUM (
   'natural_and_physical_sciences',
   'information_technology',
-  'engineering_and_related_technologies,',
+  'engineering_and_related_technologies',
   'architecture_and_building',
   'agriculture_environmental_and_related_studies',
   'health',
