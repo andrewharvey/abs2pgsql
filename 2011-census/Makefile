@@ -5,7 +5,7 @@
 # rights to this work.
 # http://creativecommons.org/publicdomain/zero/1.0/
 
-all : clean create_schema load
+all : clean create_schema create_tables prepare_load
 
 clean :
 	psql -c "DROP SCHEMA IF EXISTS census_2011 CASCADE;"
@@ -15,7 +15,8 @@ create_schema :
 	
 	# create the datatypes used by my census_2011 schema
 	psql -f src/01-create-datatypes.sql
-	
+
+create_tables :
 	# create the tables for each of the products for each of the geographic
 	# areas for which they are available.
 	
@@ -66,5 +67,9 @@ create_schema :
 		cat src/02-seifa-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
 	done
 
-load :
-	src/03-expand-template.pl < src/03-load-template.map > temp-expanded.map
+prepare_load :
+	src/03-expand-template.pl < src/03-load-template.map | src/04-prepare-from-expansion.pl
+
+load_metadata_table :
+	psql -f src/04-create-metadata-schema.sql
+	cat datapack-metadata.copy | psql -c "COPY census_2011.datapack_metadata FROM STDIN;"
