@@ -15,22 +15,17 @@
 
 B03 Counted_at_home_on_Census_Night_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'counted_at_home', NULL)
 B03 Visitor_from_Same_Statistical_Area_Level_2_SA2_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_same_sa2', NULL)
-B03 Visitor_from_Different_2_SA2_In_New_South_Wales_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_nsw', 1)
-B03 Visitor_from_Different_2_SA2_In_Victoria_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_vic', 2)
-B03 Visitor_from_Different_2_SA2_In_Queensland_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_qld', 3)
-B03 Visitor_from_Different_2_SA2_In_South_Australia_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_sa', 4)
-B03 Visitor_from_Different_2_SA2_In_Western_Australia_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_wa', 5)
-B03 Visitor_from_Different_2_SA2_In_Tasmania_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_tas', 6)
-B03 Visitor_from_Different_2_SA2_In_Northern_Territory_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_nt', 7)
-B03 Visitor_from_Different_2_SA2_In_Australian_Capital_Territory_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_act', 8)
-B03 Visitor_from_Different_2_SA2_In_Other_Territories_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_oth', 9)
+B03 Visitor_from_Different_SA2_In_New_South_Wales_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_nsw', 1)
+B03 Visitor_from_Different_SA2_In_Victoria_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_vic', 2)
+B03 Visitor_from_Different_SA2_In_Queensland_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_qld', 3)
+B03 Visitor_from_Different_SA2_In_South_Australia_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_sa', 4)
+B03 Visitor_from_Different_SA2_In_Western_Australia_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_wa', 5)
+B03 Visitor_from_Different_SA2_In_Tasmania_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_tas', 6)
+B03 Visitor_from_Different_SA2_In_Northern_Territory_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_nt', 7)
+B03 Visitor_from_Different_SA2_In_Australian_Capital_Territory_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_act', 8)
+B03 Visitor_from_Different_SA2_In_Other_Territories_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_oth', 9)
 
 B04 Age_years_[:pop_ages:]_[:sex:] bcp_population (\pop_ages, \sex)
-B04 Age_years_80_84_[:sex:] bcp_population (80, \sex)
-B04 Age_years_85_89_[:sex:] bcp_population (85, \sex)
-B04 Age_years_90_94_[:sex:] bcp_population (90, \sex)
-B04 Age_years_95_99_[:sex:] bcp_population (95, \sex)
-B04 Age_years_100_years_and_over_[:sex:] bcp_population (100, \sex)
 
 B05 [:sex:]_[:ages_a:]_{db:census_2011.registered_marital_status} bcp_registered_marital_status (\ages_a, \sex, \db:census_2011.registered_marital_status)
 
@@ -73,12 +68,13 @@ B12 Dependent_children_aged_[:ages_children:]_female_parent_{db:census_2011.engl
 
 B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, 'english_only')
 B13 Speaks_other_language_{db:census_2011.language}_[:sex:] bcp_language_spoken_at_home (\sex, \db:census_2011.language)
+B13 Language_spoken_at_home_not_stated_[:sex:] bcp_language_spoken_at_home (\sex, 'not_stated')
 
 # FIXME 14
 
 B15 {db:census_2011.educational_institution}_[:sex:] bcp_type_of_educational_institution_attending (\sex, \db:census_2011.educational_institution)
 
-B16 [:sex:]_{db:census_2011.school_year}_or_equivalent_Age_[:ages_a:] bcp_highest_year_of_school_completed (\sex, \ages_a, \db:census_2011.school_year)
+B16 [:sex:]_{db:census_2011.school_year}_Age_[:ages_a:] bcp_highest_year_of_school_completed (\sex, \ages_a, \db:census_2011.school_year)
 
 B17 [:sex:]_[:income_band:]_Age_[:ages_a:] bcp_income (\ages_a, \sex, \income_band)
 
@@ -101,16 +97,16 @@ B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:ages_b:] bcp_relations
 
 B24 Age_group_of_parent_[:ages_d:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_over_born (\ages_d, \db:census_2011.number_of_children)
 
-B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}_dependent_students_and_{tf_3:|no_}_non_dependent_children_Families bcp_family_composition_families ('couple_family', \tf_1, \tf_2, \tf_3)
-B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}_dependent_students_and_{tf_3:|no_}_non_dependent_children_Families bcp_family_composition_families ('one_parent_family', \tf_1, \tf_2, \tf_3)
-B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}_dependent_students_and_{tf_3:|no_}_non_dependent_children_Persons bcp_family_composition_persons ('couple_family', \tf_1, \tf_2, \tf_3)
-B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}_dependent_students_and_{tf_3:|no_}_non_dependent_children_Persons bcp_family_composition_persons ('one_parent_family', \tf_1, \tf_2, \tf_3)
+B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families ('couple_family', \tf_1, \tf_2, \tf_3)
+B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families ('one_parent_family', \tf_1, \tf_2, \tf_3)
+B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons ('couple_family', \tf_1, \tf_2, \tf_3)
+B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons ('one_parent_family', \tf_1, \tf_2, \tf_3)
 B25 Other_family_Families bcp_family_composition_families ('other_family', false, false, false)
 B25 Other_family_Persons bcp_family_composition_persons ('other_family', false, false, false)
 
 B26 [:family_income_band:]_{db:census_2011.family_type} bcp_family_income (\db:census_2011.family_type, \family_income_band)
 
-B27 {db:census_2011.blended_family_type}_family_with_{tf:|no_}_other_children_present_Families bcp_family_blending (\db:census_2011.blended_family_type, \tf)
+B27 {db:census_2011.blended_family_type}_family_with_{tf:|no_}other_children_present_Families bcp_family_blending (\db:census_2011.blended_family_type, \tf)
 
 B28 [:family_income_band:]_{tf:|Non_}Family_households census_2011.bcp_household_income (\family_income_band, \tf)
 

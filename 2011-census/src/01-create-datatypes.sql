@@ -453,7 +453,7 @@ CREATE TYPE census_2011.registered_marital_status AS ENUM (
 
 
 CREATE TYPE census_2011.social_marital_status AS ENUM (
-  'married_in_registered_marriage',
+  'married_in_a_registered_marriage',
   'married_in_a_de_facto_marriage',
   'not_married'
 );
@@ -490,7 +490,7 @@ CREATE TYPE census_2011.ancestry AS ENUM (
   'Vietnamese',
   'Welsh',
   'Other',
-  'NonStated'
+  'Non_Stated'
 );
 
 
@@ -539,8 +539,7 @@ CREATE TYPE census_2011.birthplace AS ENUM (
   'United_Kingdom_Channel_Islands_and_Isle_of_Man',
   'United_States_of_America',
   'Vietnam',
-  'BornElsewhere',
-  'NotStated'
+  'Born_Elsewhere'
 );
 
 
@@ -588,38 +587,41 @@ INSERT INTO census_2011.year_of_arrival_b (code, min, max) VALUES
 (8, 2011, 2011),
 (9, NULL, NULL); -- NotStated
 
-
-CREATE TYPE census_2011.english_proficiency AS ENUM (
-  'speaks_english_only',
-  'speaks_other_language_speaks_english_very_well_or_well',
-  'speaks_other_language_speaks_engilsh_not_well_or_not_at_all',
-  'speaks_other_language_speaks_engilsh_not_stated'
+CREATE TABLE census_2011.english_proficiency
+(
+  name text PRIMARY KEY
 );
+
+INSERT INTO census_2011.english_proficiency VALUES
+('speaks_english_only'),
+('speaks_other_language_and_speaks_english_very_well_or_well'),
+('speaks_other_language_and_speaks_engilsh_not_well_or_not_at_all'),
+('speaks_other_language_and_speaks_engilsh_proficiency_in_english_not_stated');
 
 
 CREATE TYPE census_2011.language AS ENUM (
   'english_only',
   'arabic',
   'assyrian',
-  'australian_indigenous',
-  'chinese_cantonese',
-  'chinese_mandarin',
-  'chinese_other',
+  'australian_indigenous_languages',
+  'chinese_languages_cantonese',
+  'chinese_languages_mandarin',
+  'chinese_languages_other',
   'croatian',
   'dutch',
   'french',
   'german',
   'greek',
   'hungarian',
-  'indo_aryan_bengali',
-  'indo_aryan_hindi',
-  'indo_aryan_punjabi',
-  'indo_aryan_sinhalese',
-  'indo_aryan_urdu',
-  'indo_aryan_other',
-  'iranic_dari',
-  'iranic_persian_excluding_dari',
-  'iranic_other',
+  'indo_aryan_languages_bengali',
+  'indo_aryan_languages_hindi',
+  'indo_aryan_languages_punjabi',
+  'indo_aryan_languages_sinhalese',
+  'indo_aryan_languages_urdu',
+  'indo_aryan_languages_other',
+  'iranic_languages_dari',
+  'iranic_languages_persian_excluding_dari',
+  'iranic_languages_other',
   'italian',
   'japanese',
   'khmer',
@@ -631,10 +633,10 @@ CREATE TYPE census_2011.language AS ENUM (
   'russian',
   'samoan',
   'serbian',
-  'southeast_asian_austronesian_filipino',
-  'southeast_asian_austronesian_indonesian',
-  'southeast_asian_austronesian_tagalog',
-  'southeast_asian_austronesian_other',
+  'southeast_asian_austronesian_languages_filipino',
+  'southeast_asian_austronesian_languages_indonesian',
+  'southeast_asian_austronesian_languages_tagalog',
+  'southeast_asian_austronesian_languages_other',
   'spanish',
   'tamil',
   'thai',
@@ -805,7 +807,7 @@ CREATE TYPE census_2011.child_care AS ENUM (
   'cared_for_other_child_children_only',
   'cared_for_own_child_children_and_other_child_children',
   'did_not_provide_child_care',
-  'not_stated'
+  'unpaid_child_care_not_stated'
 );
 
 
@@ -815,7 +817,7 @@ CREATE TYPE census_2011.household_relationship AS ENUM (
   'partner_in_de_facto_marriage',
   'lone_parent',
   'child_under_15',
-  'depended_student_aged_15_24_years',
+  'dependent_student_aged_15_24_years',
   'non_dependent_child',
   'other_related_individual',
   'unrelated_individual_living_in_family_household',
@@ -838,7 +840,8 @@ CREATE TYPE census_2011.number_of_children AS ENUM (
 
 
 CREATE TYPE census_2011.family_type AS ENUM (
-  'couple_family',
+  'couple_family_with_no_children',
+  'couple_family_with_children',
   'one_parent_family',
   'other_family'
 );

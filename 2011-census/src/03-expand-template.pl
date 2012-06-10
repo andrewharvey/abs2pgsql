@@ -73,7 +73,7 @@ my %expansions = (
       [qw/0 15 25 35 45 55 65 75 85/]
     ],
   ages_c => [
-      [qw/0_4_years 5_14_years 15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 64_74_years 75_84_years 85_years_and_over/], 
+      [qw/0_4_years 5_14_years 15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
       [qw/0 5 15 20 25 35 45 55 65 75 85/]
     ],
   ages_d => [
