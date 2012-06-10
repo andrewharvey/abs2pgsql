@@ -116,14 +116,16 @@ B28 [:family_income_band:]_{tf:|Non_}Family_households census_2011.bcp_household
 
 B29 Number_of_motor_vehicles_per_dwelling_{db:census_2011.number_of_motor_vehicles}_Dwellings bcp_motor_vehicles_per_dwelling (\db:census_2011.number_of_motor_vehicles)
 
-B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually_resident}_{tf:|Non_}_Family_households (\db:census_2011.number_of_persons_usually_resident, \tf)
+B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually_resident}_{tf:|Non_}Family_households (\db:census_2011.number_of_persons_usually_resident, \tf)
 
-B31 {db:census_2011.dwelling_structure_extended_full}_Dwellings bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
-B31 {db:census_2011.dwelling_structure_extended_full}_Persons bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
+B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Dwellings bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
+B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Persons bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
+B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure ('unoccupied')
+B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure ('unoccupied')
 
 B32 {db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_tenure_type_and_landlord_type (\db:census_2011.tenure_landlord_type, \db:census_2011.dwelling_structure_simple)
 
-B33 [:income_band:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_mortgage_repayment_by_dwelling_structure (\income_band, \db:census_2011.dwelling_structure_simple)
+B33 [:mortgage_repayment_band:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_mortgage_repayment_by_dwelling_structure (\mortgage_repayment_band, \db:census_2011.dwelling_structure_simple)
 
 B34 [:rental_payment_band:]_Landlord_type_{db:census_2011.landlord_type} bcp_rent_by_landlord_type (\rental_payment_band, \db:census_2011.landlord_type)
 
@@ -159,17 +161,9 @@ B39 Different_usual_address_5_years_ago_Different_SA2_in_Other_Territories_[:sex
 B39 Different_usual_address_5_years_ago_Overseas_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_overseas')
 B39 Different_usual_address_5_years_ago_Not_stated_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_not_stated')
 
-B40 [:sex:]_Postgraduate_Degree_Level_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'postgraduate_degree')
-B40 [:sex:]_Graduate_Diploma_and_Graduate_Certificate_Level_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'graduate_diploma_and_graduate_certificate')
-B40 [:sex:]_Bachelor_Degree_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'bachelor_degree')
-B40 [:sex:]_Advanced_Diploma_and_Diploma_Level_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'advanced_diploma_and_diploma')
-B40 [:sex:]_Certificate_Level_Certificate_Level_nfd_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'certificate_level_certificate_nfd')
-B40 [:sex:]_Certificate_Level_Certificate_III_and_IV_Level_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'certificate_level_certificate_3_and_4')
-B40 [:sex:]_Certificate_Level_Certificate_I_and_II_Level_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'certificate_level_certificate_1_and_2')
-B40 [:sex:]_Level_of_education_inadequately_described_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'inadequately_described')
-B40 [:sex:]_Level_of_education_not_stated_Age_[:ages_a:] bcp_non_school_qualification_level_of_education (\ages_a, \sex, 'not_stated')
+B40 [:sex:]_{db:census_2011.non_school_level_of_education}_Age_[:ages_h:] bcp_non_school_qualification_level_of_education (\ages_h, \sex, \db:census_2011.non_school_level_of_education)
 
-B41 [:sex:]_{db:census_2011.field_of_study}_Age_[:ages_a:] bcp_non_school_qualification_field_of_study (\ages_a, \sex, \db:census_2011.field_of_study)
+B41 [:sex:]_{db:census_2011.field_of_study}_Age_[:ages_h:] bcp_non_school_qualification_field_of_study (\ages_h, \sex, \db:census_2011.field_of_study)
 
 B42 [:sex:]_{db:census_2011.employment_status}_Age_[:ages_a:] bcp_labour_force_status (\ages_a, \sex, \db:census_2011.employment_status)
 
@@ -196,15 +190,15 @@ I06 [:sex:]_{db:census_2011.school_year}_{ynn:Indigenous|Non_Indigenous|Indigeno
 
 I07 [:indigenous_income_band:]_[:sex:] ip_personal_income (\sex, \indigenous_income_band)
 
-I08 [:sex:]_[:ages_f:]_years_{ynn:Has_need_for_assistance|Does_not_have_need_for_assistance|Need_for_assistance_not_stated} ip_core_activity_need_for_assistance (\ages_f, \sex, \ynn)
+I08 [:sex:]_[:ages_f:]_{ynn:Has_need_for_assistance|Does_not_have_need_for_assistance|Need_for_assistance_not_stated} ip_core_activity_need_for_assistance (\ages_f, \sex, \ynn)
 
-I09 [:sex:]_[:ages_g:]_years_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provided|Unpaid_assistance_not_stated} ip_unpaid_assistance_to_a_person_with_a_disability (\ages_g, \sex, \ynn)
+I09 [:sex:]_[:ages_g:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provided|Unpaid_assistance_not_stated} ip_unpaid_assistance_to_a_person_with_a_disability (\ages_g, \sex, \ynn)
 
 I10 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_indigenous} ip_tenure_type_and_landlord_type (\db:census_2011.dwelling_structure_indigenous, \db:census_2011.tenure_landlord_type, \tf)
 
 I11 [:internet_connection:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \internet_connection)
 
-I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.houshold_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} (\tf, \db:census_2011.houshold_type, \db:census_2011.number_of_persons_usually_resident)
+I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.household_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} (\tf, \db:census_2011.houshold_type, \db:census_2011.number_of_persons_usually_resident)
 
 I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_household_income (\tf, \indigenous_household_income)
 

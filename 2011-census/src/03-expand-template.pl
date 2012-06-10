@@ -31,19 +31,19 @@ use Text::CSV;
 
 # these are used in the expansions hardcode
 my @time_series_population_ages_source = (0..79);
-push @time_series_population_ages_source, ('80_84', '85_years_and_over');
+push @time_series_population_ages_source, ('80_84_years', '85_years_and_over');
 
 my @time_series_population_ages_target = (0..80);
 push @time_series_population_ages_target, (85);
 
 my @population_ages_source = (0..79);
-push @population_ages_source, ('80_84', '85_89', '90_94', '95_99', '100_years_and_over');
+push @population_ages_source, ('80_84_years', '85_89_years', '90_94_years', '95_99_years', '100_years_and_over');
 
 my @population_ages_target = (0..80);
 push @population_ages_target, (85, 90, 95, 100);
 
 my @indigenous_population_ages_source = (0..24);
-push @indigenous_population_ages_source, ('25_29', '30_34', '35_39', '40_44', '45_49', '50_54', '55_59', '60_64', '65_years_and_over');
+push @indigenous_population_ages_source, ('25_29_years', '30_34_years', '35_39_years', '40_44_years', '45_49_years', '50_54_years', '55_59_years', '60_64_years', '65_years_and_over');
 
 my @indigenous_population_ages_target = (0..25);
 push @indigenous_population_ages_target, (30, 35, 40, 45, 50, 55, 60, 65);
@@ -61,8 +61,12 @@ my %expansions = (
       \@population_ages_target
     ],
   ages_a => [
-      [qw/15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 64_74_years 75_84_years 85_years_and_over/],
+      [qw/15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
       [qw/15 20 25 35 45 55 65 75 85/]
+    ],
+  ages_h => [
+      [qw/15_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
+      [qw/15 25 35 45 55 65 75 85/]
     ],
   ages_b => [
       [qw/0_14_years 15_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
@@ -88,6 +92,10 @@ my %expansions = (
       [qw/15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_years_and_over/],
       [qw/15 20 25 35 45 55 65/]
     ],
+  ages_children => [
+      [qw/0_4_years 5_9_years 10_12_years 13_14_years 15_17_years 18_20_years 21_24_years/],
+      [qw/0 5 10 13 15 18 21/]
+    ],
   income_band => [
       [qw/Negative_Nil_income 1_199 200_299 300_399 400_599 600_799 800_999 1000_1249 1250_1499 1500_1999 2000_or_more Personal_income_not_stated/],
       [0..11]
@@ -97,7 +105,11 @@ my %expansions = (
       [0..16]
     ],
   rental_payment_band => [
-      [qw/0_74 75_99 100_149 150_199 200_224 255_274 275_349 350_449 450_549 550_649 650_and_over Rent_not_stated/],
+      [qw/0_74 75_99 100_149 150_199 200_224 225_274 275_349 350_449 450_549 550_649 650_and_over Rent_not_stated/],
+      [0..11]
+    ],
+  mortgage_repayment_band => [
+      [qw/0_299 300_449 450_599 600_799 800_999 1000_1399 1400_1799 1800_2399 2400_2999 3000_3999 4000_and_over Mortgage_repayment_not_stated/],
       [0..11]
     ],
   bedrooms => [
@@ -270,6 +282,6 @@ sub pgenum2arrayref($) {
     my @result = split /,/, $pg_enum;
     return \@result;
   }else{ # table exists
-    return $dbh->selectall_arrayref("SELECT * FROM $lookup;");
+    return $dbh->selectall_arrayref("SELECT * FROM $lookup;")->[0];
   }
 }

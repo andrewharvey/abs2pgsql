@@ -137,7 +137,7 @@ CREATE TABLE census_2011.ip_household_composition_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   indigenous_household boolean,
-  household_type census_2011.houshold_type,
+  household_type census_2011.household_type,
   number_of_persons_usually_resident census_2011.number_of_persons_usually_resident,
 
   occupied_private_dwellings integer,

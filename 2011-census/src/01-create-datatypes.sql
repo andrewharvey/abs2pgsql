@@ -397,6 +397,21 @@ INSERT INTO census_2011.age_ranges_g (min, max) VALUES
 (55, 64),
 (65, NULL);
 
+CREATE TABLE census_2011.age_ranges_h
+(
+  min smallint PRIMARY KEY,
+  max smallint
+);
+
+INSERT INTO census_2011.age_ranges_h (min, max) VALUES
+(15, 24),
+(25, 34),
+(35, 44),
+(45, 54),
+(55, 64),
+(65, 74),
+(75, 84),
+(85, NULL);
 
 
 CREATE DOMAIN census_2011.sex AS char
@@ -828,7 +843,7 @@ CREATE TYPE census_2011.family_type AS ENUM (
   'other_family'
 );
 
-CREATE TYPE census_2011.houshold_type AS ENUM (
+CREATE TYPE census_2011.household_type AS ENUM (
   'one_family_households_couple_family_with_no_children',
   'one_family_households_couple_family_with_children',
   'one_family_households_one_parent_family',
@@ -909,7 +924,6 @@ CREATE TYPE census_2011.number_of_motor_vehicles AS ENUM (
 
 
 CREATE TYPE census_2011.number_of_persons_usually_resident AS ENUM (
-  'zero',
   'one',
   'two',
   'three',
@@ -923,7 +937,7 @@ CREATE TYPE census_2011.dwelling_structure_simple AS ENUM (
   'separate_house',
   'semi_detached_row_or_terrace_house_townhouse_etc',
   'flat_unit_or_apartment',
-  'other',
+  'other_dwelling',
   'not_stated'
 );
 
@@ -968,10 +982,10 @@ INSERT INTO census_2011.dwelling_structure_extended_full VALUES
 ('flat_unit_or_apartment_in_a_three_storey_block'),
 ('flat_unit_or_apartment_in_a_four_storey_or_more_block'),
 ('flat_unit_or_apartment_attached_to_a_house'),
-('other_caravan_cabin_houseboat'),
-('other_improvised_home_tent_sleepers_out'),
-('other_house_or_flat_attached_to_a_shop_office_etc'),
-('not_stated'),
+('other_dwelling_caravan_cabin_houseboat'),
+('other_dwelling_improvised_home_tent_sleepers_out'),
+('other_dwelling_house_or_flat_attached_to_a_shop_office_etc'),
+('dwelling_structure_not_stated'),
 ('unoccupied');
 
 
@@ -993,7 +1007,7 @@ CREATE TYPE census_2011.landlord_type AS ENUM (
   'state_or_territory_housing_authority',
   'person_not_in_same_household',
   'housing_co_operative_community_church_group',
-  'other',
+  'other_landlord_type',
   'not_stated'
 );
 
@@ -1011,12 +1025,34 @@ INSERT INTO census_2011.rental_payment_band (code, min, max) VALUES
 (2, 100, 149),
 (3, 150, 199),
 (4, 200, 224),
-(5, 255, 274),
+(5, 225, 274),
 (6, 275, 349),
 (7, 350, 449),
 (8, 450, 549),
 (9, 550, 649),
 (10, 650, NULL), --650+
+(11, NULL, NULL); -- NotStated
+
+
+CREATE TABLE census_2011.mortgage_repayment_band
+(
+  code smallint PRIMARY KEY,
+  min smallint,
+  max smallint
+);
+
+INSERT INTO census_2011.mortgage_repayment_band (code, min, max) VALUES
+(0, 0, 299),
+(1, 300, 449),
+(2, 450, 599),
+(3, 600, 799),
+(4, 800, 999),
+(5, 1000, 1399),
+(6, 1400, 1799),
+(7, 1800, 2399),
+(8, 2400, 2999),
+(9, 3000, 3999),
+(10, 4000, NULL), --4000+
 (11, NULL, NULL); -- NotStated
 
 
@@ -1059,15 +1095,15 @@ CREATE TYPE census_2011.previous_place_of_usual_residence AS ENUM (
 
 
 CREATE TYPE census_2011.non_school_level_of_education AS ENUM (
-  'postgraduate_degree',
-  'graduate_diploma_and_graduate_certificate',
-  'bachelor_degree',
-  'advanced_diploma_and_diploma',
-  'certificate_level_certificate_nfd',
-  'certificate_level_certificate_3_and_4',
-  'certificate_level_certificate_1_and_2',
-  'inadequately_described',
-  'not_stated'
+  'postgraduate_degree_level',
+  'graduate_diploma_and_graduate_certificate_level',
+  'bachelor_degree_level',
+  'advanced_diploma_and_diploma_level',
+  'certificate_level_certificate_level_nfd',
+  'certificate_level_certificate_iii_and_iv_level',
+  'certificate_level_certificate_i_and_ii_level',
+  'level_of_education_inadequately_described',
+  'level_of_education_not_stated'
 );
 
 
@@ -1084,8 +1120,8 @@ CREATE TYPE census_2011.field_of_study AS ENUM (
   'creative_arts',
   'food_hospitality_and_personal_services',
   'mixed_field_programmes',
-  'inadequately_described',
-  'not_stated'
+  'field_of_study_inadequately_described',
+  'field_of_study_not_stated'
 );
 
 
