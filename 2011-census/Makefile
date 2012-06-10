@@ -26,7 +26,7 @@ create_schema :
 	echo "creating tables for BCP, PEP..."
 	for s in aust state sa4 sa3 sa2 sa1 gccsa sua sos sosr ucl ra sla lga ssc poa ced sed; \
 	do \
-		#cat src/02-bcp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
+		cat src/02-bcp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
 		cat src/02-pep-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
 	done
 	
