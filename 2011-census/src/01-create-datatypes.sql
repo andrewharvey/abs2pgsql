@@ -112,6 +112,142 @@ INSERT INTO census_2011.population_age_ranges (min, max) VALUES
 (100, NULL);
 
 
+CREATE TABLE census_2011.indigenous_population_ages
+(
+  min smallint PRIMARY KEY,
+  max smallint
+);
+
+-- mostly generated using: for i in {0..24}; do echo "($i, $i),"; done
+INSERT INTO census_2011.indigenous_population_ages (min, max) VALUES
+(0, 0),
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 15),
+(16, 16),
+(17, 17),
+(18, 18),
+(19, 19),
+(20, 20),
+(21, 21),
+(22, 22),
+(23, 23),
+(24, 24),
+(25, 29),
+(30, 34),
+(35, 39),
+(40, 44),
+(45, 49),
+(50, 54),
+(55, 59),
+(60, 64),
+(65, NULL);
+
+
+CREATE TABLE census_2011.time_series_population_ages
+(
+  min smallint PRIMARY KEY,
+  max smallint
+);
+
+-- mostly generated using: for i in {0..79}; do echo "($i, $i),"; done
+INSERT INTO census_2011.time_series_population_ages (min, max) VALUES
+(0, 0),
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 15),
+(16, 16),
+(17, 17),
+(18, 18),
+(19, 19),
+(20, 20),
+(21, 21),
+(22, 22),
+(23, 23),
+(24, 24),
+(25, 25),
+(26, 26),
+(27, 27),
+(28, 28),
+(29, 29),
+(30, 30),
+(31, 31),
+(32, 32),
+(33, 33),
+(34, 34),
+(35, 35),
+(36, 36),
+(37, 37),
+(38, 38),
+(39, 39),
+(40, 40),
+(41, 41),
+(42, 42),
+(43, 43),
+(44, 44),
+(45, 45),
+(46, 46),
+(47, 47),
+(48, 48),
+(49, 49),
+(50, 50),
+(51, 51),
+(52, 52),
+(53, 53),
+(54, 54),
+(55, 55),
+(56, 56),
+(57, 57),
+(58, 58),
+(59, 59),
+(60, 60),
+(61, 61),
+(62, 62),
+(63, 63),
+(64, 64),
+(65, 65),
+(66, 66),
+(67, 67),
+(68, 68),
+(69, 69),
+(70, 70),
+(71, 71),
+(72, 72),
+(73, 73),
+(74, 74),
+(75, 75),
+(76, 76),
+(77, 77),
+(78, 78),
+(79, 79),
+(80, 84),
+(85, NULL);
+
+
 CREATE TABLE census_2011.age_ranges_a
 (
   min smallint PRIMARY KEY,
@@ -228,6 +364,39 @@ INSERT INTO census_2011.age_ranges_e (min, max) VALUES
 (55, 59),
 (60, 64),
 (65, NULL);
+
+CREATE TABLE census_2011.age_ranges_f
+(
+  min smallint PRIMARY KEY,
+  max smallint
+);
+
+INSERT INTO census_2011.age_ranges_f (min, max) VALUES
+(0, 4),
+(5, 14),
+(15, 19),
+(20, 24),
+(25, 34),
+(35, 44),
+(45, 54),
+(55, 64),
+(65, NULL);
+
+CREATE TABLE census_2011.age_ranges_g
+(
+  min smallint PRIMARY KEY,
+  max smallint
+);
+
+INSERT INTO census_2011.age_ranges_g (min, max) VALUES
+(15, 19),
+(20, 24),
+(25, 34),
+(35, 44),
+(45, 54),
+(55, 64),
+(65, NULL);
+
 
 
 CREATE DOMAIN census_2011.sex AS char
@@ -499,38 +668,64 @@ CREATE TYPE census_2011.religion_denomination AS ENUM (
 );
 
 
-CREATE TYPE census_2011.educational_institution AS ENUM (
-  'pre_school',
-  'infants_primary_government',
-  'infants_primary_catholic',
-  'infants_primary_other_non_government',
-  'secondary_government',
-  'secondary_catholic',
-  'secondary_other_non_government',
-  'technical_or_further_educational_institution_full_time_15_24',
-  'technical_or_further_educational_institution_full_time_25_ov',
-  'technical_or_further_educational_institution_part_time_15_24',
-  'technical_or_further_educational_institution_part_time_25_ov',
-  'technical_or_further_educational_institution_fullpart_nt_stated',
-  'university_or_tertiary_institution_full_time_15_24',
-  'university_or_tertiary_institution_full_time_25_ov',
-  'university_or_tertiary_institution_part_time_15_24',
-  'university_or_tertiary_institution_part_time_25_ov',
-  'university_or_tertiary_institution_fullpart_not_stated',
-  'other_type_full_time',
-  'other_type_part_time',
-  'other_type_fullpart_not_stated'
+CREATE TABLE census_2011.educational_institution
+(
+  name text PRIMARY KEY
 );
+
+INSERT INTO census_2011.educational_institution VALUES
+  ('pre_school'),
+  ('infants_primary_government'),
+  ('infants_primary_catholic'),
+  ('infants_primary_other_non_government'),
+  ('secondary_government'),
+  ('secondary_catholic'),
+  ('secondary_other_non_government'),
+  ('technical_or_further_educational_institution_full_time_student_aged_15_24_years'),
+  ('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over'),
+  ('technical_or_further_educational_institution_part_time_student_aged_15_24_years'),
+  ('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over'),
+  ('technical_or_further_educational_institution_full_part_time_student_status_not_stated'),
+  ('university_or_tertiary_institution_full_time_student_aged_15_24_years'),
+  ('university_or_tertiary_institution_full_time_student_aged_25_years_and_over'),
+  ('university_or_tertiary_institution_part_time_student_aged_15_24_years'),
+  ('university_or_tertiary_institution_part_time_student_aged_25_years_and_over'),
+  ('university_or_tertiary_institution_full_part_time_student_status_not_stated'),
+  ('other_type_of_educational_institution_full_time_student'),
+  ('other_type_of_educational_institution_part_time_student'),
+  ('other_type_of_educational_institution_full_part_time_student_status_not_stated');
+
+CREATE TABLE census_2011.indigenous_educational_institution
+(
+  name text PRIMARY KEY
+);
+
+INSERT INTO census_2011.indigenous_educational_institution VALUES
+('pre_school'),
+('infants_primary'),
+('secondary'),
+('technical_or_further_educational_institution_full_time_student_aged_15_24_years'),
+('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over'),
+('technical_or_further_educational_institution_part_time_student_aged_15_24_years'),
+('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over'),
+('technical_or_further_educational_institution_full_part_time_student_status_not_stated'),
+('university_or_other_tertiary_institution_full_time_student_aged_15_24_years'),
+('university_or_other_tertiary_institution_full_time_student_aged_25_years_and_over'),
+('university_or_other_tertiary_institution_part_time_student_aged_15_24_years'),
+('university_or_other_tertiary_institution_part_time_student_aged_25_years_and_over'),
+('university_or_other_tertiary_institution_full_part_time_student_status_not_stated'),
+('other_type_of_educational_institution'),
+('type_of_educational_institution_not_stated');
 
 
 CREATE TYPE census_2011.school_year AS ENUM (
-  'year_12',
-  'year_11',
-  'year_10',
-  'year_9',
+  'year_12_or_equivalent',
+  'year_11_or_equivalent',
+  'year_10_or_equivalent',
+  'year_9_or_equivalent',
   'year_8_or_below',
   'did_not_go_to_school',
-  'not_stated'
+  'highest_year_of_school_not_stated'
 );
 
 
@@ -554,6 +749,24 @@ INSERT INTO census_2011.income_band (code, min, max) VALUES
 (9, 1500, 1999),
 (10, 2000, NULL), --2000+
 (11, NULL, NULL); -- NotStated
+
+CREATE TABLE census_2011.indigenous_income_band
+(
+  code smallint PRIMARY KEY,
+  min smallint,
+  max smallint
+);
+
+INSERT INTO census_2011.indigenous_income_band (code, min, max) VALUES
+(0, 0, 0), -- NegativeNil
+(1, 1, 199),
+(2, 200, 299),
+(3, 300, 399),
+(4, 400, 599),
+(5, 600, 799),
+(6, 800, 999),
+(7, 1000, NULL), --1000+
+(8, NULL, NULL); -- NotStated
 
 
 CREATE TABLE census_2011.unpaid_domestic_work
@@ -610,10 +823,19 @@ CREATE TYPE census_2011.number_of_children AS ENUM (
 
 
 CREATE TYPE census_2011.family_type AS ENUM (
-  'couple_family_with_no_children',
-  'couple_family_with_children',
+  'couple_family',
   'one_parent_family',
   'other_family'
+);
+
+CREATE TYPE census_2011.houshold_type AS ENUM (
+  'one_family_households_couple_family_with_no_children',
+  'one_family_households_couple_family_with_children',
+  'one_family_households_one_parent_family',
+  'one_family_households_other_family',
+  'multiple_family_households',
+  'lone_person_households',
+  'group_household'
 );
 
 
@@ -651,6 +873,31 @@ INSERT INTO census_2011.family_income_band (code, min, max) VALUES
 (16, NULL, NULL); -- All_incomes_not_stated
 
 
+CREATE TABLE census_2011.indigenous_household_income_band
+(
+  code smallint PRIMARY KEY,
+  min smallint,
+  max smallint
+);
+
+INSERT INTO census_2011.indigenous_household_income_band (code, min, max) VALUES
+(0, 0, 0), -- NegativeNil
+(1, 1, 199),
+(2, 200, 299),
+(3, 300, 399),
+(4, 400, 599),
+(5, 600, 799),
+(6, 800, 999),
+(7, 1000, 1249),
+(8, 1250, 1499),
+(9, 1500, 1999),
+(10, 2000, 2499),
+(11, 2500, 2999),
+(12, 3000, NULL), -- 3000+
+(13, NULL, NULL), -- Partial_income_stated
+(14, NULL, NULL); -- All_incomes_not_stated
+
+
 CREATE TYPE census_2011.number_of_motor_vehicles AS ENUM (
   'zero',
   'one',
@@ -680,34 +927,52 @@ CREATE TYPE census_2011.dwelling_structure_simple AS ENUM (
   'not_stated'
 );
 
-
-CREATE TYPE census_2011.dwelling_structure_extended_minimal AS ENUM (
+CREATE TYPE census_2011.dwelling_structure_indigenous AS ENUM (
   'separate_house',
-  'semi_detached_row_or_terrace_house_th_etc_with_one_storey', -- townhouse shortened to th due to PostgreSQL limitation
-  'semi_detached_row_or_terrace_hs_th_etc_with_two_or_more_storey', -- house shorted to hs
-  'flat_unit_or_apartment_in_a_one_or_two_storey_block',
-  'flat_unit_or_apartment_in_a_three_storey_block',
-  'flat_unit_or_apartment_in_a_four_storey_or_more_block',
-  'flat_unit_or_apartment_attached_to_a_house',
-  'other_dwelling',
-  'dwelling_structure_not_stated'
+  'semi_detached_row_or_terrace_house_townhouse_etc',
+  'flat_unit_or_apartment',
+  'other_dwelling_caravan_cabin_houseboat',
+  'other_dwelling_improvised_home_tent_sleepers_out',
+  'other_dwelling_house_or_flat_attached_to_a_shop_office_etc',
+  'not_stated'
 );
 
-
-CREATE TYPE census_2011.dwelling_structure_extended_full AS ENUM (
-  'separate_house',
-  'semi_detached_row_or_terrace_hs_th_etc_with_one_storey', -- shortened
-  'semi_detached_row_or_terrace_hs_th_etc_with_two_or_more_storey', -- shortened
-  'flat_unit_or_apartment_in_a_one_or_two_storey_block',
-  'flat_unit_or_apartment_in_a_three_storey_block',
-  'flat_unit_or_apartment_in_a_four_storey_or_more_block',
-  'flat_unit_or_apartment_attached_to_a_house',
-  'other_caravan_cabin_houseboat',
-  'other_improvised_home_tent_sleepers_out',
-  'other_house_or_flat_attached_to_a_shop_office_etc',
-  'not_stated',
-  'unoccupied'
+-- can't do as an enum as values longer than 63 characters
+CREATE TABLE census_2011.dwelling_structure_extended_minimal
+(
+  name text PRIMARY KEY
 );
+
+INSERT INTO census_2011.dwelling_structure_extended_minimal VALUES
+('separate_house'),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_one_storey'),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_two_or_more_storeys'),
+('flat_unit_or_apartment_in_a_one_or_two_storey_block'),
+('flat_unit_or_apartment_in_a_three_storey_block'),
+('flat_unit_or_apartment_in_a_four_storey_or_more_block'),
+('flat_unit_or_apartment_attached_to_a_house'),
+('other_dwelling'),
+('dwelling_structure_not_stated');
+
+
+CREATE TABLE census_2011.dwelling_structure_extended_full
+(
+  name text PRIMARY KEY
+);
+
+INSERT INTO census_2011.dwelling_structure_extended_full VALUES
+('separate_house'),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_one_storey'),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_two_or_more_storeys'),
+('flat_unit_or_apartment_in_a_one_or_two_storey_block'),
+('flat_unit_or_apartment_in_a_three_storey_block'),
+('flat_unit_or_apartment_in_a_four_storey_or_more_block'),
+('flat_unit_or_apartment_attached_to_a_house'),
+('other_caravan_cabin_houseboat'),
+('other_improvised_home_tent_sleepers_out'),
+('other_house_or_flat_attached_to_a_shop_office_etc'),
+('not_stated'),
+('unoccupied');
 
 
 CREATE TYPE census_2011.tenure_landlord_type AS ENUM (
@@ -717,10 +982,10 @@ CREATE TYPE census_2011.tenure_landlord_type AS ENUM (
   'rented_state_or_territory_housing_authority',
   'rented_person_not_in_same_household',
   'rented_housing_co_operative_community_church_group',
-  'rented_other',
-  'rented_not_stated',
+  'rented_other_landlord_type',
+  'rented_landlord_type_not_stated',
   'other_tenure_type',
-  'not_stated'
+  'tenure_type_not_stated'
 );
 
 CREATE TYPE census_2011.landlord_type AS ENUM (
@@ -907,4 +1172,19 @@ CREATE TYPE census_2011.method_of_travel AS ENUM (
   'worked_at_home',
   'did_not_go_to_work',
   'method_of_travel_to_work_not_stated'
+);
+
+CREATE TYPE census_2011.indigenous_status AS ENUM (
+  'indigenous_persons_aboriginal',
+  'indigenous_persons_torres_strait_islander',
+  'indigenous_persons_both_aboriginal_and_torres_strait_islander',
+  'non_indigenous_persons',
+  'indigenous_status_not_stated'
+);
+
+
+CREATE TYPE census_2011.tsp_years AS ENUM (
+  '2001',
+  '2006',
+  '2011'
 );

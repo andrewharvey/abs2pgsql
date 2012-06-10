@@ -1,5 +1,5 @@
--- This file defines the target PostgreSQL schema for the ABS Census 2011 Basic
--- Community Profile.
+-- This file defines the target PostgreSQL schema for the ABS 2011 Census
+-- for the Basic Community Profile product.
 
 -- This file is licensed CC0 by Andrew Harvey <andrew.harvey4@gmail.com>
 --
@@ -8,11 +8,12 @@
 -- rights to this work.
 -- http://creativecommons.org/publicdomain/zero/1.0/
 --
--- This schema is partly derived from the ABS Census 2011 Datapack Samples,
+-- This schema is partly derived from the ABS 2011 Census Datapack Samples
 -- which are Copyright Australian Bureau of Statistics (ABS) http://abs.gov.au/,
 -- Commonwealth of Australia and licensed under the CC BY 2.5 AU license
 -- http://creativecommons.org/licenses/by/2.5/au/ by the ABS.
--- The datapack samples were retrieved from http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample/$file/2011_BCP_AU_for_AUST_short-header.zip
+-- The datapack samples were retrieved from 
+-- http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample?opendocument&navpos=250
 
 
 -- B03
@@ -130,7 +131,8 @@ CREATE TABLE census_2011.bcp_spoken_english_proficiency_by_year_of_arrival_by_se
 );
 
 -- B12
-CREATE TABLE census_2011.bcp_spoken_english_proficiency_of_parents_by_age_of_dependent_children_{structure}
+-- bcp_spoken_english_proficiency_of_parents_by_age_of_dependent_children (name shortened due to PostgreSQL limitation)
+CREATE TABLE census_2011.bcp_spoken_english_proficiency_of_parents_by_age_depnt_ch_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   child_age smallint REFERENCES census_2011.age_ranges_children(min),
@@ -296,7 +298,7 @@ CREATE TABLE census_2011.bcp_number_of_children_over_born_{structure}
 );
 
 -- B25
-CREATE TABLE census_2011.bcp_family_composition_{structure}
+CREATE TABLE census_2011.bcp_family_composition_families_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   family_type census_2011.family_type,
@@ -305,6 +307,18 @@ CREATE TABLE census_2011.bcp_family_composition_{structure}
   non_dependent_children boolean,
 
   families integer,
+
+  PRIMARY KEY (asgs_code, family_type, children_under_15, dependent_students, non_dependent_children)
+);
+
+CREATE TABLE census_2011.bcp_family_composition_persons_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  family_type census_2011.family_type,
+  children_under_15 boolean,
+  dependent_students boolean,
+  non_dependent_children boolean,
+
   persons integer,
 
   PRIMARY KEY (asgs_code, family_type, children_under_15, dependent_students, non_dependent_children)
@@ -338,7 +352,7 @@ CREATE TABLE census_2011.bcp_family_blending_{structure}
 CREATE TABLE census_2011.bcp_household_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  income_range census_2011.income_band,
+  income_range census_2011.family_income_band,
   family_household boolean,
 
   occupied_private_dwellings integer,
@@ -370,12 +384,21 @@ CREATE TABLE census_2011.bcp_number_of_persons_usually_resident_{structure}
 );
 
 -- B31
-CREATE TABLE census_2011.bcp_dwelling_structure_{structure}
+CREATE TABLE census_2011.bcp_dwelling_structure_dwellings_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   dwelling_structure census_2011.dwelling_structure_extended_full,
 
   dwellings integer,
+
+  PRIMARY KEY (asgs_code, dwelling_structure)
+);
+
+CREATE TABLE census_2011.bcp_dwelling_structure_persons_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  dwelling_structure census_2011.dwelling_structure_extended_full,
+
   persons integer,
 
   PRIMARY KEY (asgs_code, dwelling_structure)
