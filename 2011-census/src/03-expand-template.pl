@@ -30,24 +30,20 @@ my $sth;
 use Text::CSV;
 
 # these are used in the expansions hardcode
-my @time_series_population_ages_source = (0..79);
-push @time_series_population_ages_source, ('80_84_years', '85_years_and_over');
-
-my @time_series_population_ages_target = (0..80);
-push @time_series_population_ages_target, (85);
-
-my @population_ages_source = (0..79);
-push @population_ages_source, ('80_84_years', '85_89_years', '90_94_years', '95_99_years', '100_years_and_over');
-
-my @population_ages_target = (0..80);
-push @population_ages_target, (85, 90, 95, 100);
-
-my @indigenous_population_ages_source = (0..24);
-push @indigenous_population_ages_source, ('25_29_years', '30_34_years', '35_39_years', '40_44_years', '45_49_years', '50_54_years', '55_59_years', '60_64_years', '65_years_and_over');
-
-my @indigenous_population_ages_target = (0..25);
-push @indigenous_population_ages_target, (30, 35, 40, 45, 50, 55, 60, 65);
-
+my %age_expansions = (
+    a => "0..79 80-84 85-89 90-94 95-99 100+",
+    b => "0..24 25-29 30-34 35-39 40-44 45-49 50-54 55-59 60-64 65+",
+    c => "15-19 20-24 25-34 35-44 45-54 55-64 65-74 75-84 85+",
+    d => "0-14 15-24 25-34 35-44 45-54 55-64 65-74 75-84 85+",
+    e => "0-4 5-14 15-19 20-24 25-34 35-44 45-54 55-64 65-74 75-84 85+",
+    f => "0-4 5-9 10-12 13-14 15-17 18-20 21-24",
+    g => "15-19 20-24 25-29 30-34 35-39 40-44 45-49 50-54 55-59 60-64 65-69 70-74 75-79 80-84 85+",
+    h => "0-4 5-9 10-14 15-19 20-24 25-29 30-34 35-39 40-44 45-49 50-54 55-59 60-64 65+",
+    i => "0-4 5-14 15-19 20-24 25-34 35-44 45-54 55-64 65+",
+    j => "0..79 80-84 85+",
+    k => "15-24 25-34 35-44 45-54 55-64 65-74 75-84 85+",
+    l => "15-19 20-24 25-34 35-44 45-54 55-64 65+"
+  );
 
 # hard code the [:foo:] expansions
 # format is foo => [[long name values list],[target insert values list][
@@ -55,46 +51,6 @@ my %expansions = (
   sex => [
       [qw/Males Females/],
       [qw/true false/]
-    ],
-  pop_ages => [
-      \@population_ages_source,
-      \@population_ages_target
-    ],
-  ages_a => [
-      [qw/15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
-      [qw/15 20 25 35 45 55 65 75 85/]
-    ],
-  ages_h => [
-      [qw/15_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
-      [qw/15 25 35 45 55 65 75 85/]
-    ],
-  ages_b => [
-      [qw/0_14_years 15_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
-      [qw/0 15 25 35 45 55 65 75 85/]
-    ],
-  ages_c => [
-      [qw/0_4_years 5_14_years 15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_74_years 75_84_years 85_years_and_over/],
-      [qw/0 5 15 20 25 35 45 55 65 75 85/]
-    ],
-  ages_d => [
-      [qw/15_19_years 20_24_years 25_29_years 30_34_years 35_39_years 40_44_years 45_49_years 50_54_years 55_59_years 60_64_years 65_69_years 70_74_years 75_79_years 80_84_years 85_years_and_over/],
-      [qw/15 20 25 30 35 40 45 50 55 60 64 70 75 80 85/]
-    ],
-  ages_e => [
-      [qw/0_4_years 5_9_years 10_14_years 15_19_years 20_24_years 25_29_years 30_34_years 35_39_years 40_44_years 45_49_years 50_54_years 55_59_years 60_64_years 65_years_and_over/],
-      [qw/0 5 10 15 20 25 30 35 40 45 50 55 60 65/]
-    ],
-  ages_f => [
-      [qw/0_4_years 5_14_years 15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_years_and_over/],
-      [qw/0 5 15 20 25 35 45 55 65/]
-    ],
-  ages_g => [
-      [qw/15_19_years 20_24_years 25_34_years 35_44_years 45_54_years 55_64_years 65_years_and_over/],
-      [qw/15 20 25 35 45 55 65/]
-    ],
-  ages_children => [
-      [qw/0_4_years 5_9_years 10_12_years 13_14_years 15_17_years 18_20_years 21_24_years/],
-      [qw/0 5 10 13 15 18 21/]
     ],
   income_band => [
       [qw/Negative_Nil_income 1_199 200_299 300_399 400_599 600_799 800_999 1000_1249 1250_1499 1500_1999 2000_or_more Personal_income_not_stated/],
@@ -120,10 +76,6 @@ my %expansions = (
       [qw/No_Internet_connection Type_of_Internet_connection_Broadband Type_of_Internet_connection_Dial_up Type_of_Internet_connection_Other Internet_connection_not_stated/],
       [qw/none broadband dial_up other not_stated/]
     ],
-  indigenous_population_ages => [
-      \@indigenous_population_ages_source,
-      \@indigenous_population_ages_target
-    ],
   indigenous_income_band => [
       [qw/Negative_Nil_income 1_199 200_299 300_399 400_599 600_799 800_999 1000_or_more Personal_income_not_stated/],
       [0..8]
@@ -131,10 +83,6 @@ my %expansions = (
   indigenous_household_income => [
       [qw/Negative_Nil_income 1_199 200_299 300_399 400_599 600_799 800_999 1000_1249 1250_1499 1500_1999 2000_2499 2500_2999 3000_or_more Partial_income_stated All_incomes_not_stated/],
       [0..14]
-    ],
-  time_series_population_ages => [
-      \@time_series_population_ages_source,
-      \@time_series_population_ages_target
     ],
   year_of_arrival_a => [
       [qw/Before_1941 1941_1950 1951_1960 1961_1970 1971_1980 1981_1990 1991_2000 2001_2005 2006 2007 2008 2009 2010 2011 not_stated/],
@@ -145,6 +93,44 @@ my %expansions = (
       [0..9]
     ]
 );
+
+my @age_inserts;
+
+for my $k (keys %age_expansions) {
+  my @values = split / /, $age_expansions{$k};
+
+  my @long_names;
+  my @target_values;
+
+  for my $v (@values) {
+    if ($v =~ /^(\d+)\.\.(\d+)$/) {
+      push @long_names, $1..$2;
+      push @target_values, $1..$2;
+
+      map {push @age_inserts, $_ . "\t" . $_ . "\t" . $_} $1..$2;
+    }elsif ($v =~ /^(\d+)-(\d+)$/) {
+      push @long_names, "$1_$2_years";
+      push @target_values, "$1-$2";
+
+      push @age_inserts, "$1" . "-" . $2 . "\t" . $1 . "\t" . $2;
+    }elsif ($v =~ /^(\d+)\+$/) {
+      push @long_names, "$1_years_and_over";
+      push @target_values, "$1+";
+
+      push @age_inserts, $1 . "+\t" . $1 . "\t" . "\\N";
+    }else{
+      die;
+    }
+  }
+
+  $expansions{"age_" . $k} = [\@long_names, \@target_values];
+}
+
+# produce a .copy file so we can load the data from the age_expansions
+# hash into our target schema
+open (my $age_copy, '>', "age.copy");
+map {print $age_copy "$_\n"} @age_inserts;
+close $age_copy;
 
 # read in every line of our schema map definion file
 while (<>) {

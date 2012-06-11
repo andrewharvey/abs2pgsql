@@ -37,7 +37,7 @@ CREATE TABLE census_2011.bcp_selected_medians_and_averages_{structure}
 CREATE TABLE census_2011.bcp_place_of_usual_residence_on_census_night_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_b(min),
+  age text REFERENCES census_2011.age(range),
   place_of_usual_residence census_2011.place_of_usual_residence,
 
   visitor_from_different_sa2_state_code asgs_2011.state_code REFERENCES asgs_2011.state(code),
@@ -51,7 +51,7 @@ CREATE TABLE census_2011.bcp_place_of_usual_residence_on_census_night_{structure
 CREATE TABLE census_2011.bcp_age_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.population_age_ranges(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
 
   persons integer,
@@ -63,7 +63,7 @@ CREATE TABLE census_2011.bcp_age_{structure}
 CREATE TABLE census_2011.bcp_registered_marital_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   registered_marital_status census_2011.registered_marital_status,
 
@@ -76,7 +76,7 @@ CREATE TABLE census_2011.bcp_registered_marital_status_{structure}
 CREATE TABLE census_2011.bcp_social_marital_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   social_marital_status census_2011.social_marital_status,
 
@@ -89,7 +89,7 @@ CREATE TABLE census_2011.bcp_social_marital_status_{structure}
 CREATE TABLE census_2011.bcp_indigenous_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_e(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   indigenous census_2011.yes_no_notstated,
 
@@ -151,7 +151,7 @@ CREATE TABLE census_2011.bcp_proficiency_in_spoken_english_{structure}
 CREATE TABLE census_2011.bcp_proficiency_in_spoken_english_of_parents_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  child_age smallint REFERENCES census_2011.age_ranges_children(min),
+  child_age text REFERENCES census_2011.age(range),
   proficiency_male_parent census_2011.english_proficiency,
   proficiency_female_parent census_2011.english_proficiency,
 
@@ -202,7 +202,7 @@ CREATE TABLE census_2011.bcp_highest_year_of_school_completed_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   school_year census_2011.school_year,
 
   persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer,
@@ -214,7 +214,7 @@ CREATE TABLE census_2011.bcp_highest_year_of_school_completed_{structure}
 CREATE TABLE census_2011.bcp_total_personal_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   income_band smallint REFERENCES census_2011.income_band(code),
 
@@ -227,7 +227,7 @@ CREATE TABLE census_2011.bcp_total_personal_income_{structure}
 CREATE TABLE census_2011.bcp_core_activity_need_for_assistance_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_c(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   need_assistance census_2011.yes_no_notstated,
 
@@ -240,7 +240,7 @@ CREATE TABLE census_2011.bcp_core_activity_need_for_assistance_{structure}
 CREATE TABLE census_2011.bcp_voluntary_work_for_an_organisation_or_group_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   volunteered census_2011.yes_no_notstated,
 
@@ -253,7 +253,7 @@ CREATE TABLE census_2011.bcp_voluntary_work_for_an_organisation_or_group_{struct
 CREATE TABLE census_2011.bcp_unpaid_domestic_work_number_of_hours_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   unpaid_domestic_work_amount smallint REFERENCES census_2011.unpaid_domestic_work(code),
 
@@ -266,7 +266,7 @@ CREATE TABLE census_2011.bcp_unpaid_domestic_work_number_of_hours_{structure}
 CREATE TABLE census_2011.bcp_unpaid_assistance_to_a_person_with_a_disability_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   provided_assistance census_2011.yes_no_notstated,
 
@@ -279,7 +279,7 @@ CREATE TABLE census_2011.bcp_unpaid_assistance_to_a_person_with_a_disability_{st
 CREATE TABLE census_2011.bcp_unpaid_child_care_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   child_care census_2011.child_care,
 
@@ -292,7 +292,7 @@ CREATE TABLE census_2011.bcp_unpaid_child_care_{structure}
 CREATE TABLE census_2011.bcp_relationship_in_houshold_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_b(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   household_relationship census_2011.household_relationship,
 
@@ -305,7 +305,7 @@ CREATE TABLE census_2011.bcp_relationship_in_houshold_{structure}
 CREATE TABLE census_2011.bcp_number_of_children_ever_born_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age_of_parent smallint REFERENCES census_2011.age_ranges_d(min),
+  age_of_parent text REFERENCES census_2011.age(range),
   number_of_children_ever_born census_2011.number_of_children,
 
   females_aged_15_years_and_over integer,
@@ -513,7 +513,7 @@ CREATE TABLE census_2011.bcp_place_of_usual_residence_5_years_ago_{structure}
 CREATE TABLE census_2011.bcp_non_school_qualification_level_of_education_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   non_school_level_of_education census_2011.non_school_level_of_education,
 
@@ -526,7 +526,7 @@ CREATE TABLE census_2011.bcp_non_school_qualification_level_of_education_{struct
 CREATE TABLE census_2011.bcp_non_school_qualification_field_of_study_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   field_of_study census_2011.field_of_study,
 
@@ -539,7 +539,7 @@ CREATE TABLE census_2011.bcp_non_school_qualification_field_of_study_{structure}
 CREATE TABLE census_2011.bcp_labour_force_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   employment_status census_2011.employment_status,
 
@@ -552,7 +552,7 @@ CREATE TABLE census_2011.bcp_labour_force_status_{structure}
 CREATE TABLE census_2011.bcp_industry_of_employment_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   industry census_2011.industry,
 
@@ -577,7 +577,7 @@ CREATE TABLE census_2011.bcp_industry_of_employment_by_occupation_{structure}
 CREATE TABLE census_2011.bcp_occupation_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_a(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   occupation census_2011.occupation,
 

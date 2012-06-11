@@ -13,25 +13,25 @@
 ## Basic Community Profile
 ##
 
-B03 Counted_at_home_on_Census_Night_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'counted_at_home', NULL)
-B03 Visitor_from_Same_Statistical_Area_Level_2_SA2_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_same_sa2', NULL)
-B03 Visitor_from_Different_SA2_In_New_South_Wales_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_nsw', 1)
-B03 Visitor_from_Different_SA2_In_Victoria_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_vic', 2)
-B03 Visitor_from_Different_SA2_In_Queensland_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_qld', 3)
-B03 Visitor_from_Different_SA2_In_South_Australia_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_sa', 4)
-B03 Visitor_from_Different_SA2_In_Western_Australia_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_wa', 5)
-B03 Visitor_from_Different_SA2_In_Tasmania_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_tas', 6)
-B03 Visitor_from_Different_SA2_In_Northern_Territory_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_nt', 7)
-B03 Visitor_from_Different_SA2_In_Australian_Capital_Territory_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_act', 8)
-B03 Visitor_from_Different_SA2_In_Other_Territories_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_oth', 9)
+B03 Counted_at_home_on_Census_Night_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'counted_at_home', NULL)
+B03 Visitor_from_Same_Statistical_Area_Level_2_SA2_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_same_sa2', NULL)
+B03 Visitor_from_Different_SA2_In_New_South_Wales_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_nsw', 1)
+B03 Visitor_from_Different_SA2_In_Victoria_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_vic', 2)
+B03 Visitor_from_Different_SA2_In_Queensland_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_qld', 3)
+B03 Visitor_from_Different_SA2_In_South_Australia_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_sa', 4)
+B03 Visitor_from_Different_SA2_In_Western_Australia_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_wa', 5)
+B03 Visitor_from_Different_SA2_In_Tasmania_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_tas', 6)
+B03 Visitor_from_Different_SA2_In_Northern_Territory_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_nt', 7)
+B03 Visitor_from_Different_SA2_In_Australian_Capital_Territory_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_act', 8)
+B03 Visitor_from_Different_SA2_In_Other_Territories_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, 'visitor_from_different_sa2_oth', 9)
 
-B04 Age_years_[:pop_ages:]_[:sex:] bcp_age (\pop_ages, \sex)
+B04 Age_years_[:age_a:]_[:sex:] bcp_age (\age_a, \sex)
 
-B05 [:sex:]_[:ages_a:]_{db:census_2011.registered_marital_status} bcp_registered_marital_status (\ages_a, \sex, \db:census_2011.registered_marital_status)
+B05 [:sex:]_[:age_c:]_{db:census_2011.registered_marital_status} bcp_registered_marital_status (\age_c, \sex, \db:census_2011.registered_marital_status)
 
-B06 [:sex:]_[:ages_a:]_{db:census_2011.social_marital_status} bcp_social_marital_status (\ages_a, \sex, \db:census_2011.social_marital_status)
+B06 [:sex:]_[:age_c:]_{db:census_2011.social_marital_status} bcp_social_marital_status (\age_c, \sex, \db:census_2011.social_marital_status)
 
-B07 [:ages_e:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] bcp_indigenous_status (\ages_e, \sex, \ynn)
+B07 [:age_h:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] bcp_indigenous_status (\age_h, \sex, \ynn)
 
 B08 {db:census_2011.ancestry}_{db:census_2011.parent_birthplace_combination} bcp_ancestry (\db:census_2011.ancestry, \db:census_2011.parent_birthplace_combination)
 
@@ -42,7 +42,7 @@ B10 {db:census_2011.birthplace}_Year_of_arrival_[:year_of_arrival_a:] bcp_countr
 
 B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_[:year_of_arrival_b:] bcp_proficiency_in_spoken_english (0, \sex, \db:census_2011.english_proficiency)
 
-B12 Dependent_children_aged_[:ages_children:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_proficiency_in_spoken_english_of_parents (\ages_children, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
+B12 Dependent_children_aged_[:age_f:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_proficiency_in_spoken_english_of_parents (\age_f, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
 
 B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, 'english_only')
 B13 Speaks_other_language_{db:census_2011.language}_[:sex:] bcp_language_spoken_at_home (\sex, \db:census_2011.language)
@@ -52,28 +52,28 @@ B13 Language_spoken_at_home_not_stated_[:sex:] bcp_language_spoken_at_home (\sex
 
 B15 {db:census_2011.educational_institution}_[:sex:] bcp_type_of_educational_institution_attending (\sex, \db:census_2011.educational_institution)
 
-B16 [:sex:]_{db:census_2011.school_year}_Age_[:ages_a:] bcp_highest_year_of_school_completed (\sex, \ages_a, \db:census_2011.school_year)
+B16 [:sex:]_{db:census_2011.school_year}_Age_[:age_c:] bcp_highest_year_of_school_completed (\sex, \age_c, \db:census_2011.school_year)
 
-B17 [:sex:]_[:income_band:]_Age_[:ages_a:] bcp_total_personal_income (\ages_a, \sex, \income_band)
+B17 [:sex:]_[:income_band:]_Age_[:age_c:] bcp_total_personal_income (\age_c, \sex, \income_band)
 
-B18 [:sex:]_[:ages_c:]_{ynn:Has_need_for_assistance|Does_not_have_need_for_assistance|Need_for_assistance_not_stated} bcp_core_activity_need_for_assistance (\ages_c, \sex, \ynn)
+B18 [:sex:]_[:age_e:]_{ynn:Has_need_for_assistance|Does_not_have_need_for_assistance|Need_for_assistance_not_stated} bcp_core_activity_need_for_assistance (\age_e, \sex, \ynn)
 
-B19 [:sex:]_[:ages_a:]_{ynn:Volunteer|Not_a_volunteer|Voluntary_work_not_stated} bcp_voluntary_work_for_an_organisation_or_group (\ages_a, \sex, \ynn)
+B19 [:sex:]_[:age_c:]_{ynn:Volunteer|Not_a_volunteer|Voluntary_work_not_stated} bcp_voluntary_work_for_an_organisation_or_group (\age_c, \sex, \ynn)
 
-B20 [:sex:]_[:ages_a:]_Did_no_unpaid_domestic_work bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 0)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_Less_than_5_hours bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 1)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_5_14_hours bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 2)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_15_29_hours bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 3)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_30_hours_or_more bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 4)
-B20 [:sex:]_[:ages_a:]_Unpaid_domestic_work_not_stated bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 5)
+B20 [:sex:]_[:age_c:]_Did_no_unpaid_domestic_work bcp_unpaid_domestic_work_number_of_hours (\age_c, \sex, 0)
+B20 [:sex:]_[:age_c:]_Did_unpaid_domestic_work_Less_than_5_hours bcp_unpaid_domestic_work_number_of_hours (\age_c, \sex, 1)
+B20 [:sex:]_[:age_c:]_Did_unpaid_domestic_work_5_14_hours bcp_unpaid_domestic_work_number_of_hours (\age_c, \sex, 2)
+B20 [:sex:]_[:age_c:]_Did_unpaid_domestic_work_15_29_hours bcp_unpaid_domestic_work_number_of_hours (\age_c, \sex, 3)
+B20 [:sex:]_[:age_c:]_Did_unpaid_domestic_work_30_hours_or_more bcp_unpaid_domestic_work_number_of_hours (\age_c, \sex, 4)
+B20 [:sex:]_[:age_c:]_Unpaid_domestic_work_not_stated bcp_unpaid_domestic_work_number_of_hours (\age_c, \sex, 5)
 
-B21 [:sex:]_[:ages_a:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provided|Unpaid_assistance_not_stated} bcp_unpaid_assistance_to_a_person_with_a_disability (\ages_a, \sex, \ynn)
+B21 [:sex:]_[:age_c:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provided|Unpaid_assistance_not_stated} bcp_unpaid_assistance_to_a_person_with_a_disability (\age_c, \sex, \ynn)
 
-B22 [:sex:]_[:ages_a:]_{db:census_2011.child_care} bcp_unpaid_child_care (\ages_a, \sex, \db:census_2011.child_care)
+B22 [:sex:]_[:age_c:]_{db:census_2011.child_care} bcp_unpaid_child_care (\age_c, \sex, \db:census_2011.child_care)
 
-B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:ages_b:] bcp_relationship_in_houshold (\ages_b, \sex, \db:census_2011.household_relationship)
+B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:age_d:] bcp_relationship_in_houshold (\age_d, \sex, \db:census_2011.household_relationship)
 
-B24 Age_group_of_parent_[:ages_d:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_ever_born (\ages_d, \db:census_2011.number_of_children)
+B24 age_group_of_parent_[:age_g:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_ever_born (\age_g, \db:census_2011.number_of_children)
 
 B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families ('couple_family', \tf_1, \tf_2, \tf_3)
 B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families ('one_parent_family', \tf_1, \tf_2, \tf_3)
@@ -136,17 +136,17 @@ B39 Different_usual_address_5_years_ago_Different_SA2_in_Other_Territories_[:sex
 B39 Different_usual_address_5_years_ago_Overseas_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_overseas')
 B39 Different_usual_address_5_years_ago_Not_stated_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_not_stated')
 
-B40 [:sex:]_{db:census_2011.non_school_level_of_education}_Age_[:ages_h:] bcp_non_school_qualification_level_of_education (\ages_h, \sex, \db:census_2011.non_school_level_of_education)
+B40 [:sex:]_{db:census_2011.non_school_level_of_education}_Age_[:age_k:] bcp_non_school_qualification_level_of_education (\age_k, \sex, \db:census_2011.non_school_level_of_education)
 
-B41 [:sex:]_{db:census_2011.field_of_study}_Age_[:ages_h:] bcp_non_school_qualification_field_of_study (\ages_h, \sex, \db:census_2011.field_of_study)
+B41 [:sex:]_{db:census_2011.field_of_study}_Age_[:age_k:] bcp_non_school_qualification_field_of_study (\age_k, \sex, \db:census_2011.field_of_study)
 
-B42 [:sex:]_{db:census_2011.employment_status}_Age_[:ages_a:] bcp_labour_force_status (\ages_a, \sex, \db:census_2011.employment_status)
+B42 [:sex:]_{db:census_2011.employment_status}_Age_[:age_c:] bcp_labour_force_status (\age_c, \sex, \db:census_2011.employment_status)
 
-B43 [:sex:]_{db:census_2011.industry}_Age_[:ages_a:] bcp_industry_of_employment (\ages_a, \sex, \db:census_2011.industry)
+B43 [:sex:]_{db:census_2011.industry}_Age_[:age_c:] bcp_industry_of_employment (\age_c, \sex, \db:census_2011.industry)
 
 B44 {db:census_2011.industry}_Occupation_{db:census_2011.occupation} bcp_industry_of_employment_by_occupation (\db:census_2011.industry, \db:census_2011.occupation)
 
-B45 [:sex:]_[:ages_a:]_Occupation_{db:census_2011.occupation} bcp_occupation (\ages_a, \sex, \db:census_2011.occupation)
+B45 [:sex:]_[:age_c:]_Occupation_{db:census_2011.occupation} bcp_occupation (\age_c, \sex, \db:census_2011.occupation)
 
 B46 {db:census_2011.method_of_travel}_[:sex:] bcp_method_of_travel_to_work (\sex, \db:census_2011.method_of_travel)
 
@@ -157,7 +157,7 @@ B46 {db:census_2011.method_of_travel}_[:sex:] bcp_method_of_travel_to_work (\sex
 
 I02 {db:census_2011.indigenous_status}_[:sex:] ip_indigenous_status (\sex, \db:census_2011.indigenous_status)
 
-I03 Age_years_[:indigenous_population_ages:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_population (\indigenous_population_ages, \sex, \ynn)
+I03 Age_years_[:age_b:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_population (\age_b, \sex, \ynn)
 
 I05 {db:census_2011.indigenous_educational_institution}_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_type_of_educational_institution_attending (\sex, \db:census_2011.indigenous_educational_institution, \ynn)
 
@@ -165,9 +165,9 @@ I06 [:sex:]_{db:census_2011.school_year}_{ynn:Indigenous|Non_Indigenous|Indigeno
 
 I07 [:indigenous_income_band:]_[:sex:] ip_personal_income (\sex, \indigenous_income_band)
 
-I08 [:sex:]_[:ages_f:]_{ynn:Has_need_for_assistance|Does_not_have_need_for_assistance|Need_for_assistance_not_stated} ip_core_activity_need_for_assistance (\ages_f, \sex, \ynn)
+I08 [:sex:]_[:age_i:]_{ynn:Has_need_for_assistance|Does_not_have_need_for_assistance|Need_for_assistance_not_stated} ip_core_activity_need_for_assistance (\age_i, \sex, \ynn)
 
-I09 [:sex:]_[:ages_g:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provided|Unpaid_assistance_not_stated} ip_unpaid_assistance_to_a_person_with_a_disability (\ages_g, \sex, \ynn)
+I09 [:sex:]_[:age_l:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provided|Unpaid_assistance_not_stated} ip_unpaid_assistance_to_a_person_with_a_disability (\age_l, \sex, \ynn)
 
 I10 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_indigenous} ip_tenure_type_and_landlord_type (\db:census_2011.dwelling_structure_indigenous, \db:census_2011.tenure_landlord_type, \tf)
 
@@ -183,4 +183,4 @@ I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other
 ## Time Series Profile
 ##
 
-T03 Age_years_[:time_series_population_ages:]_{db:census_2011.tsp_years}_Census_[:sex:] tsp_population (\time_series_population_age, \sex, \db:census_2011.tsp_years)
+T03 Age_years_[:age_j:]_{db:census_2011.tsp_years}_Census_[:sex:] tsp_population (\age_j, \sex, \db:census_2011.tsp_years)

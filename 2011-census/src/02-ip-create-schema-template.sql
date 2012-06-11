@@ -33,7 +33,7 @@ CREATE TABLE census_2011.ip_indigenous_status_{structure}
 CREATE TABLE census_2011.ip_population_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.indigenous_population_ages(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   indigenous_status census_2011.yes_no_notstated,
 
@@ -102,7 +102,7 @@ CREATE TABLE census_2011.ip_personal_income_{structure}
 CREATE TABLE census_2011.ip_core_activity_need_for_assistance_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_f(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   need_assistance census_2011.yes_no_notstated,
 
@@ -115,7 +115,7 @@ CREATE TABLE census_2011.ip_core_activity_need_for_assistance_{structure}
 CREATE TABLE census_2011.ip_unpaid_assistance_to_a_person_with_a_disability_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.age_ranges_g(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   provided_assistance census_2011.yes_no_notstated,
 

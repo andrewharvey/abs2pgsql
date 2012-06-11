@@ -20,7 +20,7 @@
 CREATE TABLE census_2011.tsp_population_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  age smallint REFERENCES census_2011.population_age_ranges(min),
+  age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   year census_2011.tsp_years,
 
