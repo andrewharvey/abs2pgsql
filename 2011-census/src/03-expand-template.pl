@@ -8,9 +8,7 @@
 # http://creativecommons.org/publicdomain/zero/1.0/
 
 # Given a file defining the mapping of fields into the target PostgreSQL
-# schema, prepare the load.
-
-# ./map-expansion.pl < short_name2target.map > short_name2target_expanded.map
+# schema, expand out the placemarker values.
 
 use strict;
 
