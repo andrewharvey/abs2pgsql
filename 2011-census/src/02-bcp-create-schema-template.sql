@@ -102,12 +102,12 @@ CREATE TABLE census_2011.bcp_indigenous_status_{structure}
 CREATE TABLE census_2011.bcp_ancestry_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  ancestry census_2011.ancestry,
   parent_birthplace_combination census_2011.parent_birthplace_combination,
+  ancestry census_2011.ancestry,
 
   persons integer,
 
-  PRIMARY KEY (asgs_code, ancestry, parent_birthplace_combination)
+  PRIMARY KEY (asgs_code, parent_birthplace_combination, ancestry)
 );
 
 -- B09
@@ -115,11 +115,11 @@ CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_sex_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  country census_2011.birthplace,
+  country_of_birth census_2011.birthplace,
 
   persons integer,
 
-  PRIMARY KEY (asgs_code, sex, country)
+  PRIMARY KEY (asgs_code, sex, country_of_birth)
 );
 
 -- B10
@@ -127,11 +127,11 @@ CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_year_of_arrival_{stru
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   year_of_arrival smallint REFERENCES census_2011.year_of_arrival(code),
-  country census_2011.birthplace,
+  country_of_birth census_2011.birthplace,
 
   persons_born_overseas integer,
 
-  PRIMARY KEY (asgs_code, year_of_arrival, country)
+  PRIMARY KEY (asgs_code, year_of_arrival, country_of_birth)
 );
 
 -- B11
@@ -177,7 +177,7 @@ CREATE TABLE census_2011.bcp_religious_affiliation_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  religion census_2011.religion,
+  religion census_2011.religion, --FIXME use just one religious affiliation type here, and let the datatype make the tiered destinctions
   denomination census_2011.religion_denomination,
 
   persons integer,
@@ -205,7 +205,7 @@ CREATE TABLE census_2011.bcp_highest_year_of_school_completed_{structure}
   age text REFERENCES census_2011.age(range),
   school_year census_2011.school_year,
 
-  persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer,
+  persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer, -- FIXME PostgreSQL will truncate this name
 
   PRIMARY KEY (asgs_code, sex, age, school_year)
 );
@@ -567,7 +567,7 @@ CREATE TABLE census_2011.bcp_industry_of_employment_by_occupation_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   industry census_2011.industry,
   occupation census_2011.occupation,
-  
+
   employed_persons_aged_15_years_and_over integer,
 
   PRIMARY KEY (asgs_code, industry, occupation)
