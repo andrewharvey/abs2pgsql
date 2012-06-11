@@ -25,7 +25,7 @@ B03 Visitor_from_Different_SA2_In_Northern_Territory_Age_[:ages_b:] bcp_place_of
 B03 Visitor_from_Different_SA2_In_Australian_Capital_Territory_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_act', 8)
 B03 Visitor_from_Different_SA2_In_Other_Territories_Age_[:ages_b:] bcp_place_of_usual_residence_on_census_night (\ages_b, 'visitor_from_different_sa2_oth', 9)
 
-B04 Age_years_[:pop_ages:]_[:sex:] bcp_population (\pop_ages, \sex)
+B04 Age_years_[:pop_ages:]_[:sex:] bcp_age (\pop_ages, \sex)
 
 B05 [:sex:]_[:ages_a:]_{db:census_2011.registered_marital_status} bcp_registered_marital_status (\ages_a, \sex, \db:census_2011.registered_marital_status)
 
@@ -33,16 +33,16 @@ B06 [:sex:]_[:ages_a:]_{db:census_2011.social_marital_status} bcp_social_marital
 
 B07 [:ages_e:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] bcp_indigenous_status (\ages_e, \sex, \ynn)
 
-B08 {db:census_2011.ancestry}_{db:census_2011.parent_birthplace_combination} bcp_ancestry_by_birthplace_of_parents (\db:census_2011.ancestry, \db:census_2011.parent_birthplace_combination)
+B08 {db:census_2011.ancestry}_{db:census_2011.parent_birthplace_combination} bcp_ancestry (\db:census_2011.ancestry, \db:census_2011.parent_birthplace_combination)
 
-B09 {db:census_2011.birthplace}_[:sex:] bcp_country_of_birth_by_sex (\sex, \db:census_2011.birthplace})
+B09 {db:census_2011.birthplace}_[:sex:] bcp_country_of_birth_of_person_by_sex (\sex, \db:census_2011.birthplace})
 
 # The error checker will report Australia not found, because we are using Birthplace which includes Australia, but this table excludes it.
-B10 {db:census_2011.birthplace}_Year_of_arrival_[:year_of_arrival_a:] bcp_country_of_birth_by_year_of_arrival (\year_of_arrival_a, \db:census_2011.birthplace)
+B10 {db:census_2011.birthplace}_Year_of_arrival_[:year_of_arrival_a:] bcp_country_of_birth_of_person_by_year_of_arrival (\year_of_arrival_a, \db:census_2011.birthplace)
 
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_[:year_of_arrival_b:] bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (0, \sex, \db:census_2011.english_proficiency)
+B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_[:year_of_arrival_b:] bcp_proficiency_in_spoken_english (0, \sex, \db:census_2011.english_proficiency)
 
-B12 Dependent_children_aged_[:ages_children:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_spoken_english_proficiency_of_parents_by_age_depnt_ch (\ages_children, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
+B12 Dependent_children_aged_[:ages_children:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_proficiency_in_spoken_english_of_parents (\ages_children, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
 
 B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, 'english_only')
 B13 Speaks_other_language_{db:census_2011.language}_[:sex:] bcp_language_spoken_at_home (\sex, \db:census_2011.language)
@@ -54,18 +54,18 @@ B15 {db:census_2011.educational_institution}_[:sex:] bcp_type_of_educational_ins
 
 B16 [:sex:]_{db:census_2011.school_year}_Age_[:ages_a:] bcp_highest_year_of_school_completed (\sex, \ages_a, \db:census_2011.school_year)
 
-B17 [:sex:]_[:income_band:]_Age_[:ages_a:] bcp_income (\ages_a, \sex, \income_band)
+B17 [:sex:]_[:income_band:]_Age_[:ages_a:] bcp_total_personal_income (\ages_a, \sex, \income_band)
 
 B18 [:sex:]_[:ages_c:]_{ynn:Has_need_for_assistance|Does_not_have_need_for_assistance|Need_for_assistance_not_stated} bcp_core_activity_need_for_assistance (\ages_c, \sex, \ynn)
 
-B19 [:sex:]_[:ages_a:]_{ynn:Volunteer|Not_a_volunteer|Voluntary_work_not_stated} bcp_volunteer (\ages_a, \sex, \ynn)
+B19 [:sex:]_[:ages_a:]_{ynn:Volunteer|Not_a_volunteer|Voluntary_work_not_stated} bcp_voluntary_work_for_an_organisation_or_group (\ages_a, \sex, \ynn)
 
-B20 [:sex:]_[:ages_a:]_Did_no_unpaid_domestic_work bcp_unpaid_domestic_work (\ages_a, \sex, 0)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_Less_than_5_hours bcp_unpaid_domestic_work (\ages_a, \sex, 1)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_5_14_hours bcp_unpaid_domestic_work (\ages_a, \sex, 2)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_15_29_hours bcp_unpaid_domestic_work (\ages_a, \sex, 3)
-B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_30_hours_or_more bcp_unpaid_domestic_work (\ages_a, \sex, 4)
-B20 [:sex:]_[:ages_a:]_Unpaid_domestic_work_not_stated bcp_unpaid_domestic_work (\ages_a, \sex, 5)
+B20 [:sex:]_[:ages_a:]_Did_no_unpaid_domestic_work bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 0)
+B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_Less_than_5_hours bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 1)
+B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_5_14_hours bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 2)
+B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_15_29_hours bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 3)
+B20 [:sex:]_[:ages_a:]_Did_unpaid_domestic_work_30_hours_or_more bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 4)
+B20 [:sex:]_[:ages_a:]_Unpaid_domestic_work_not_stated bcp_unpaid_domestic_work_number_of_hours (\ages_a, \sex, 5)
 
 B21 [:sex:]_[:ages_a:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provided|Unpaid_assistance_not_stated} bcp_unpaid_assistance_to_a_person_with_a_disability (\ages_a, \sex, \ynn)
 
@@ -73,7 +73,7 @@ B22 [:sex:]_[:ages_a:]_{db:census_2011.child_care} bcp_unpaid_child_care (\ages_
 
 B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:ages_b:] bcp_relationship_in_houshold (\ages_b, \sex, \db:census_2011.household_relationship)
 
-B24 Age_group_of_parent_[:ages_d:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_over_born (\ages_d, \db:census_2011.number_of_children)
+B24 Age_group_of_parent_[:ages_d:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_ever_born (\ages_d, \db:census_2011.number_of_children)
 
 B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families ('couple_family', \tf_1, \tf_2, \tf_3)
 B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families ('one_parent_family', \tf_1, \tf_2, \tf_3)
@@ -82,16 +82,16 @@ B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent
 B25 Other_family_Families bcp_family_composition_families ('other_family', false, false, false)
 B25 Other_family_Persons bcp_family_composition_persons ('other_family', false, false, false)
 
-B26 [:family_income_band:]_{db:census_2011.family_type} bcp_family_income (\db:census_2011.family_type, \family_income_band)
+B26 [:family_income_band:]_{db:census_2011.family_type} bcp_total_family_income (\db:census_2011.family_type, \family_income_band)
 
 B27 {db:census_2011.blended_family_type}_family_with_{tf:|no_}other_children_present_Families bcp_family_blending (\db:census_2011.blended_family_type, \tf)
 
-B28 [:family_income_band:]_{tf:|Non_}Family_households census_2011.bcp_household_income (\family_income_band, \tf)
+B28 [:family_income_band:]_{tf:|Non_}Family_households census_2011.bcp_total_household_income (\family_income_band, \tf)
 
-B29 Number_of_motor_vehicles_per_dwelling_{db:census_2011.number_of_motor_vehicles}_Dwellings bcp_motor_vehicles_per_dwelling (\db:census_2011.number_of_motor_vehicles)
-B29 Number_of_motor_vehicles_not_stated_Dwellings bcp_motor_vehicles_per_dwelling ('not_stated')
+B29 Number_of_motor_vehicles_per_dwelling_{db:census_2011.number_of_motor_vehicles}_Dwellings bcp_number_of_motor_vehicles (\db:census_2011.number_of_motor_vehicles)
+B29 Number_of_motor_vehicles_not_stated_Dwellings bcp_number_of_motor_vehicles ('not_stated')
 
-B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually_resident}_{tf:|Non_}Family_households (\db:census_2011.number_of_persons_usually_resident, \tf)
+B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually_resident}_{tf:|Non_}Family_households bcp_household_composition (\db:census_2011.number_of_persons_usually_resident, \tf)
 
 B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Dwellings bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
 B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Persons bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
@@ -100,41 +100,41 @@ B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure ('unoccupied')
 
 B32 {db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_tenure_type_and_landlord_type (\db:census_2011.tenure_landlord_type, \db:census_2011.dwelling_structure_simple)
 
-B33 [:mortgage_repayment_band:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_mortgage_repayment_by_dwelling_structure (\mortgage_repayment_band, \db:census_2011.dwelling_structure_simple)
+B33 [:mortgage_repayment_band:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_mortgage_repayment (\mortgage_repayment_band, \db:census_2011.dwelling_structure_simple)
 
-B34 [:rental_payment_band:]_Landlord_type_{db:census_2011.landlord_type} bcp_rent_by_landlord_type (\rental_payment_band, \db:census_2011.landlord_type)
+B34 [:rental_payment_band:]_Landlord_type_{db:census_2011.landlord_type} bcp_rent (\rental_payment_band, \db:census_2011.landlord_type)
 
-B35 [:internet_connection:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_internet_connection_type_by_dwelling_structure (\internet_connection, \db:census_2011.dwelling_structure_simple)
+B35 [:internet_connection:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_type_of_internet_connection (\internet_connection, \db:census_2011.dwelling_structure_simple)
 
 B36 {db:census_2011.dwelling_structure_extended_minimal}_Number_of_bedrooms_[:bedrooms:] bcp_dwelling_structure_by_number_of_bedrooms (\db:census_2011.dwelling_structure_extended_minimal, \bedrooms)
 
-B38 Same_usual_address_1_year_ago_as_in_2011_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'same_usual_address')
-B38 Different_usual_address_1_year_ago_Same_Statistical_Area_Level_2_SA2_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_same_sa2')
-B38 Different_usual_address_1_year_ago_Different_SA2_in_New_South_Wales_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_nsw', 1)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_Victoria_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_vic', 2)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_Queensland_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_qld', 3)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_South_Australia_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_sa', 4)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_Western_Australia_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_wa', 5)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_Tasmania_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_tas', 6)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_Northern_Territory_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_nt', 7)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_Australian_Capital_Territory_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_act', 8)
-B38 Different_usual_address_1_year_ago_Different_SA2_in_Other_Territories_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_different_sa2_oth', 9)
-B38 Different_usual_address_1_year_ago_Overseas_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_overseas')
-B38 Different_usual_address_1_year_ago_Not_stated_[:sex:] bcp_previous_place_of_usual_residence (\sex, true, 'different_usual_address_not_stated')
+B38 Same_usual_address_1_year_ago_as_in_2011_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'same_usual_address')
+B38 Different_usual_address_1_year_ago_Same_Statistical_Area_Level_2_SA2_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_same_sa2')
+B38 Different_usual_address_1_year_ago_Different_SA2_in_New_South_Wales_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_nsw', 1)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_Victoria_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_vic', 2)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_Queensland_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_qld', 3)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_South_Australia_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_sa', 4)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_Western_Australia_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_wa', 5)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_Tasmania_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_tas', 6)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_Northern_Territory_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_nt', 7)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_Australian_Capital_Territory_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_act', 8)
+B38 Different_usual_address_1_year_ago_Different_SA2_in_Other_Territories_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_different_sa2_oth', 9)
+B38 Different_usual_address_1_year_ago_Overseas_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_overseas')
+B38 Different_usual_address_1_year_ago_Not_stated_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, 'different_usual_address_not_stated')
 
-B39 Same_usual_address_5_years_ago_as_in_2011_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'same_usual_address')
-B39 Different_usual_address_5_years_ago_Same_Statistical_Area_Level_2_SA2_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_same_sa2')
-B39 Different_usual_address_5_years_ago_Different_SA2_in_New_South_Wales_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_nsw', 1)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_Victoria_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_vic', 2)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_Queensland_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_qld', 3)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_South_Australia_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_sa', 4)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_Western_Australia_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_wa', 5)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_Tasmania_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_tas', 6)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_Northern_Territory_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_nt', 7)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_Australian_Capital_Territory_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_act', 8)
-B39 Different_usual_address_5_years_ago_Different_SA2_in_Other_Territories_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_different_sa2_oth', 9)
-B39 Different_usual_address_5_years_ago_Overseas_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_overseas')
-B39 Different_usual_address_5_years_ago_Not_stated_[:sex:] bcp_previous_place_of_usual_residence (\sex, false, 'different_usual_address_not_stated')
+B39 Same_usual_address_5_years_ago_as_in_2011_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'same_usual_address')
+B39 Different_usual_address_5_years_ago_Same_Statistical_Area_Level_2_SA2_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_same_sa2')
+B39 Different_usual_address_5_years_ago_Different_SA2_in_New_South_Wales_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_nsw', 1)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_Victoria_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_vic', 2)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_Queensland_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_qld', 3)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_South_Australia_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_sa', 4)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_Western_Australia_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_wa', 5)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_Tasmania_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_tas', 6)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_Northern_Territory_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_nt', 7)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_Australian_Capital_Territory_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_act', 8)
+B39 Different_usual_address_5_years_ago_Different_SA2_in_Other_Territories_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_different_sa2_oth', 9)
+B39 Different_usual_address_5_years_ago_Overseas_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_overseas')
+B39 Different_usual_address_5_years_ago_Not_stated_[:sex:] bcp_place_of_usual_residence_5_years_ago (\sex, 'different_usual_address_not_stated')
 
 B40 [:sex:]_{db:census_2011.non_school_level_of_education}_Age_[:ages_h:] bcp_non_school_qualification_level_of_education (\ages_h, \sex, \db:census_2011.non_school_level_of_education)
 

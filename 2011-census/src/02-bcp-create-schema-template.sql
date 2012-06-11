@@ -48,7 +48,7 @@ CREATE TABLE census_2011.bcp_place_of_usual_residence_on_census_night_{structure
 );
 
 -- B04
-CREATE TABLE census_2011.bcp_population_{structure}
+CREATE TABLE census_2011.bcp_age_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   age smallint REFERENCES census_2011.population_age_ranges(min),
@@ -99,7 +99,7 @@ CREATE TABLE census_2011.bcp_indigenous_status_{structure}
 );
 
 -- B08
-CREATE TABLE census_2011.bcp_ancestry_by_birthplace_of_parents_{structure}
+CREATE TABLE census_2011.bcp_ancestry_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   ancestry census_2011.ancestry,
@@ -111,7 +111,7 @@ CREATE TABLE census_2011.bcp_ancestry_by_birthplace_of_parents_{structure}
 );
 
 -- B09
-CREATE TABLE census_2011.bcp_country_of_birth_by_sex_{structure}
+CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_sex_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
@@ -123,7 +123,7 @@ CREATE TABLE census_2011.bcp_country_of_birth_by_sex_{structure}
 );
 
 -- B10
-CREATE TABLE census_2011.bcp_country_of_birth_by_year_of_arrival_{structure}
+CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_year_of_arrival_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   year_of_arrival smallint REFERENCES census_2011.year_of_arrival(code),
@@ -135,7 +135,7 @@ CREATE TABLE census_2011.bcp_country_of_birth_by_year_of_arrival_{structure}
 );
 
 -- B11
-CREATE TABLE census_2011.bcp_spoken_english_proficiency_by_year_of_arrival_by_sex_{structure}
+CREATE TABLE census_2011.bcp_proficiency_in_spoken_english_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   year_of_arrival smallint REFERENCES census_2011.year_of_arrival_b(code),
@@ -148,8 +148,7 @@ CREATE TABLE census_2011.bcp_spoken_english_proficiency_by_year_of_arrival_by_se
 );
 
 -- B12
--- bcp_spoken_english_proficiency_of_parents_by_age_of_dependent_children (name shortened due to PostgreSQL limitation)
-CREATE TABLE census_2011.bcp_spoken_english_proficiency_of_parents_by_age_depnt_ch_{structure}
+CREATE TABLE census_2011.bcp_proficiency_in_spoken_english_of_parents_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   child_age smallint REFERENCES census_2011.age_ranges_children(min),
@@ -212,7 +211,7 @@ CREATE TABLE census_2011.bcp_highest_year_of_school_completed_{structure}
 );
 
 -- B17
-CREATE TABLE census_2011.bcp_income_{structure}
+CREATE TABLE census_2011.bcp_total_personal_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   age smallint REFERENCES census_2011.age_ranges_a(min),
@@ -238,7 +237,7 @@ CREATE TABLE census_2011.bcp_core_activity_need_for_assistance_{structure}
 );
 
 -- B19
-CREATE TABLE census_2011.bcp_volunteer_{structure}
+CREATE TABLE census_2011.bcp_voluntary_work_for_an_organisation_or_group_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   age smallint REFERENCES census_2011.age_ranges_a(min),
@@ -251,7 +250,7 @@ CREATE TABLE census_2011.bcp_volunteer_{structure}
 );
 
 -- B20
-CREATE TABLE census_2011.bcp_unpaid_domestic_work_{structure}
+CREATE TABLE census_2011.bcp_unpaid_domestic_work_number_of_hours_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   age smallint REFERENCES census_2011.age_ranges_a(min),
@@ -303,7 +302,7 @@ CREATE TABLE census_2011.bcp_relationship_in_houshold_{structure}
 );
 
 -- B24
-CREATE TABLE census_2011.bcp_number_of_children_over_born_{structure}
+CREATE TABLE census_2011.bcp_number_of_children_ever_born_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   age_of_parent smallint REFERENCES census_2011.age_ranges_d(min),
@@ -342,7 +341,7 @@ CREATE TABLE census_2011.bcp_family_composition_persons_{structure}
 );
 
 -- B26
-CREATE TABLE census_2011.bcp_family_income_{structure}
+CREATE TABLE census_2011.bcp_total_family_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   family_type census_2011.family_type,
@@ -366,7 +365,7 @@ CREATE TABLE census_2011.bcp_family_blending_{structure}
 );
 
 -- B28
-CREATE TABLE census_2011.bcp_household_income_{structure}
+CREATE TABLE census_2011.bcp_total_household_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   income_range census_2011.family_income_band,
@@ -378,7 +377,7 @@ CREATE TABLE census_2011.bcp_household_income_{structure}
 );
 
 -- B29
-CREATE TABLE census_2011.bcp_motor_vehicles_per_dwelling_{structure}
+CREATE TABLE census_2011.bcp_number_of_motor_vehicles_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   number_of_motor_vehicles census_2011.number_of_motor_vehicles,
@@ -389,7 +388,7 @@ CREATE TABLE census_2011.bcp_motor_vehicles_per_dwelling_{structure}
 );
 
 -- B30
-CREATE TABLE census_2011.bcp_number_of_persons_usually_resident_{structure}
+CREATE TABLE census_2011.bcp_household_composition_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   number_of_persons_usually_resident census_2011.number_of_persons_usually_resident,
@@ -434,7 +433,7 @@ CREATE TABLE census_2011.bcp_tenure_type_and_landlord_type_{structure}
 );
 
 -- B33
-CREATE TABLE census_2011.bcp_mortgage_repayment_by_dwelling_structure_{structure}
+CREATE TABLE census_2011.bcp_mortgage_repayment_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   income_range census_2011.income_band,
@@ -446,7 +445,7 @@ CREATE TABLE census_2011.bcp_mortgage_repayment_by_dwelling_structure_{structure
 );
 
 -- B34
-CREATE TABLE census_2011.bcp_rent_by_landlord_type_{structure}
+CREATE TABLE census_2011.bcp_rent_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   rent_band census_2011.rental_payment_band,
@@ -458,7 +457,7 @@ CREATE TABLE census_2011.bcp_rent_by_landlord_type_{structure}
 );
 
 -- B35
-CREATE TABLE census_2011.bcp_internet_connection_type_by_dwelling_structure_{structure}
+CREATE TABLE census_2011.bcp_type_of_internet_connection_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   dwelling_structure census_2011.dwelling_structure_simple,
@@ -482,19 +481,32 @@ CREATE TABLE census_2011.bcp_dwelling_structure_by_number_of_bedrooms_{structure
 );
 
 
--- B38, B39
-CREATE TABLE census_2011.bcp_previous_place_of_usual_residence_{structure}
+-- B38
+CREATE TABLE census_2011.bcp_place_of_usual_residence_1_year_ago_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  one_year_ago boolean, -- true = 1yr, false = 5yr
   previous_place_of_usual_residence census_2011.previous_place_of_usual_residence,
 
   different_usual_address_different_sa2_state_code asgs_2011.state_code REFERENCES asgs_2011.state(code),
 
   persons integer,
 
-  PRIMARY KEY (asgs_code, sex, one_year_ago, previous_place_of_usual_residence)
+  PRIMARY KEY (asgs_code, sex, previous_place_of_usual_residence)
+);
+
+-- B39
+CREATE TABLE census_2011.bcp_place_of_usual_residence_5_years_ago_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  sex census_2011.sex,
+  previous_place_of_usual_residence census_2011.previous_place_of_usual_residence,
+
+  different_usual_address_different_sa2_state_code asgs_2011.state_code REFERENCES asgs_2011.state(code),
+
+  persons integer,
+
+  PRIMARY KEY (asgs_code, sex, previous_place_of_usual_residence)
 );
 
 -- B40
