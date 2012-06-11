@@ -275,6 +275,46 @@ CREATE TYPE census_2011.language AS ENUM (
 );
 
 
+CREATE TYPE census_2011.language_tsp AS ENUM (
+  'english_only',
+  'arabic_includes_lebanese',
+  'assyrian',
+  'australian_indigenous_languages',
+  'chinese_languages_cantonese',
+  'chinese_languages_mandarin',
+  'chinese_languages_other',
+  'croatian',
+  'dutch',
+  'french',
+  'german',
+  'greek',
+  'hindi',
+  'indonesian',
+  'italian',
+  'japanese',
+  'khmer',
+  'korean',
+  'macedonian',
+  'maltese',
+  'persian_includes_dari',
+  'polish',
+  'portuguese',
+  'punjabi',
+  'russian',
+  'samoan',
+  'serbian',
+  'sinhalese',
+  'spanish',
+  'tagalog_includes_filipino',
+  'tamil',
+  'thai',
+  'turkish',
+  'vietnamese',
+  'other',
+  'not_stated'
+);
+
+
 CREATE TYPE census_2011.religion AS ENUM (
   'Buddhism',
   'Christianity',
@@ -485,6 +525,13 @@ CREATE TYPE census_2011.household_type AS ENUM (
   'multiple_family_households',
   'lone_person_households',
   'group_households' --FIXME sometimes need s on end sometimes not
+);
+
+CREATE TYPE census_2011.household_type_simple AS ENUM (
+  'family_households',
+  'lone_person_household',
+  'group_household',
+  'other_household'
 );
 
 

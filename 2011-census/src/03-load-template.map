@@ -184,3 +184,23 @@ I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other
 ##
 
 T03 Age_years_[:age_j:]_{db:census_2011.tsp_years}_Census_[:sex:] tsp_population (\age_j, \sex, \db:census_2011.tsp_years)
+
+T04 {db:census_2011.tsp_years}_Census_[:age_g:]_{db:census_2011.registered_marital_status}_[:sex:] tsp_registered_marital_status (\age_g, \sex, \db:census_2011.registered_marital_status, \db:census_2011.tsp_years)
+
+T05 {db:census_2011.tsp_years}_Census_[:age_g:]_{db:census_2011.social_marital_status}_[:sex:] tsp_social_marital_status (\age_g, \sex, \db:census_2011.social_marital_status, \db:census_2011.tsp_years)
+
+T06 {db:census_2011.tsp_years}_Census_[:age_h:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] tsp_indigenous_status (\age_h, \sex, \ynn, \db:census_2011.tsp_years)
+
+T08 {db:census_2011.birthplace}_{db:census_2011.tsp_years}_Census_[:sex:] tsp_country_of_birth_of_person (\sex, \db:census_2011.birthplace, \db:census_2011.tsp_years)
+
+T09 {db:census_2011.tsp_years}_Census_{db:census_2011.ancestry}_{db:census_2011.parent_birthplace_combination} tsp_ancestry (\db:census_2011.ancestry, \db:census_2011.parent_birthplace_combination, \db:census_2011.tsp_years)
+
+T10 Speaks_English_only_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, 'english_only', \db:census_2011.tsp_years)
+T10 Speaks_other_language_{db:census_2011.language_tsp}_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, \db:census_2011.language_tsp, \db:census_2011.tsp_years)
+T10 Language_spoken_at_home_not_stated_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, 'not_stated', \db:census_2011.tsp_years)
+
+T13 {db:census_2011.educational_institution}_{db:census_2011.tsp_years}_Census_[:sex:] tsp_type_of_educational_institution_attending (\sex, \db:census_2011.educational_institution, \db:census_2011.tsp_years)
+
+T14 {db:census_2011.tsp_years}_Census_{db:census_2011.dwelling_structure_extended_full}_{db:census_2011.household_type_simple}_{db:census_2011.family_type} tsp_dwelling_structure_by_household_composition_and_family_composition (\db:census_2011.household_type_simple, \db:census_2011.family_type, \db:census_2011.dwelling_structure_extended_full, \db:census_2011.tsp_years)
+
+T15 {db:census_2011.tsp_years}_Census_{db:census_2011.dwelling_structure_extended_full}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} tsp_dwelling_structure_by_number_of_persons_usually_resident (\db:census_2011.number_of_persons_usually_resident, \db:census_2011.dwelling_structure_extended_full, \db:census_2011.tsp_years)
