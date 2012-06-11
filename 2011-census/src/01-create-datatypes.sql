@@ -21,6 +21,7 @@
 -- http://creativecommons.org/licenses/by/2.5/au/ by the ABS.
 -- The datapack samples were retrieved from http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample/$file/2011_BCP_AU_for_AUST_short-header.zip
 
+
 -- Originally I planned to just have min, max where the primary keys is
 -- (min,max) and use max=NULL to indicate min or more however in
 -- PostgreSQL the primary key cannot consist of a NULL value.
@@ -35,7 +36,7 @@ CREATE TABLE census_2011.age
 (
   range text PRIMARY KEY,
   min smallint NOT NULL,
-  max smallint -- use NULL to indicate "{min} or more"
+  max smallint -- use NULL to indicate "{min} years and over"
 );
 
 
@@ -45,7 +46,7 @@ CHECK (
 );
 
 
--- generic Yes, No, NotStated type
+-- generic Yes, No, Not_Stated type
 CREATE TYPE census_2011.yes_no_notstated AS ENUM (
   'yes',
   'no',
@@ -213,6 +214,7 @@ INSERT INTO census_2011.year_of_arrival_b (code, min, max) VALUES
 (8, 2011, 2011),
 (9, NULL, NULL); -- NotStated
 
+
 CREATE TABLE census_2011.english_proficiency
 (
   name text PRIMARY KEY
@@ -317,26 +319,27 @@ CREATE TABLE census_2011.educational_institution
 );
 
 INSERT INTO census_2011.educational_institution VALUES
-  ('pre_school'),
-  ('infants_primary_government'),
-  ('infants_primary_catholic'),
-  ('infants_primary_other_non_government'),
-  ('secondary_government'),
-  ('secondary_catholic'),
-  ('secondary_other_non_government'),
-  ('technical_or_further_educational_institution_full_time_student_aged_15_24_years'),
-  ('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over'),
-  ('technical_or_further_educational_institution_part_time_student_aged_15_24_years'),
-  ('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over'),
-  ('technical_or_further_educational_institution_full_part_time_student_status_not_stated'),
-  ('university_or_tertiary_institution_full_time_student_aged_15_24_years'),
-  ('university_or_tertiary_institution_full_time_student_aged_25_years_and_over'),
-  ('university_or_tertiary_institution_part_time_student_aged_15_24_years'),
-  ('university_or_tertiary_institution_part_time_student_aged_25_years_and_over'),
-  ('university_or_tertiary_institution_full_part_time_student_status_not_stated'),
-  ('other_type_of_educational_institution_full_time_student'),
-  ('other_type_of_educational_institution_part_time_student'),
-  ('other_type_of_educational_institution_full_part_time_student_status_not_stated');
+('pre_school'),
+('infants_primary_government'),
+('infants_primary_catholic'),
+('infants_primary_other_non_government'),
+('secondary_government'),
+('secondary_catholic'),
+('secondary_other_non_government'),
+('technical_or_further_educational_institution_full_time_student_aged_15_24_years'),
+('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over'),
+('technical_or_further_educational_institution_part_time_student_aged_15_24_years'),
+('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over'),
+('technical_or_further_educational_institution_full_part_time_student_status_not_stated'),
+('university_or_tertiary_institution_full_time_student_aged_15_24_years'),
+('university_or_tertiary_institution_full_time_student_aged_25_years_and_over'),
+('university_or_tertiary_institution_part_time_student_aged_15_24_years'),
+('university_or_tertiary_institution_part_time_student_aged_25_years_and_over'),
+('university_or_tertiary_institution_full_part_time_student_status_not_stated'),
+('other_type_of_educational_institution_full_time_student'),
+('other_type_of_educational_institution_part_time_student'),
+('other_type_of_educational_institution_full_part_time_student_status_not_stated');
+
 
 CREATE TABLE census_2011.indigenous_educational_institution
 (
@@ -392,6 +395,7 @@ INSERT INTO census_2011.income_band (code, min, max) VALUES
 (9, 1500, 1999),
 (10, 2000, NULL), --2000+
 (11, NULL, NULL); -- NotStated
+
 
 CREATE TABLE census_2011.indigenous_income_band
 (
@@ -471,6 +475,7 @@ CREATE TYPE census_2011.family_type AS ENUM (
   'one_parent_family',
   'other_family'
 );
+
 
 CREATE TYPE census_2011.household_type AS ENUM (
   'one_family_households_couple_family_with_no_children',
@@ -570,6 +575,7 @@ CREATE TYPE census_2011.dwelling_structure_simple AS ENUM (
   'not_stated'
 );
 
+
 CREATE TYPE census_2011.dwelling_structure_indigenous AS ENUM (
   'separate_house',
   'semi_detached_row_or_terrace_house_townhouse_etc',
@@ -579,6 +585,7 @@ CREATE TYPE census_2011.dwelling_structure_indigenous AS ENUM (
   'other_dwelling_house_or_flat_attached_to_a_shop_office_etc',
   'not_stated'
 );
+
 
 -- can't do as an enum as values longer than 63 characters
 CREATE TABLE census_2011.dwelling_structure_extended_minimal
@@ -630,6 +637,7 @@ CREATE TYPE census_2011.tenure_landlord_type AS ENUM (
   'other_tenure_type',
   'tenure_type_not_stated'
 );
+
 
 CREATE TYPE census_2011.landlord_type AS ENUM (
   'real_estate_agent',
@@ -838,6 +846,7 @@ CREATE TYPE census_2011.method_of_travel AS ENUM (
   'did_not_go_to_work',
   'method_of_travel_to_work_not_stated'
 );
+
 
 CREATE TYPE census_2011.indigenous_status AS ENUM (
   'indigenous_persons_aboriginal',
