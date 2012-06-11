@@ -85,12 +85,12 @@ for my $line (<STDIN>) {
       my $metadata = $metadata_contents{$dataset_num . " " . lc($long)};
 
       # keep track of lines from the expanded load template which we couldn't find in the metadata table
-      if (!defined $metadata) {
+      if (defined $metadata) {
+        print "Load " . $metadata->{'seq'} . " from " . $metadata->{'table'} . " into " . $table . " values\n";
+        print "asgs_code, " . $insert . ", value\n";
+      }else{
         $not_found_in_metadata{$dataset_num . " ". lc($long)} = '';
       }
-
-      #print "Load " . $metadata->{'seq'} . " from " . $metadata->{'table'} . " into " . $table . " values\n";
-      #print "asgs_code, " . $insert . ", value\n";
     }else{
       die "Map file line of unexpected format: $line\n";
     }
