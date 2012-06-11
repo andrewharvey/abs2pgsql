@@ -16,6 +16,23 @@
 -- http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample?opendocument&navpos=250
 
 
+-- B02
+CREATE TABLE census_2011.bcp_selected_medians_and_averages_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+
+  median_age_of_persons integer,
+  median_mortgage_repayment_monthly integer,
+  median_total_personal_income_weekly integer,
+  median_rent_weekly integer,
+  median_total_family_income_weekly integer,
+  average_number_of_persons_per_bedroom integer,
+  median_total_household_income_weekly integer,
+  average_household_size integer,
+
+  PRIMARY KEY (asgs_code)
+);
+
 -- B03
 CREATE TABLE census_2011.bcp_place_of_usual_residence_on_census_night_{structure}
 (

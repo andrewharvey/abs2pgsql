@@ -40,7 +40,24 @@ CREATE TABLE census_2011.ip_population_{structure}
   persons integer,
 
   PRIMARY KEY (asgs_code, age, sex, indigenous_status)
-  
+);
+
+-- I04
+CREATE TABLE census_2011.ip_selected_medians_and_averages_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  indigenous boolean, -- true: Indigenous_persons_households_with_Indigenous_persons, false: Non_Indigenous_persons_other_households
+
+  median_age_of_persons integer,
+  median_total_personal_income_weekly integer,
+  median_total_household_income_weekly integer,
+  median_mortgage_repayment_monthly integer,
+  median_rent_weekly integer,
+  average_number_of_persons_per_bedroom integer,
+  average_household_size integer,
+  proportion_of_dwellings_that_need_1_or_more_extra_bedrooms integer,
+
+  PRIMARY KEY (asgs_code, indigenous)
 );
 
 -- I05
@@ -156,3 +173,5 @@ CREATE TABLE census_2011.ip_household_income_{structure}
 
   PRIMARY KEY (asgs_code, indigenous_household, income_range)
 );
+
+-- TODO I15 I16
