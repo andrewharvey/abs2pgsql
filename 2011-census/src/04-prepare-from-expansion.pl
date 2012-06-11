@@ -70,27 +70,30 @@ my %not_found_in_metadata;
 my $line_count = 0;
 
 # now read through an expanded load template as produced by 03-expand-template.pl
-while (<STDIN>) {
-  chomp;
+for my $line (<STDIN>) {
+  chomp $line;
   # and unless it is a comment or empty line...
-  unless ((/^#/) || (/^\s*$/)) {
+  unless (($line =~ /^#/) || ($line =~ /^\s*$/)) {
     $line_count++;
 
     # "parse" the schema translation definition
-    my ($dataset_num, $long, $table, $insert) =
-      /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/;
-    $insert =~ s/^\((.*)\)$/$1/;
-    my @insert_values = split(/,/, $insert);
+    if ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
+      my ($dataset_num, $long, $table, $insert) = ($1, $2, $3, $4);
+      $insert =~ s/^\((.*)\)$/$1/;
+      my @insert_values = split(/,/, $insert);
 
-    my $metadata = $metadata_contents{$dataset_num . " " . lc($long)};
-    
-    # keep track of lines from the expanded load template which we couldn't find in the metadata table
-    if (!defined $metadata) {
-      $not_found_in_metadata{$dataset_num . " ". lc($long)} = '';
+      my $metadata = $metadata_contents{$dataset_num . " " . lc($long)};
+
+      # keep track of lines from the expanded load template which we couldn't find in the metadata table
+      if (!defined $metadata) {
+        $not_found_in_metadata{$dataset_num . " ". lc($long)} = '';
+      }
+
+      #print "Load " . $metadata->{'seq'} . " from " . $metadata->{'table'} . " into " . $table . " values\n";
+      #print "asgs_code, " . $insert . ", value\n";
+    }else{
+      die "Map file line of unexpected format: $line\n";
     }
-
-#    print "Load " . $metadata->{'seq'} . " from " . $metadata->{'table'} . " into " . $table . " values\n";
-#    print "asgs_code, " . $insert . ", value\n";
   }
 }
 

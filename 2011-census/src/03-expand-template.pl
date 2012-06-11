@@ -133,18 +133,21 @@ map {print $age_copy "$_\n"} @age_inserts;
 close $age_copy;
 
 # read in every line of our schema map definion file
-while (<>) {
-  chomp;
+for my $line (<STDIN>) {
+  chomp $line;
   # and unless it is a comment or empty line...
-  unless ((/^#/) || (/^\s*$/)) {
+  unless (($line =~ /^#/) || ($line =~ /^\s*$/)) {
     # "parse" the schema translation definition
-    my ($dataset_num, $src_template, $dst_template, $table_orders) =
-      /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/;
-    $table_orders =~ s/^\((.*)\)$/$1/;
-    my @insert_values = split(/,/, $table_orders);
-    # ... and expand it out
-    insert ($dataset_num, $src_template, $dst_template, \@insert_values);
-    print "\n";
+    if ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
+      my ($dataset_num, $src_template, $dst_template, $table_orders) = ($1, $2, $3, $4);
+      $table_orders =~ s/^\((.*)\)$/$1/;
+      my @insert_values = split(/,/, $table_orders);
+      # ... and expand it out
+      insert ($dataset_num, $src_template, $dst_template, \@insert_values);
+      print "\n";
+    }else{
+      die "Map file line of unexpected format: $line\n";
+    }
   }
 }
 
