@@ -18,6 +18,11 @@ create_schema :
 	psql -f src/01-create-datatypes.sql
 
 create_tables :
+	# test for asgs_2011 schema
+	# if the process fails on the next line you need to first load the
+	# asgs_2011 schema from https://github.com/andrewharvey/asgs2pgsql
+	psql -c "SELECT table_schema FROM information_schema.tables WHERE table_schema = 'asgs_2011' LIMIT 1;" | grep '1 row'
+	
 	# create the tables for each of the products for each of the geographic
 	# areas for which they are available.
 	
