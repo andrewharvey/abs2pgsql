@@ -59,6 +59,14 @@ schema and subsequently load the data.
 You should ensure you have set your [PG environment variables](http://www.postgresql.org/docs/current/static/libpq-envars.html)
 correctly prior to running the make command.
 
+## Tweaking your PostgreSQL database
+A fully loaded census_2011 schema will contain a lot of tables. The main
+reason for so many tables is each DataPack Profile Table will be stored
+as a PostgreSQL table once for each geographic structure for which there
+is data released. This results in a lot of tables. As such you will
+probably need to increase the `max_locks_per_transaction` option in your
+postgresql.conf file.
+
 # Using a DB Dump
 Eventually I will publish a pg_dump of the loaded database, so if you
 wish you can simply load the dump rather than build up and load the data
