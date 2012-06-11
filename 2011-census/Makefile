@@ -5,10 +5,11 @@
 # rights to this work.
 # http://creativecommons.org/publicdomain/zero/1.0/
 
-all : clean create_schema create_tables prepare_load
+all : clean create_schema create_tables prepare_load load_metadata_table
 
 clean :
 	psql -c "DROP SCHEMA IF EXISTS census_2011 CASCADE;"
+	rm -f *.copy
 
 create_schema :
 	psql -c "CREATE SCHEMA census_2011;"
@@ -75,3 +76,7 @@ prepare_load :
 load_metadata_table :
 	psql -f src/04-create-metadata-schema.sql
 	cat datapack-metadata.copy | psql -c "COPY census_2011.datapack_metadata FROM STDIN;"
+	rm -f datapack-metadata.copy
+
+load :
+
