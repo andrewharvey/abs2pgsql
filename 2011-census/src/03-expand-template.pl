@@ -135,6 +135,14 @@ my %expansions = (
   time_series_population_ages => [
       \@time_series_population_ages_source,
       \@time_series_population_ages_target
+    ],
+  year_of_arrival_a => [
+      [qw/Before_1941 1941_1950 1951_1960 1961_1970 1971_1980 1981_1990 1991_2000 2001_2005 2006 2007 2008 2009 2010 2011 not_stated/],
+      [0..14],
+    ],
+  year_of_arrival_b => [
+      [qw/Before_1996 1996_2000 2001_2005 2006 2007 2008 2009 2010 2011 not_stated/],
+      [0..9]
     ]
 );
 

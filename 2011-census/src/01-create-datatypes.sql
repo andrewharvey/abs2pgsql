@@ -461,6 +461,7 @@ CREATE TYPE census_2011.social_marital_status AS ENUM (
 
 CREATE TYPE census_2011.ancestry AS ENUM (
   'Australian',
+  'Australian_Aboriginal',
   'Chinese',
   'Croatian',
   'Dutch',
@@ -490,7 +491,7 @@ CREATE TYPE census_2011.ancestry AS ENUM (
   'Vietnamese',
   'Welsh',
   'Other',
-  'Non_Stated'
+  'Ancestry_not_stated'
 );
 
 
@@ -539,7 +540,7 @@ CREATE TYPE census_2011.birthplace AS ENUM (
   'United_Kingdom_Channel_Islands_and_Isle_of_Man',
   'United_States_of_America',
   'Vietnam',
-  'Born_Elsewhere'
+  'Born_elsewhere'
 );
 
 
@@ -853,7 +854,7 @@ CREATE TYPE census_2011.household_type AS ENUM (
   'one_family_households_other_family',
   'multiple_family_households',
   'lone_person_households',
-  'group_household'
+  'group_households' --FIXME sometimes need s on end sometimes not
 );
 
 
@@ -917,11 +918,11 @@ INSERT INTO census_2011.indigenous_household_income_band (code, min, max) VALUES
 
 
 CREATE TYPE census_2011.number_of_motor_vehicles AS ENUM (
-  'zero',
-  'one',
-  'two',
-  'three',
-  'four_or_more',
+  'no_motor_vehicles',
+  'one_motor_vehicle',
+  'two_motor_vehicles',
+  'three_motor_vehicles',
+  'four_or_more_motor_vehicles',
   'not_stated'
 );
 

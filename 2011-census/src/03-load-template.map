@@ -37,32 +37,10 @@ B08 {db:census_2011.ancestry}_{db:census_2011.parent_birthplace_combination} bcp
 
 B09 {db:census_2011.birthplace}_[:sex:] bcp_country_of_birth_by_sex (\sex, \db:census_2011.birthplace})
 
-B10 {db:census_2011.birthplace}_Year_of_arrival_Before_1941 bcp_country_of_birth_by_year_of_arrival (0, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_1941_1950 bcp_country_of_birth_by_year_of_arrival (1, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_1951_1960 bcp_country_of_birth_by_year_of_arrival (2, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_1961_1970 bcp_country_of_birth_by_year_of_arrival (3, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_1971_1980 bcp_country_of_birth_by_year_of_arrival (4, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_1981_1990 bcp_country_of_birth_by_year_of_arrival (5, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_1991_2000 bcp_country_of_birth_by_year_of_arrival (6, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_2001_2005 bcp_country_of_birth_by_year_of_arrival (7, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_2006 bcp_country_of_birth_by_year_of_arrival (8, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_2007 bcp_country_of_birth_by_year_of_arrival (9, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_2008 bcp_country_of_birth_by_year_of_arrival (10, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_2009 bcp_country_of_birth_by_year_of_arrival (11, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_2010 bcp_country_of_birth_by_year_of_arrival (12, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_2011 bcp_country_of_birth_by_year_of_arrival (13, \db:census_2011.birthplace)
-B10 {db:census_2011.birthplace}_Year_of_arrival_not_stated bcp_country_of_birth_by_year_of_arrival (14, \db:census_2011.birthplace)
+# The error checker will report Australia not found, because we are using Birthplace which includes Australia, but this table excludes it.
+B10 {db:census_2011.birthplace}_Year_of_arrival_[:year_of_arrival_a:] bcp_country_of_birth_by_year_of_arrival (\year_of_arrival_a, \db:census_2011.birthplace)
 
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_before_1996 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (0, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_1996_2000 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (1, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_2001_2005 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (2, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_2006 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (3, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_2007 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (4, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_2008 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (5, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_2009 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (6, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_2010 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (7, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_2011 bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (8, \sex, \db:census_2011.english_proficiency)
-B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_not_stated bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (9, \sex, \db:census_2011.english_proficiency)
+B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_[:year_of_arrival_b:] bcp_spoken_english_proficiency_by_year_of_arrival_by_sex (0, \sex, \db:census_2011.english_proficiency)
 
 B12 Dependent_children_aged_[:ages_children:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_spoken_english_proficiency_of_parents_by_age_depnt_ch (\ages_children, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
 
@@ -111,6 +89,7 @@ B27 {db:census_2011.blended_family_type}_family_with_{tf:|no_}other_children_pre
 B28 [:family_income_band:]_{tf:|Non_}Family_households census_2011.bcp_household_income (\family_income_band, \tf)
 
 B29 Number_of_motor_vehicles_per_dwelling_{db:census_2011.number_of_motor_vehicles}_Dwellings bcp_motor_vehicles_per_dwelling (\db:census_2011.number_of_motor_vehicles)
+B29 Number_of_motor_vehicles_not_stated_Dwellings bcp_motor_vehicles_per_dwelling ('not_stated')
 
 B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually_resident}_{tf:|Non_}Family_households (\db:census_2011.number_of_persons_usually_resident, \tf)
 
