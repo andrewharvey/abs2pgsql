@@ -130,7 +130,7 @@ open (my $age_copy, '>', "age.copy");
 map {print $age_copy "$_\n"} @age_inserts;
 close $age_copy;
 
-# read in every line of our schema map definion file
+# read in every line of our schema map definition file
 for my $line (<STDIN>) {
   chomp $line;
   # and unless it is a comment or empty line...
@@ -138,8 +138,16 @@ for my $line (<STDIN>) {
     # "parse" the schema translation definition
     if ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
       my ($dataset_num, $src_template, $dst_template, $table_orders) = ($1, $2, $3, $4);
+
+      # trim parenthesis from string list representation
       $table_orders =~ s/^\((.*)\)$/$1/;
+
+      # convert string list representation into a real list
       my @insert_values = split(/,/, $table_orders);
+
+      # trim whitespace from each value in the insert list
+      map { s/^\s*//g; s/\s*$//g } @insert_values;
+
       # ... and expand it out
       insert ($dataset_num, $src_template, $dst_template, \@insert_values);
       print "\n";
