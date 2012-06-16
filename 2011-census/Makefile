@@ -83,6 +83,51 @@ load_metadata_table :
 	cat datapack-metadata.copy | psql -c "COPY census_2011.datapack_metadata FROM STDIN;"
 	rm -f datapack-metadata.copy
 
+# and finally actually load the ABS Census Data
 load :
-	src/05-load.pl < load-template
+	# Basic Community Profile & Place of Enumeration Profile
+	echo "creating tables for BCP, PEP..."
+	for s in aust state sa4 sa3 sa2 sa1 gccsa sua sos sosr ucl ra sla lga ssc poa ced sed; \
+	do \
+		src/05-load.pl $s BCP < load-template ; \
+		src/05-load.pl $s PEP < load-template ; \
+	done
+	
+	# Indigenous Profile
+	echo "creating tables for IP..."
+	for s in aust state sa4 sa3 sa2 gccsa ireg iare iloc ra sla lga; \
+	do \
+		src/05-load.pl $s IP < load-template ; \
+	done
+	
+	# Time Series Profile & Estimated Resident Population Profile
+	echo "creating tables for TSP, ERPP..."
+	for s in aust state sa4 sa3 sa2 gccsa sla lga; \
+	do \
+		src/05-load.pl $s TSP < load-template ; \
+		src/05-load.pl $s ERPP < load-template ; \
+	done
+	
+	# Working Population Profile
+	echo "creating tables for WPP..."
+	for s in aust state sa4 sa3 sa2 gccsa lga; \
+	do \
+		src/05-load.pl $s WPP < load-template ; \
+	done
+	
+	# Expanded Community Profile
+	echo "creating tables for ECP..."
+	for s in aust state sa4 sa3 sa2 gccsa sua sla lga; \
+	do \
+		src/05-load.pl $s ECP < load-template ; \
+	done
+	
+	# Socio-Economic Indexes for Areas
+	echo "creating tables for SEIFA..."
+	for s in state sa4 sa3 sa2 sa1 sla lga ssc poa ced; \
+	do \
+		src/05-load.pl $s SEIFA < load-template ; \
+	done
+	
+	# clean up
 	rm -f load-template
