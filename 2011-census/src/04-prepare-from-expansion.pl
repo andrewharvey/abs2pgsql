@@ -69,6 +69,8 @@ close $metadata_copy;
 my %not_found_in_metadata;
 my $line_count = 0;
 
+open (my $load_file, '>', "load-template");
+
 # now read through an expanded load template as produced by 03-expand-template.pl
 for my $line (<STDIN>) {
   chomp $line;
@@ -86,8 +88,8 @@ for my $line (<STDIN>) {
 
       # keep track of lines from the expanded load template which we couldn't find in the metadata table
       if (defined $metadata) {
-        print "Load " . $metadata->{'seq'} . " from " . $metadata->{'table'} . " into " . $table . " values\n";
-        print "asgs_code, " . $insert . ", value\n";
+        # meaning of the line is LOAD $metadata->{'seq'} FROM $metadata->{'table'} INTO $table WITH VALUES <asgs_code>,$insert,<value>
+        print $load_file $metadata->{'seq'} . " " . $metadata->{'table'} . " " . $table . " " . $insert . "\n";
       }else{
         $not_found_in_metadata{$dataset_num . " ". lc($long)} = '';
       }
@@ -96,6 +98,8 @@ for my $line (<STDIN>) {
     }
   }
 }
+
+close $load_file;
 
 # report out on problems
 for my $i (sort keys %not_found_in_metadata) {

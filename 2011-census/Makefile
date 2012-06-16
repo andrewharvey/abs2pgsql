@@ -84,4 +84,5 @@ load_metadata_table :
 	rm -f datapack-metadata.copy
 
 load :
-
+	src/05-load.pl < load-template
+	rm -f load-template
