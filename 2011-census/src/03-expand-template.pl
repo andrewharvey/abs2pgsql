@@ -48,7 +48,7 @@ my %age_expansions = (
 my %expansions = (
   sex => [
       [qw/Males Females/],
-      [qw/true false/]
+      [qw/male female/]
     ],
   income_band => [
       [qw/Negative_Nil_income 1_199 200_299 300_399 400_599 600_799 800_999 1000_1249 1250_1499 1500_1999 2000_or_more Personal_income_not_stated/],

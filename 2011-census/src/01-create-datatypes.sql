@@ -40,9 +40,9 @@ CREATE TABLE census_2011.age
 );
 
 
-CREATE DOMAIN census_2011.sex AS char
-CHECK (
-  VALUE ~ '^[MF]$'
+CREATE DOMAIN census_2011.sex AS ENUM (
+  'male',
+  'female'
 );
 
 
