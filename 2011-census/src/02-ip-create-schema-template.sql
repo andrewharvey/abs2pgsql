@@ -20,7 +20,7 @@
 -- I02
 CREATE TABLE census_2011.ip_indigenous_status_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   indigenous_status census_2011.indigenous_status,
 
@@ -32,7 +32,7 @@ CREATE TABLE census_2011.ip_indigenous_status_{structure}
 -- I03
 CREATE TABLE census_2011.ip_age_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   indigenous_status census_2011.yes_no_notstated,
@@ -45,7 +45,7 @@ CREATE TABLE census_2011.ip_age_{structure}
 -- I04
 CREATE TABLE census_2011.ip_selected_medians_and_averages_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   indigenous boolean, -- true: Indigenous_persons_households_with_Indigenous_persons, false: Non_Indigenous_persons_other_households
 
   median_age_of_persons integer,
@@ -63,7 +63,7 @@ CREATE TABLE census_2011.ip_selected_medians_and_averages_{structure}
 -- I05
 CREATE TABLE census_2011.ip_type_of_educational_institution_attending_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   educational_institution serial REFERENCES census_2011.indigenous_educational_institution,
   indigenous_status census_2011.yes_no_notstated,
@@ -76,7 +76,7 @@ CREATE TABLE census_2011.ip_type_of_educational_institution_attending_{structure
 -- I06
 CREATE TABLE census_2011.ip_highest_year_of_school_completed_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   school_year census_2011.school_year,
   indigenous_status census_2011.yes_no_notstated,
@@ -91,7 +91,7 @@ CREATE TABLE census_2011.ip_highest_year_of_school_completed_{structure}
 -- I07
 CREATE TABLE census_2011.ip_personal_income_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   income_band smallint REFERENCES census_2011.indigenous_income_band(code),
 
@@ -103,7 +103,7 @@ CREATE TABLE census_2011.ip_personal_income_{structure}
 -- I08
 CREATE TABLE census_2011.ip_core_activity_need_for_assistance_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   need_assistance census_2011.yes_no_notstated,
@@ -116,7 +116,7 @@ CREATE TABLE census_2011.ip_core_activity_need_for_assistance_{structure}
 -- I09
 CREATE TABLE census_2011.ip_unpaid_assistance_to_a_person_with_a_disability_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   provided_assistance census_2011.yes_no_notstated,
@@ -129,7 +129,7 @@ CREATE TABLE census_2011.ip_unpaid_assistance_to_a_person_with_a_disability_{str
 -- I10
 CREATE TABLE census_2011.ip_tenure_type_and_landlord_type_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   dwelling_structure census_2011.dwelling_structure_indigenous,
   tenure_landlord_type census_2011.tenure_landlord_type,
   indigenous_household boolean,
@@ -142,7 +142,7 @@ CREATE TABLE census_2011.ip_tenure_type_and_landlord_type_{structure}
 -- I11
 CREATE TABLE census_2011.ip_internet_connection_type_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   indigenous_household boolean,
   internet_connection census_2011.internet_connection,
 
@@ -154,7 +154,7 @@ CREATE TABLE census_2011.ip_internet_connection_type_{structure}
 -- I12
 CREATE TABLE census_2011.ip_household_composition_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   indigenous_household boolean,
   household_type census_2011.household_type,
   number_of_persons_usually_resident census_2011.number_of_persons_usually_resident,
@@ -167,7 +167,7 @@ CREATE TABLE census_2011.ip_household_composition_{structure}
 -- I13
 CREATE TABLE census_2011.ip_household_income_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   indigenous_household boolean,
   income_range census_2011.indigenous_household_income_band,
 
@@ -179,7 +179,7 @@ CREATE TABLE census_2011.ip_household_income_{structure}
 -- I15
 CREATE TABLE census_2011.ip_non_school_qualification_level_of_education_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   indigenous_status census_2011.yes_no_notstated,
@@ -194,7 +194,7 @@ CREATE TABLE census_2011.ip_non_school_qualification_level_of_education_{structu
 -- I16
 CREATE TABLE census_2011.ip_labour_force_status_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   employment_status census_2011.employment_status_simple,
