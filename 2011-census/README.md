@@ -52,6 +52,23 @@ the code and can be found with a global search for "PostgreSQL
 Limitation". Most of these are abbreviations rather than the full name
 due to the default NAMEDATALEN being 64.
 
+## ABS Classifications
+The ABS [publish a set of "Classifications"](http://www.abs.gov.au/AUSSTATS/abs@.nsf/ViewContent?readform&view=DirClassManualsbyTopic&Action=Expand&Num=6.1.4).
+These are essentially hierarchical categories which allow census form
+responses to be classified from their free form responses into rigid
+classified categories. The complete census data coded to these
+classifications is not freely available (as far as I am aware) and the
+data is only released in summarised form in the form of profiles.
+Although these profiles use these published classifications they often
+take a subset or make arbitrary amalgamation of individual codes from the
+classification. This makes it difficult to present the census data in
+PostgreSQL with referential integrity to the classifications.
+
+Currently I only model the profile versions of these classifications in
+01-create-datatypes.sql. To produce a more elegant data model in this
+PostgreSQL schema we could load the classifications into their own schema
+and maintain faithful references to them from the profiles.
+
 # Running the Scripts
 Although there is no data to load yet. You can still create the schema
 and potentially load some sample data.
