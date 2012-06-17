@@ -37,6 +37,32 @@
 --
 -- As per the statement at http://www.abs.gov.au/websitedbs/D3310114.nsf/Home/%C2%A9+Copyright?opendocument#from-banner=GB
 
+--
+-- # TODO
+--
+-- FIXME the serial types declared here can be updated to smallserial
+-- this will create a dependence on PostgreSQL >= 9.2
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+
+--
+-- Census Dictionary, 2011 Classifications
+--
+
+-- "Arrays of domains are not yet supported." in PostgreSQL. Ideally
+-- these would be declared as base types then where they are used the []
+-- is added to make them arrays.
+
+CREATE DOMAIN census_2011.dict_englp AS char(1)[];
+CREATE DOMAIN census_2011.dict_relp AS varchar(4)[];
+CREATE DOMAIN census_2011.dict_typp AS char(2)[];
+CREATE DOMAIN census_2011.dict_typp_i AS char(1)[];
+CREATE DOMAIN census_2011.dict_stup AS char(1)[];
+CREATE DOMAIN census_2011.dict_strd AS char(2)[];
+CREATE DOMAIN census_2011.dict_qallp AS varchar(3)[];
 
 -- Originally I planned to just have min, max where the primary keys is
 -- (min,max) and use max=NULL to indicate min or more however in
@@ -188,12 +214,12 @@ CREATE TYPE census_2011.birthplace AS ENUM (
 
 CREATE TABLE census_2011.year_of_arrival
 (
-  code smallint PRIMARY KEY,
+  id smallint PRIMARY KEY,
   min smallint,
   max smallint
 );
 
-INSERT INTO census_2011.year_of_arrival (code, min, max) VALUES
+INSERT INTO census_2011.year_of_arrival (id, min, max) VALUES
 (0, NULL, 1940), -- Before 1941
 (1, 1941, 1950),
 (2, 1951, 1960),
@@ -213,12 +239,12 @@ INSERT INTO census_2011.year_of_arrival (code, min, max) VALUES
 
 CREATE TABLE census_2011.year_of_arrival_b
 (
-  code smallint PRIMARY KEY,
+  id smallint PRIMARY KEY,
   min smallint,
   max smallint
 );
 
-INSERT INTO census_2011.year_of_arrival_b (code, min, max) VALUES
+INSERT INTO census_2011.year_of_arrival_b (id, min, max) VALUES
 (0, NULL, 1995), -- Before 1996
 (1, 1996, 2000),
 (2, 2001, 2005),
@@ -233,14 +259,16 @@ INSERT INTO census_2011.year_of_arrival_b (code, min, max) VALUES
 
 CREATE TABLE census_2011.english_proficiency
 (
-  name text PRIMARY KEY
+  id serial PRIMARY KEY,
+  long text,
+  englp census_2011.dict_englp
 );
 
-INSERT INTO census_2011.english_proficiency VALUES
-('speaks_english_only'),
-('speaks_other_language_and_speaks_english_very_well_or_well'),
-('speaks_other_language_and_speaks_engilsh_not_well_or_not_at_all'),
-('speaks_other_language_and_speaks_engilsh_proficiency_in_english_not_stated');
+INSERT INTO census_2011.english_proficiency (long, englp) VALUES
+('speaks_english_only', ARRAY[1]),
+('speaks_other_language_and_speaks_english_very_well_or_well', ARRAY[2, 3]),
+('speaks_other_language_and_speaks_engilsh_not_well_or_not_at_all', ARRAY[4, 5]),
+('speaks_other_language_and_speaks_engilsh_proficiency_in_english_not_stated', ARRAY['&']); -- FIXME is this 6 or &
 
 
 CREATE TYPE census_2011.language AS ENUM (
@@ -333,90 +361,103 @@ CREATE TYPE census_2011.language_tsp AS ENUM (
 
 CREATE TABLE census_2011.religious_affiliation
 (
-  name text PRIMARY KEY,
-  ascrg_code smallint -- http://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2901.0Chapter8302011
+  id serial PRIMARY KEY,
+  long text,
+  relp census_2011.dict_relp
 );
 
-INSERT INTO census_2011.religious_affiliation VALUES
-('Buddhism', 1),
-('Christianity_Anglican', 201),
-('Christianity_Assyrian_Apostolic', 222),
-('Christianity_Baptist', 203),
-('Christianity_Brethren', 205),
-('Christianity_Catholic', 207),
-('Christianity_Churches_of_Christ', 211),
-('Christianity_Eastern_Orthodox', 223),
-('Christianity_Jehovahs_Witnesses', 213),
-('Christianity_Latter_day_Saints', 215),
-('Christianity_Lutheran', 217),
-('Christianity_Oriental_Orthodox', 221),
-('Christianity_Other_Protestant', 28),
-('Christianity_Pentecostal', 24),
-('Christianity_Presbyterian_and_Reformed', 225),
-('Christianity_Salvation_Army', 227),
-('Christianity_Seventh_day_Adventist', 231),
-('Christianity_Uniting_Church', 233),
-('Christianity_Christian_nfd', 200),
-('Christianity_Other_Christian', 29),
-('Hinduism', 3),
-('Islam', 4),
-('Judaism', 5),
-('Other_Religions_Australian_Aboriginal_Traditional_Religions', 601),
-('Other_Religions_Other_religious_groups', NULL), -- 603, 605, 607, 611, 613, 615, 617, 699
-('No_Religion', 7),
-('Other_religious_affiliation', NULL),
-('Religious_affiliation_not_stated', NULL);
+INSERT INTO census_2011.religious_affiliation (long, relp) VALUES
+('Buddhism', ARRAY[1]),
+('Christianity_Anglican', ARRAY[201]),
+('Christianity_Assyrian_Apostolic', ARRAY[222]),
+('Christianity_Baptist', ARRAY[203]),
+('Christianity_Brethren', ARRAY[205]),
+('Christianity_Catholic', ARRAY[207]),
+('Christianity_Churches_of_Christ', ARRAY[211]),
+('Christianity_Eastern_Orthodox', ARRAY[223]),
+('Christianity_Jehovahs_Witnesses', ARRAY[213]),
+('Christianity_Latter_day_Saints', ARRAY[215]),
+('Christianity_Lutheran', ARRAY[217]),
+('Christianity_Oriental_Orthodox', ARRAY[221]),
+('Christianity_Other_Protestant', ARRAY[28]),
+('Christianity_Pentecostal', ARRAY[24]),
+('Christianity_Presbyterian_and_Reformed', ARRAY[225]),
+('Christianity_Salvation_Army', ARRAY[227]),
+('Christianity_Seventh_day_Adventist', ARRAY[231]),
+('Christianity_Uniting_Church', ARRAY[233]),
+('Christianity_Christian_nfd', ARRAY[200]),
+('Christianity_Other_Christian', ARRAY[29]),
+('Hinduism', ARRAY[3]),
+('Islam', ARRAY[4]),
+('Judaism', ARRAY[5]),
+('Other_Religions_Australian_Aboriginal_Traditional_Religions', ARRAY[601]),
+('Other_Religions_Other_religious_groups', ARRAY[603, 605, 607, 611, 613, 615, 617, 699]),
+('No_Religion', ARRAY[7]),
+('Other_religious_affiliation', ARRAY['0002']), -- FIXME double check with ABS
+('Religious_affiliation_not_stated', ARRAY['&&&&']);
 
 
+-- TYPP
 CREATE TABLE census_2011.educational_institution
 (
-  name text PRIMARY KEY
+  id serial PRIMARY KEY,
+  long text,
+  typp census_2011.dict_typp,
+  stup census_2011.dict_stup,
+  age text -- FIXME would like to use "REFERENCES census_2011.age(range)" but values haven't been loaded yet
+           -- the fix is to split up the file, load the age table, fill it, then run the rest of these. but
+           -- that is a significant architectural change for little benifit. since this problem won't occur
+           -- when the age type is modified to use the range type from PostgreSQL 9.2 I think I'll just wait it out
 );
 
-INSERT INTO census_2011.educational_institution VALUES
-('pre_school'),
-('infants_primary_government'),
-('infants_primary_catholic'),
-('infants_primary_other_non_government'),
-('secondary_government'),
-('secondary_catholic'),
-('secondary_other_non_government'),
-('technical_or_further_educational_institution_full_time_student_aged_15_24_years'),
-('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over'),
-('technical_or_further_educational_institution_part_time_student_aged_15_24_years'),
-('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over'),
-('technical_or_further_educational_institution_full_part_time_student_status_not_stated'),
-('university_or_tertiary_institution_full_time_student_aged_15_24_years'),
-('university_or_tertiary_institution_full_time_student_aged_25_years_and_over'),
-('university_or_tertiary_institution_part_time_student_aged_15_24_years'),
-('university_or_tertiary_institution_part_time_student_aged_25_years_and_over'),
-('university_or_tertiary_institution_full_part_time_student_status_not_stated'),
-('other_type_of_educational_institution_full_time_student'),
-('other_type_of_educational_institution_part_time_student'),
-('other_type_of_educational_institution_full_part_time_student_status_not_stated');
+INSERT INTO census_2011.educational_institution (long, typp, stup, age) VALUES
+('pre_school', ARRAY[10], NULL, NULL),
+('infants_primary_government', ARRAY[21], NULL, NULL),
+('infants_primary_catholic', ARRAY[22], NULL, NULL),
+('infants_primary_other_non_government', ARRAY[23], NULL, NULL),
+('secondary_government', ARRAY[31], NULL, NULL),
+('secondary_catholic', ARRAY[32], NULL, NULL),
+('secondary_other_non_government', ARRAY[33], NULL, NULL),
+('technical_or_further_educational_institution_full_time_student_aged_15_24_years', ARRAY[40], ARRAY[2], '15-24'),
+('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over', ARRAY[40], ARRAY[2], '25+'),
+('technical_or_further_educational_institution_part_time_student_aged_15_24_years', ARRAY[40], ARRAY[3], '15-24'),
+('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over', ARRAY[40], ARRAY[3], '25+'),
+('technical_or_further_educational_institution_full_part_time_student_status_not_stated', ARRAY[40], ARRAY[4], NULL),
+('university_or_tertiary_institution_full_time_student_aged_15_24_years', ARRAY[50], ARRAY[2], '15-24'),
+('university_or_tertiary_institution_full_time_student_aged_25_years_and_over', ARRAY[50], ARRAY[2], '25+'),
+('university_or_tertiary_institution_part_time_student_aged_15_24_years', ARRAY[50], ARRAY[3], '15-24'),
+('university_or_tertiary_institution_part_time_student_aged_25_years_and_over', ARRAY[50], ARRAY[3], '25+'),
+('university_or_tertiary_institution_full_part_time_student_status_not_stated', ARRAY[50], ARRAY[4], NULL),
+('other_type_of_educational_institution_full_time_student', ARRAY[60], ARRAY[2], NULL),
+('other_type_of_educational_institution_part_time_student', ARRAY[60], ARRAY[3], NULL),
+('other_type_of_educational_institution_full_part_time_student_status_not_stated', ARRAY[60], ARRAY[4], NULL);
 
 
 CREATE TABLE census_2011.indigenous_educational_institution
 (
-  name text PRIMARY KEY
+  id serial PRIMARY KEY,
+  long text,
+  typp census_2011.dict_typp_i,
+  stup census_2011.dict_stup,
+  age text -- REFERENCES census_2011.age(range)
 );
 
-INSERT INTO census_2011.indigenous_educational_institution VALUES
-('pre_school'),
-('infants_primary'),
-('secondary'),
-('technical_or_further_educational_institution_full_time_student_aged_15_24_years'),
-('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over'),
-('technical_or_further_educational_institution_part_time_student_aged_15_24_years'),
-('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over'),
-('technical_or_further_educational_institution_full_part_time_student_status_not_stated'),
-('university_or_other_tertiary_institution_full_time_student_aged_15_24_years'),
-('university_or_other_tertiary_institution_full_time_student_aged_25_years_and_over'),
-('university_or_other_tertiary_institution_part_time_student_aged_15_24_years'),
-('university_or_other_tertiary_institution_part_time_student_aged_25_years_and_over'),
-('university_or_other_tertiary_institution_full_part_time_student_status_not_stated'),
-('other_type_of_educational_institution'),
-('type_of_educational_institution_not_stated');
+INSERT INTO census_2011.indigenous_educational_institution (long, typp, stup, age) VALUES
+('pre_school', ARRAY[1], NULL, NULL),
+('infants_primary', ARRAY[2], NULL, NULL),
+('secondary', ARRAY[3], NULL, NULL),
+('technical_or_further_educational_institution_full_time_student_aged_15_24_years', ARRAY[4], ARRAY[2], '15-24'),
+('technical_or_further_educational_institution_full_time_student_aged_25_years_and_over', ARRAY[4], ARRAY[2], '25+'),
+('technical_or_further_educational_institution_part_time_student_aged_15_24_years', ARRAY[4], ARRAY[3], '15-24'),
+('technical_or_further_educational_institution_part_time_student_aged_25_years_and_over', ARRAY[4], ARRAY[3], '25+'),
+('technical_or_further_educational_institution_full_part_time_student_status_not_stated', ARRAY[4], ARRAY[4], NULL),
+('university_or_other_tertiary_institution_full_time_student_aged_15_24_years', ARRAY[5], ARRAY[2], '15-24'),
+('university_or_other_tertiary_institution_full_time_student_aged_25_years_and_over', ARRAY[5], ARRAY[2], '25+'),
+('university_or_other_tertiary_institution_part_time_student_aged_15_24_years', ARRAY[5], ARRAY[3], '15-24'),
+('university_or_other_tertiary_institution_part_time_student_aged_25_years_and_over', ARRAY[5], ARRAY[3], '25+'),
+('university_or_other_tertiary_institution_full_part_time_student_status_not_stated', ARRAY[5], ARRAY[4], NULL),
+('other_type_of_educational_institution', ARRAY[6], NULL, NULL),
+('type_of_educational_institution_not_stated', ARRAY['&'], NULL, NULL);
 
 
 CREATE TYPE census_2011.school_year AS ENUM (
@@ -649,42 +690,45 @@ CREATE TYPE census_2011.dwelling_structure_indigenous AS ENUM (
 );
 
 
--- can't do as an enum as values longer than 63 characters
 CREATE TABLE census_2011.dwelling_structure_extended_minimal
 (
-  name text PRIMARY KEY
+  id serial PRIMARY KEY,
+  long text,
+  strd census_2011.dict_strd
 );
 
-INSERT INTO census_2011.dwelling_structure_extended_minimal VALUES
-('separate_house'),
-('semi_detached_row_or_terrace_house_townhouse_etc_with_one_storey'),
-('semi_detached_row_or_terrace_house_townhouse_etc_with_two_or_more_storeys'),
-('flat_unit_or_apartment_in_a_one_or_two_storey_block'),
-('flat_unit_or_apartment_in_a_three_storey_block'),
-('flat_unit_or_apartment_in_a_four_storey_or_more_block'),
-('flat_unit_or_apartment_attached_to_a_house'),
-('other_dwelling'),
-('dwelling_structure_not_stated');
+INSERT INTO census_2011.dwelling_structure_extended_minimal (long, strd) VALUES
+('separate_house', ARRAY[11]),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_one_storey', ARRAY[21]),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_two_or_more_storeys', ARRAY[22]),
+('flat_unit_or_apartment_in_a_one_or_two_storey_block', ARRAY[31]),
+('flat_unit_or_apartment_in_a_three_storey_block', ARRAY[32]),
+('flat_unit_or_apartment_in_a_four_storey_or_more_block', ARRAY[33]),
+('flat_unit_or_apartment_attached_to_a_house', ARRAY[34]),
+('other_dwelling', ARRAY[91, 93, 94]),
+('dwelling_structure_not_stated', ARRAY['&&']);
 
 
 CREATE TABLE census_2011.dwelling_structure_extended_full
 (
-  name text PRIMARY KEY
+  id serial PRIMARY KEY,
+  long text,
+  strd census_2011.dict_strd
 );
 
-INSERT INTO census_2011.dwelling_structure_extended_full VALUES
-('separate_house'),
-('semi_detached_row_or_terrace_house_townhouse_etc_with_one_storey'),
-('semi_detached_row_or_terrace_house_townhouse_etc_with_two_or_more_storeys'),
-('flat_unit_or_apartment_in_a_one_or_two_storey_block'),
-('flat_unit_or_apartment_in_a_three_storey_block'),
-('flat_unit_or_apartment_in_a_four_storey_or_more_block'),
-('flat_unit_or_apartment_attached_to_a_house'),
-('other_dwelling_caravan_cabin_houseboat'),
-('other_dwelling_improvised_home_tent_sleepers_out'),
-('other_dwelling_house_or_flat_attached_to_a_shop_office_etc'),
-('dwelling_structure_not_stated'),
-('unoccupied');
+INSERT INTO census_2011.dwelling_structure_extended_full (long, strd) VALUES
+('separate_house', ARRAY[11]),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_one_storey', ARRAY[21]),
+('semi_detached_row_or_terrace_house_townhouse_etc_with_two_or_more_storeys', ARRAY[22]),
+('flat_unit_or_apartment_in_a_one_or_two_storey_block', ARRAY[31]),
+('flat_unit_or_apartment_in_a_three_storey_block', ARRAY[32]),
+('flat_unit_or_apartment_in_a_four_storey_or_more_block', ARRAY[33]),
+('flat_unit_or_apartment_attached_to_a_house', ARRAY[34]),
+('other_dwelling_caravan_cabin_houseboat', ARRAY[91]),
+('other_dwelling_improvised_home_tent_sleepers_out', ARRAY[93]),
+('other_dwelling_house_or_flat_attached_to_a_shop_office_etc', ARRAY[94]),
+('dwelling_structure_not_stated', ARRAY['&&']),
+('unoccupied', ARRAY['@@']); -- FIXME doublecheck
 
 
 CREATE TYPE census_2011.tenure_landlord_type AS ENUM (
@@ -808,17 +852,19 @@ CREATE TYPE census_2011.non_school_level_of_education AS ENUM (
 
 CREATE TABLE census_2011.non_school_level_of_education_simple
 (
-  name text PRIMARY KEY
+  id serial PRIMARY KEY,
+  long text,
+  qallp census_2011.dict_qallp
 );
 
-INSERT INTO census_2011.non_school_level_of_education_simple VALUES
-('postgraduate_degree_graduate_diploma_and_graduate_certificate_level'),
-('bachelor_degree_level'),
-('advanced_diploma_and_diploma_level'),
-('certificate_level_nfd'),
-('certificate_iii_and_iv_level'),
-('certificate_i_and_ii_level'),
-('level_of_education_not_stated');
+INSERT INTO census_2011.non_school_level_of_education_simple (long, qallp) VALUES
+('postgraduate_degree_graduate_diploma_and_graduate_certificate_level', ARRAY['1', '2']),
+('bachelor_degree_level', ARRAY['3']),
+('advanced_diploma_and_diploma_level', ARRAY['4']),
+('certificate_level_nfd', ARRAY['50']),
+('certificate_iii_and_iv_level', ARRAY['51']),
+('certificate_i_and_ii_level', ARRAY['52']),
+('level_of_education_not_stated', ARRAY['&&&']);
 
 
 CREATE TYPE census_2011.field_of_study AS ENUM (

@@ -286,6 +286,6 @@ sub pgenum2arrayref($) {
     my @result = split /,/, $pg_enum;
     return \@result;
   }else{ # table exists
-    return $dbh->selectall_arrayref("SELECT * FROM $lookup;")->[0];
+    return $dbh->selectall_arrayref("SELECT long FROM $lookup;")->[0];
   }
 }

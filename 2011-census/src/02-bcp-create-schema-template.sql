@@ -126,7 +126,7 @@ CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_sex_{structure}
 CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_year_of_arrival_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  year_of_arrival smallint REFERENCES census_2011.year_of_arrival(code),
+  year_of_arrival smallint REFERENCES census_2011.year_of_arrival,
   country_of_birth census_2011.birthplace,
 
   persons_born_overseas integer,
@@ -138,9 +138,9 @@ CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_year_of_arrival_{stru
 CREATE TABLE census_2011.bcp_proficiency_in_spoken_english_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  year_of_arrival smallint REFERENCES census_2011.year_of_arrival_b(code),
+  year_of_arrival smallint REFERENCES census_2011.year_of_arrival_b,
   sex census_2011.sex,
-  proficiency census_2011.english_proficiency,
+  proficiency serial REFERENCES census_2011.english_proficiency,
 
   persons_born_overseas integer,
 
@@ -152,8 +152,8 @@ CREATE TABLE census_2011.bcp_proficiency_in_spoken_english_of_parents_{structure
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   child_age text REFERENCES census_2011.age(range),
-  proficiency_male_parent census_2011.english_proficiency,
-  proficiency_female_parent census_2011.english_proficiency,
+  proficiency_male_parent serial REFERENCES census_2011.english_proficiency,
+  proficiency_female_parent serial REFERENCES census_2011.english_proficiency,
 
   dependent_children_in_couple_families integer,
 
@@ -177,7 +177,7 @@ CREATE TABLE census_2011.bcp_religious_affiliation_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  religious_affiliation text REFERENCES census_2011.religious_affiliation(name),
+  religious_affiliation serial REFERENCES census_2011.religious_affiliation,
 
   persons integer,
 
@@ -189,7 +189,7 @@ CREATE TABLE census_2011.bcp_type_of_educational_institution_attending_{structur
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  educational_institution census_2011.educational_institution,
+  educational_institution serial REFERENCES census_2011.educational_institution,
 
   persons_attending_an_educational_institution integer,
 
@@ -404,7 +404,7 @@ CREATE TABLE census_2011.bcp_household_composition_{structure}
 CREATE TABLE census_2011.bcp_dwelling_structure_dwellings_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  dwelling_structure census_2011.dwelling_structure_extended_full,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_full,
 
   dwellings integer,
 
@@ -414,7 +414,7 @@ CREATE TABLE census_2011.bcp_dwelling_structure_dwellings_{structure}
 CREATE TABLE census_2011.bcp_dwelling_structure_persons_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  dwelling_structure census_2011.dwelling_structure_extended_full,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_full,
 
   persons integer,
 
@@ -473,7 +473,7 @@ CREATE TABLE census_2011.bcp_type_of_internet_connection_{structure}
 CREATE TABLE census_2011.bcp_dwelling_structure_by_number_of_bedrooms_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
-  dwelling_structure census_2011.dwelling_structure_extended_minimal,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_minimal,
   number_of_bedrooms census_2011.number_of_bedrooms,
 
   occupied_private_dwellings integer,

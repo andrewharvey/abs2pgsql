@@ -65,7 +65,7 @@ CREATE TABLE census_2011.ip_type_of_educational_institution_attending_{structure
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  educational_institution census_2011.indigenous_educational_institution,
+  educational_institution serial REFERENCES census_2011.indigenous_educational_institution,
   indigenous_status census_2011.yes_no_notstated,
 
   persons_attending_an_educational_institution integer,
@@ -184,7 +184,7 @@ CREATE TABLE census_2011.ip_non_school_qualification_level_of_education_{structu
   sex census_2011.sex,
   indigenous_status census_2011.yes_no_notstated,
     
-  non_school_level_of_education text REFERENCES census_2011.non_school_level_of_education_simple(name),
+  non_school_level_of_education serial REFERENCES census_2011.non_school_level_of_education_simple,
 
   persons_aged_15_years_and_over_with_a_qualification integer,
 
