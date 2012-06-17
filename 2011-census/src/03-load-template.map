@@ -201,6 +201,6 @@ T10 Language_spoken_at_home_not_stated_{db:census_2011.tsp_years}_Census_[:sex:]
 
 T13 {db:census_2011.educational_institution}_{db:census_2011.tsp_years}_Census_[:sex:] tsp_type_of_educational_institution_attending (\sex, \db:census_2011.educational_institution, \db:census_2011.tsp_years)
 
-T14 {db:census_2011.tsp_years}_Census_{db:census_2011.dwelling_structure_extended_full}_{db:census_2011.household_type_simple}_{db:census_2011.family_type} tsp_dwelling_structure_by_household_composition_and_family_composition (\db:census_2011.household_type_simple, \db:census_2011.family_type, \db:census_2011.dwelling_structure_extended_full, \db:census_2011.tsp_years)
+T14 {db:census_2011.tsp_years}_Census_{db:census_2011.dwelling_structure_extended_full}_{db:census_2011.household_type_simple}_{db:census_2011.family_type} tsp_dwelling_structure_by_household_comp_and_fam_comp (\db:census_2011.household_type_simple, \db:census_2011.family_type, \db:census_2011.dwelling_structure_extended_full, \db:census_2011.tsp_years)
 
-T15 {db:census_2011.tsp_years}_Census_{db:census_2011.dwelling_structure_extended_full}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} tsp_dwelling_structure_by_number_of_persons_usually_resident (\db:census_2011.number_of_persons_usually_resident, \db:census_2011.dwelling_structure_extended_full, \db:census_2011.tsp_years)
+T15 {db:census_2011.tsp_years}_Census_{db:census_2011.dwelling_structure_extended_full}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} tsp_dwelling_structure_by_num_persons_usually_resident (\db:census_2011.number_of_persons_usually_resident, \db:census_2011.dwelling_structure_extended_full, \db:census_2011.tsp_years)

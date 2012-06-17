@@ -45,6 +45,13 @@ PostgreSQL schema.
   male and female in the database.
 * Try to maintain the same terminology as the source schema.
 
+## PostgreSQL Limitations
+PostgreSQL imposes some limitations which in some cases prevented the
+target schema matching the source data model. These have been noted in
+the code and can be found with a global search for "PostgreSQL
+Limitation". Most of these are abbreviations rather than the full name
+due to the default NAMEDATALEN being 64.
+
 # Running the Scripts
 Although there is no data to load yet. You can still create the schema
 and potentially load some sample data.

@@ -204,7 +204,9 @@ CREATE TABLE census_2011.bcp_highest_year_of_school_completed_{structure}
   age text REFERENCES census_2011.age(range),
   school_year census_2011.school_year,
 
-  persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer, -- FIXME PostgreSQL will truncate this name
+  -- PostgreSQL Limitation
+  -- persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer,
+  persons_aged_15_yrs_and_over_no_longer_attd_prim_or_sec_school integer,
 
   PRIMARY KEY (asgs_code, sex, age, school_year)
 );

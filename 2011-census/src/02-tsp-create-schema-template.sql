@@ -138,7 +138,9 @@ CREATE TABLE census_2011.tsp_type_of_educational_institution_attending_{structur
 );
 
 -- T14
-CREATE TABLE census_2011.tsp_dwelling_structure_by_household_composition_and_family_composition_{structure}
+-- PostgreSQL Limitation
+-- census_2011.tsp_dwelling_structure_by_household_composition_and_family_composition_{structure}
+CREATE TABLE census_2011.tsp_dwelling_structure_by_household_comp_and_fam_comp_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   household_composition census_2011.household_type_simple,
@@ -152,7 +154,9 @@ CREATE TABLE census_2011.tsp_dwelling_structure_by_household_composition_and_fam
 );
 
 -- T15
-CREATE TABLE census_2011.tsp_dwelling_structure_by_number_of_persons_usually_resident_{structure}
+-- PostgreSQL Limitation
+-- census_2011.tsp_dwelling_structure_by_number_of_persons_usually_resident_{structure}
+CREATE TABLE census_2011.tsp_dwelling_structure_by_num_persons_usually_resident_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   number_of_persons_usually_resident census_2011.number_of_persons_usually_resident,
