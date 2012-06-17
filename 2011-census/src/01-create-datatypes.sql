@@ -1,13 +1,22 @@
+--
+-- # About
+--
 -- This file defines target PostgreSQL data types and reference tables
 -- for the ABS Census 2011 products. These definitions provide the
 -- classifications used by the various profiles which we load.
 
+--
+-- # Census Dictionary
+--
 -- Although there is a 2011 Census Dictionary product which details
 -- the official classifications of the raw data, I'm not aware of free
 -- products released to this classification, rather the profiles which
 -- are released are trimed down versions of the classifications provided
 -- in the Census Dictionary.
 
+--
+-- # Copyright
+--
 -- This file is licensed CC0 by Andrew Harvey <andrew.harvey4@gmail.com>
 --
 -- To the extent possible under law, the person who associated CC0
@@ -20,6 +29,13 @@
 -- Commonwealth of Australia and licensed under the CC BY 2.5 AU license
 -- http://creativecommons.org/licenses/by/2.5/au/ by the ABS.
 -- The datapack samples were retrieved from http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample/$file/2011_BCP_AU_for_AUST_short-header.zip
+--
+-- This schema also contains data derived from the ABS Census Dictionary, 2011
+-- (cat. no. 2901.0, released 23/05/2011) which is Copyright Australian Bureau
+-- of Statistics (ABS) http://abs.gov.au/, Commonwealth of Australia and
+-- licensed under the CC BY 2.5 AU license http://creativecommons.org/licenses/by/2.5/au/ by the ABS.
+--
+-- As per the statement at http://www.abs.gov.au/websitedbs/D3310114.nsf/Home/%C2%A9+Copyright?opendocument#from-banner=GB
 
 
 -- Originally I planned to just have min, max where the primary keys is
@@ -315,42 +331,41 @@ CREATE TYPE census_2011.language_tsp AS ENUM (
 );
 
 
-CREATE TYPE census_2011.religion AS ENUM (
-  'Buddhism',
-  'Christianity',
-  'Hinduism',
-  'Islam',
-  'Judaism',
-  'Austrialian_Aboriginal_Traditional',
-  'Other_Group',
-  'None',
-  'Other_Affiliation',
-  'NotStated'
+CREATE TABLE census_2011.religious_affiliation
+(
+  name text PRIMARY KEY,
+  ascrg_code smallint -- http://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2901.0Chapter8302011
 );
 
-
-CREATE TYPE census_2011.religion_denomination AS ENUM (
-  'Not_Applicable', -- Because we may use as part of our PRIMARY KEY we can't use NULL to indicate this
-  'Anglican',
-  'Assyrian',
-  'Baptist',
-  'Brethren',
-  'Catholic',
-  'Churches_of_Christ',
-  'Eastern_Orthodox',
-  'Jehovahs_Witness',
-  'Latter_day_Saints',
-  'Lutheran',
-  'Oriental_Orthodox',
-  'Other_Protestant',
-  'Pentecostal',
-  'Presbyterian_and_Reformed',
-  'Salvation_Army',
-  'Seventh_day_Adventist',
-  'Uniting_Church',
-  'Christian_nfd',
-  'Other_Christian'
-);
+INSERT INTO census_2011.religious_affiliation VALUES
+('Buddhism', 1),
+('Christianity_Anglican', 201),
+('Christianity_Assyrian_Apostolic', 222),
+('Christianity_Baptist', 203),
+('Christianity_Brethren', 205),
+('Christianity_Catholic', 207),
+('Christianity_Churches_of_Christ', 211),
+('Christianity_Eastern_Orthodox', 223),
+('Christianity_Jehovahs_Witnesses', 213),
+('Christianity_Latter_day_Saints', 215),
+('Christianity_Lutheran', 217),
+('Christianity_Oriental_Orthodox', 221),
+('Christianity_Other_Protestant', 28),
+('Christianity_Pentecostal', 24),
+('Christianity_Presbyterian_and_Reformed', 225),
+('Christianity_Salvation_Army', 227),
+('Christianity_Seventh_day_Adventist', 231),
+('Christianity_Uniting_Church', 233),
+('Christianity_Christian_nfd', 200),
+('Christianity_Other_Christian', 29),
+('Hinduism', 3),
+('Islam', 4),
+('Judaism', 5),
+('Other_Religions_Australian_Aboriginal_Traditional_Religions', 601),
+('Other_Religions_Other_religious_groups', NULL), -- 603, 605, 607, 611, 613, 615, 617, 699
+('No_Religion', 7),
+('Other_religious_affiliation', NULL),
+('Religious_affiliation_not_stated', NULL);
 
 
 CREATE TABLE census_2011.educational_institution

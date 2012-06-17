@@ -177,12 +177,11 @@ CREATE TABLE census_2011.bcp_religious_affiliation_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  religion census_2011.religion, --FIXME use just one religious affiliation type here, and let the datatype make the tiered destinctions
-  denomination census_2011.religion_denomination,
+  religious_affiliation REFERENCES census_2011.religious_affiliation(name)
 
   persons integer,
 
-  PRIMARY KEY (asgs_code, sex, religion, denomination)
+  PRIMARY KEY (asgs_code, sex, religious_affiliation)
 );
 
 -- B15

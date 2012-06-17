@@ -48,7 +48,7 @@ B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, english_only)
 B13 Speaks_other_language_{db:census_2011.language}_[:sex:] bcp_language_spoken_at_home (\sex, \db:census_2011.language)
 B13 Language_spoken_at_home_not_stated_[:sex:] bcp_language_spoken_at_home (\sex, not_stated)
 
-# FIXME 14
+B14 {db:census_2011.religious_affiliation}_[:sex:] (\sex, \db:census_2011.religious_affiliation)
 
 B15 {db:census_2011.educational_institution}_[:sex:] bcp_type_of_educational_institution_attending (\sex, \db:census_2011.educational_institution)
 
