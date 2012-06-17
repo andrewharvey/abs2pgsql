@@ -57,7 +57,7 @@ for my $line (<STDIN>) {
 # open each DataPack file
 for my $file (sort keys %loads) {
   open (my $datapack_file, '<', "DataPack-Samples/2011_${profile}_AU_for_${structure}_sequential-header/2011 Sample $profile for $structure/2011Sample_${file}_${structure}_sequential.csv");
-  print "  $file\n";
+  print "  DataPack $file\n";
 
   # read in this datapack file as a CSV file
   my $csv = Text::CSV->new();
@@ -74,7 +74,7 @@ for my $file (sort keys %loads) {
 
   # for each seq id...
   for my $seq (sort keys %{$loads{$file}}) {
-    print "    $seq\n";
+    print "    Sequential ID $seq\n";
 
     # ...COPY all the values for each region in this $structure for the current $seq id into the database
     $dbh->do("COPY census_2011." . $loads{$file}->{$seq}->[0] . "_$structure FROM STDIN;");
