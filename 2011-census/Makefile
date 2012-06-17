@@ -9,7 +9,7 @@ all : clean create_schema create_tables prepare_load load_metadata_table
 
 clean :
 	psql -c "DROP SCHEMA IF EXISTS census_2011 CASCADE;"
-	rm -f *.copy
+	rm -f *.copy load-template
 
 create_schema :
 	psql -c "CREATE SCHEMA census_2011;"
