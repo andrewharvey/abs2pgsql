@@ -53,6 +53,18 @@
 --
 -- http://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2901.0Chapter99992011
 --
+-- Although we include parts of the data model of the Census Dictionary,
+-- 2011 Classifications in this schema, the purpose is not to implement
+-- the complete Census Dictionary in this schema. This can and should be
+-- done in a separate schema. The only purpose of including parts here is
+-- so that the tables from the profiles we load which make reference to
+-- the dictionary can have such references represented using the same
+-- codes so they can indeed reference the Census Dictionary schema.
+--
+-- tl dr; This is not a PostgreSQL Schema for the complete Census Dictionary
+-- 2011 Classifications, it is merely providing just enough to reference a
+-- separately loaded Census Dictionary.
+--
 
 -- "Arrays of domains are not yet supported." in PostgreSQL. Ideally
 -- these would be declared as base types then where they are used the []
