@@ -2,17 +2,22 @@
 -- # About
 --
 -- This file defines target PostgreSQL data types and reference tables
--- for the ABS Census 2011 products. These definitions provide the
--- classifications used by the various profiles which we load.
+-- for the ABS Census 2011 Profile products. These definitions provide the
+-- data model for the 7 DataPack Profiles.
 
 --
 -- # Census Dictionary
 --
 -- Although there is a 2011 Census Dictionary product which details
 -- the official classifications of the raw data, I'm not aware of free
--- products released to this classification, rather the profiles which
--- are released are trimed down versions of the classifications provided
+-- products released to this classification, rather Profiles are released
+-- which use trimmed down versions of the classifications provided
 -- in the Census Dictionary.
+--
+-- This schema DOES NOT load the Census Dictionary, that is provided by
+-- a separate top level loader in this abs2pgsql repository. This schema
+-- does however define parts of the dictionary, but only enough to
+-- represent and link the data from the Profiles to the Census Dictionary.
 
 --
 -- # Copyright
