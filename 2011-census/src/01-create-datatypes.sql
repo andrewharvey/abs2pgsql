@@ -51,6 +51,8 @@
 --
 -- Census Dictionary, 2011 Classifications
 --
+-- http://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2901.0Chapter99992011
+--
 
 -- "Arrays of domains are not yet supported." in PostgreSQL. Ideally
 -- these would be declared as base types then where they are used the []
