@@ -177,7 +177,7 @@ CREATE TABLE census_2011.bcp_religious_affiliation_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   sex census_2011.sex,
-  religious_affiliation REFERENCES census_2011.religious_affiliation(name)
+  religious_affiliation text REFERENCES census_2011.religious_affiliation(name),
 
   persons integer,
 
