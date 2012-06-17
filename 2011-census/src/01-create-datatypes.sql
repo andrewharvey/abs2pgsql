@@ -56,7 +56,7 @@ CREATE TABLE census_2011.age
 );
 
 
-CREATE DOMAIN census_2011.sex AS ENUM (
+CREATE TYPE census_2011.sex AS ENUM (
   'male',
   'female'
 );
