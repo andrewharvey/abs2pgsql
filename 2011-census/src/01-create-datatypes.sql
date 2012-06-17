@@ -806,6 +806,21 @@ CREATE TYPE census_2011.non_school_level_of_education AS ENUM (
 );
 
 
+CREATE TABLE census_2011.non_school_level_of_education_simple
+(
+  name text PRIMARY KEY
+);
+
+INSERT INTO census_2011.non_school_level_of_education_simple VALUES
+('postgraduate_degree_graduate_diploma_and_graduate_certificate_level'),
+('bachelor_degree_level'),
+('advanced_diploma_and_diploma_level'),
+('certificate_level_nfd'),
+('certificate_iii_and_iv_level'),
+('certificate_i_and_ii_level'),
+('level_of_education_not_stated');
+
+
 CREATE TYPE census_2011.field_of_study AS ENUM (
   'natural_and_physical_sciences',
   'information_technology',
@@ -831,6 +846,16 @@ CREATE TYPE census_2011.employment_status AS ENUM (
   'hours_worked_not_stated',
   'unemployed_looking_for_full_time_work',
   'unemployed_looking_for_part_time_work',
+  'not_in_the_labour_force',
+  'labour_force_status_not_stated'
+);
+
+
+CREATE TYPE census_2011.employment_status_simple AS ENUM (
+  'employed_worked_full_time',
+  'employed_worked_part_time',
+  'employed_away_from_work',
+  'unemployed',
   'not_in_the_labour_force',
   'labour_force_status_not_stated'
 );

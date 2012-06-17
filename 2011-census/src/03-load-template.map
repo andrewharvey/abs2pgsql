@@ -157,7 +157,7 @@ B46 {db:census_2011.method_of_travel}_[:sex:] bcp_method_of_travel_to_work (\sex
 
 I02 {db:census_2011.indigenous_status}_[:sex:] ip_indigenous_status (\sex, \db:census_2011.indigenous_status)
 
-I03 Age_years_[:age_b:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_population (\age_b, \sex, \ynn)
+I03 Age_years_[:age_b:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_age (\age_b, \sex, \ynn)
 
 I05 {db:census_2011.indigenous_educational_institution}_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_type_of_educational_institution_attending (\sex, \db:census_2011.indigenous_educational_institution, \ynn)
 
@@ -177,7 +177,9 @@ I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.hou
 
 I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_household_income (\tf, \indigenous_household_income)
 
-#TODO I15 I16
+I15 [:sex:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:age_l:]_{db:census_2011.non_school_level_of_education_simple} ip_ip_non_school_qualification_level_of_education (\age_l, \sex, \ynn, \db:census_2011.non_school_level_of_education_simple)
+
+I16 [:sex:]_{db:census_2011.employment_status_simple}_Age_[:age_m:] ip_labour_force_status (\age_m, \sex, \db:census_2011.employment_status_simple)
 
 ##
 ## Time Series Profile

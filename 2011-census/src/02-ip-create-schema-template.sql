@@ -30,7 +30,7 @@ CREATE TABLE census_2011.ip_indigenous_status_{structure}
 );
 
 -- I03
-CREATE TABLE census_2011.ip_population_{structure}
+CREATE TABLE census_2011.ip_age_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
   age text REFERENCES census_2011.age(range),
@@ -81,7 +81,9 @@ CREATE TABLE census_2011.ip_highest_year_of_school_completed_{structure}
   school_year census_2011.school_year,
   indigenous_status census_2011.yes_no_notstated,
 
-  persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer,
+  -- PostgreSQL Limitation
+  -- persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer,
+  persons_aged_15_yrs_and_over_no_longer_attd_prm_or_sec_school integer,
 
   PRIMARY KEY (asgs_code, sex, school_year, indigenous_status)
 );
@@ -174,4 +176,30 @@ CREATE TABLE census_2011.ip_household_income_{structure}
   PRIMARY KEY (asgs_code, indigenous_household, income_range)
 );
 
--- TODO I15 I16
+-- I15
+CREATE TABLE census_2011.ip_non_school_qualification_level_of_education_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  age text REFERENCES census_2011.age(range),
+  sex census_2011.sex,
+  indigenous_status census_2011.yes_no_notstated,
+    
+  non_school_level_of_education text REFERENCES census_2011.non_school_level_of_education_simple(name),
+
+  persons_aged_15_years_and_over_with_a_qualification integer,
+
+  PRIMARY KEY (asgs_code, age, sex, indigenous_status, non_school_level_of_education)
+);
+
+-- I16
+CREATE TABLE census_2011.ip_labour_force_status_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure}(code),
+  age text REFERENCES census_2011.age(range),
+  sex census_2011.sex,
+  employment_status census_2011.employment_status_simple,
+
+  indigenous_persons_aged_15_years_and_over integer,
+
+  PRIMARY KEY (asgs_code, age, sex, employment_status)
+);
