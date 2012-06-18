@@ -45,11 +45,11 @@ create_tables :
 	done
 	
 	# Time Series Profile & Estimated Resident Population Profile
-	echo "creating tables for TSP, ERPP..."
+	echo "creating tables for TSP, ERP..."
 	for s in aust state sa4 sa3 sa2 gccsa sla lga; \
 	do \
 		cat src/02-tsp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-		cat src/02-erpp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
+		cat src/02-erp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
 	done
 	
 	# Working Population Profile
@@ -60,10 +60,10 @@ create_tables :
 	done
 	
 	# Expanded Community Profile
-	echo "creating tables for ECP..."
+	echo "creating tables for XCP..."
 	for s in aust state sa4 sa3 sa2 gccsa sua sla lga; \
 	do \
-		cat src/02-ecp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
+		cat src/02-xcp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
 	done
 	
 	# Socio-Economic Indexes for Areas
@@ -101,11 +101,11 @@ load :
 	done
 	
 	# Time Series Profile & Estimated Resident Population Profile
-	echo "creating tables for TSP, ERPP..."
+	echo "creating tables for TSP, ERP..."
 	for s in aust state sa4 sa3 sa2 gccsa sla lga; \
 	do \
 		src/05-load.pl $s TSP < load-template ; \
-		src/05-load.pl $s ERPP < load-template ; \
+		src/05-load.pl $s ERP < load-template ; \
 	done
 	
 	# Working Population Profile
@@ -116,10 +116,10 @@ load :
 	done
 	
 	# Expanded Community Profile
-	echo "creating tables for ECP..."
+	echo "creating tables for XCP..."
 	for s in aust state sa4 sa3 sa2 gccsa sua sla lga; \
 	do \
-		src/05-load.pl $s ECP < load-template ; \
+		src/05-load.pl $s XCP < load-template ; \
 	done
 	
 	# Socio-Economic Indexes for Areas
