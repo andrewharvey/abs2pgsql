@@ -20,6 +20,7 @@ if (@ARGV >= 2) {
   $profile = uc($ARGV[1]);
 }else{
   print STDERR "Usage: $0 <ASGS_Structure> <Census_Profile>\n";
+  exit 1;
 }
 
 print "$profile $structure...\n";
