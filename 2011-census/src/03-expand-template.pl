@@ -208,8 +208,10 @@ sub insert ($$$$) {
   # replace all db lookups
   if (curlyMatch($src, 'db')) {
     my ($lookup) = $src =~ /{db:([^}]*)}/;
-    my $enum_as_hashref = pgenum2arrayref($lookup);
-    for my $new ( expand($src, "db:$lookup", $inserts, $enum_as_hashref, $enum_as_hashref) ) {
+    my $dict_hashref = dictLookup($lookup);
+    my @keys = keys $dict_hashref;
+    my @values = values $dict_hashref;
+    for my $new ( expand($src, "db:$lookup", $inserts, \@values, \@keys) ) {
       insert ($dataset_num, $new->{'src'}, $dst, $new->{'inserts'});
     }
     return;
@@ -271,9 +273,9 @@ sub expand($$$$$) {
   return @results;
 }
 
-# given an enum or table name created as part of the datatypes return arrayref of its values
+# given an enum or table name created as part of the datatypes return a hashref of its keys and values
 # sometimes it is an enum, and other times a table (depending on if it overflowed the 63 character limit)
-sub pgenum2arrayref($) {
+sub dictLookup($) {
   my ($lookup) = @_;
   my ($schema, $name) = $lookup =~ /(.*)\.(.*)/;
   my $matching_tables = $dbh->selectall_arrayref("SELECT table_name FROM information_schema.tables WHERE table_schema = '$schema' AND table_name = '$name';");
@@ -283,9 +285,21 @@ sub pgenum2arrayref($) {
     my $pg_enum = $pg_enum_arrayref->[0]->[0];
     $pg_enum =~ s/^{//;
     $pg_enum =~ s/}$//;
-    my @result = split /,/, $pg_enum;
-    return \@result;
+    my @values = split /,/, $pg_enum;
+    my %result;
+    for my $v (@values) {
+      $result{$v} = $v;
+    }
+    return \%result;
   }else{ # table exists
-    return $dbh->selectall_arrayref("SELECT long FROM $lookup;")->[0];
+    my $sth = $dbh->prepare("SELECT id, long FROM $lookup;");
+    $sth->execute() or die;
+    my %result;
+    for my $v (values $sth->fetchall_hashref("id")) {
+      my $key = $v->{'id'};
+      my $value = $v->{'long'};
+      $result{$key} = $value;
+    }
+    return \%result;
   }
 }
