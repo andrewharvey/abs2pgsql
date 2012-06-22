@@ -71,7 +71,7 @@ B21 [:sex:]_[:age_c:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provi
 
 B22 [:sex:]_[:age_c:]_{db:census_2011.child_care} bcp_unpaid_child_care (\age_c, \sex, \db:census_2011.child_care)
 
-B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:age_d:] bcp_relationship_in_houshold (\age_d, \sex, \db:census_2011.household_relationship)
+B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:age_d:] bcp_relationship_in_household (\age_d, \sex, \db:census_2011.household_relationship)
 
 B24 age_group_of_parent_[:age_g:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_ever_born (\age_g, \db:census_2011.number_of_children)
 
@@ -173,7 +173,7 @@ I10 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.ten
 
 I11 [:internet_connection:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \internet_connection)
 
-I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.household_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, \db:census_2011.houshold_type, \db:census_2011.number_of_persons_usually_resident)
+I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.household_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, \db:census_2011.household_type, \db:census_2011.number_of_persons_usually_resident)
 
 I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_household_income (\tf, \indigenous_household_income)
 
