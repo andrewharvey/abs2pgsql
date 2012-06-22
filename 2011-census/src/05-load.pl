@@ -29,7 +29,7 @@ if (@ARGV >= 2) {
   exit 1;
 }
 
-print "$profile $structure...\n";
+print "Loading $profile $structure...\n";
 
 my $dbh = DBI->connect("DBI:Pg:", '', '' , {'RaiseError' => 1, AutoCommit => 1});
 
@@ -64,7 +64,6 @@ for my $line (<STDIN>) {
 # open each DataPack file
 for my $file (sort keys %loads) {
   open (my $datapack_file, '<', "DataPacks/2011 ". $profile_fullname{$profile} . " Release 1/Sequential Number Descriptor/$structure/AUST/2011Census_${file}_AUST_${structure}_sequential.csv");
-  print "  DataPack $file\n";
 
   # read in this datapack file as a CSV file
   my $csv = Text::CSV->new();
@@ -81,7 +80,7 @@ for my $file (sort keys %loads) {
 
   # for each seq id...
   for my $seq (sort keys %{$loads{$file}}) {
-    print "    Sequential ID $seq\n";
+    print "  DataPack $file Sequential ID $seq\n";
 
     # ...COPY all the values for each region in this $structure for the current $seq id into the database
     $dbh->do("COPY census_2011." . $loads{$file}->{$seq}->[0] . "_$structure FROM STDIN;");
