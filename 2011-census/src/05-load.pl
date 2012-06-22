@@ -15,6 +15,12 @@ use DBI;
 my $structure;
 my $profile;
 
+my %profile_fullname = (
+  "BCP" => "Basic Community Profile",
+  "IP" => "Aboriginal and Torres Strait Islander Peoples Profile",
+  "TSP" => "Time Series Profile"
+);
+
 if (@ARGV >= 2) {
   $structure = uc($ARGV[0]);
   $profile = uc($ARGV[1]);
@@ -57,7 +63,7 @@ for my $line (<STDIN>) {
 
 # open each DataPack file
 for my $file (sort keys %loads) {
-  open (my $datapack_file, '<', "DataPack-Samples/2011_${profile}_AU_for_${structure}_sequential-header/2011 Sample $profile for $structure/2011Sample_${file}_${structure}_sequential.csv");
+  open (my $datapack_file, '<', "DataPacks/2011 ". $profile_fullname{$profile} . " Release 1/Sequential Number Descriptor/$structure/AUST/2011Census_${file}_AUST_${structure}_sequential.csv");
   print "  DataPack $file\n";
 
   # read in this datapack file as a CSV file
