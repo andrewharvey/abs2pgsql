@@ -89,7 +89,7 @@ for my $line (<STDIN>) {
       # keep track of lines from the expanded load template which we couldn't find in the metadata table
       if (defined $metadata) {
         # meaning of the line is LOAD $metadata->{'seq'} FROM $metadata->{'table'} INTO $table WITH VALUES <asgs_code>,$insert,<value>
-        print $load_file $metadata->{'seq'} . " " . $metadata->{'table'} . " " . $table . " " . $insert . "\n";
+        print $load_file $metadata->{'seq'} . " " . $metadata->{'file'} . " " . $table . " " . $insert . "\n";
       }else{
         $not_found_in_metadata{$dataset_num . " ". lc($long)} = '';
       }
