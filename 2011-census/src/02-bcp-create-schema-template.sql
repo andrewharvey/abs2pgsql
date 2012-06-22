@@ -40,7 +40,7 @@ CREATE TABLE census_2011.bcp_place_of_usual_residence_on_census_night_{structure
   age text REFERENCES census_2011.age(range),
   place_of_usual_residence census_2011.place_of_usual_residence,
 
-  visitor_from_different_sa2_state_code asgs_2011.state_code REFERENCES asgs_2011.state(code),
+  visitor_from_different_sa2_state_code asgs_2011.ste_code REFERENCES asgs_2011.ste(code),
 
   persons integer,
 
@@ -489,7 +489,7 @@ CREATE TABLE census_2011.bcp_place_of_usual_residence_1_year_ago_{structure}
   sex census_2011.sex,
   previous_place_of_usual_residence census_2011.previous_place_of_usual_residence,
 
-  different_usual_address_different_sa2_state_code asgs_2011.state_code REFERENCES asgs_2011.state(code),
+  different_usual_address_different_sa2_state_code asgs_2011.ste_code REFERENCES asgs_2011.ste(code),
 
   persons integer,
 
@@ -503,7 +503,7 @@ CREATE TABLE census_2011.bcp_place_of_usual_residence_5_years_ago_{structure}
   sex census_2011.sex,
   previous_place_of_usual_residence census_2011.previous_place_of_usual_residence,
 
-  different_usual_address_different_sa2_state_code asgs_2011.state_code REFERENCES asgs_2011.state(code),
+  different_usual_address_different_sa2_state_code asgs_2011.ste_code REFERENCES asgs_2011.ste(code),
 
   persons integer,
 
