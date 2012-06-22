@@ -86,7 +86,7 @@ B26 [:family_income_band:]_{db:census_2011.family_type} bcp_total_family_income 
 
 B27 {db:census_2011.blended_family_type}_family_with_{tf:|no_}other_children_present_Families bcp_family_blending (\db:census_2011.blended_family_type, \tf)
 
-B28 [:family_income_band:]_{tf:|Non_}Family_households census_2011.bcp_total_household_income (\family_income_band, \tf)
+B28 [:family_income_band:]_{tf:|Non_}Family_households bcp_total_household_income (\family_income_band, \tf)
 
 B29 Number_of_motor_vehicles_per_dwelling_{db:census_2011.number_of_motor_vehicles}_Dwellings bcp_number_of_motor_vehicles (\db:census_2011.number_of_motor_vehicles)
 B29 Number_of_motor_vehicles_not_stated_Dwellings bcp_number_of_motor_vehicles (not_stated)
