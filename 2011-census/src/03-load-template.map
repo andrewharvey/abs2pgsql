@@ -173,7 +173,7 @@ I10 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.ten
 
 I11 [:internet_connection:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \internet_connection)
 
-I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.household_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} (\tf, \db:census_2011.houshold_type, \db:census_2011.number_of_persons_usually_resident)
+I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.household_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, \db:census_2011.houshold_type, \db:census_2011.number_of_persons_usually_resident)
 
 I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_household_income (\tf, \indigenous_household_income)
 
