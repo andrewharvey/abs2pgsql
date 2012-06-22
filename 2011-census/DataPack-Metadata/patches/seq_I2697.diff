@@ -1,0 +1,11 @@
+--- a/IP.tsv
++++ b/IP.tsv
+@@ -2695,7 +2695,7 @@
+ I2694	F_Ind_55_64_BDL	Females_Indigenous_55_64_years_Bachelor_Degree_Level	I15B	I15b	Bachelor Degree Level|FEMALES
+ I2695	F_Ind_55_64_ADip_DipL	Females_Indigenous_55_64_years_Advanced_Diploma_and_Diploma_Level	I15B	I15b	Advanced Diploma and Diploma Level|FEMALES
+ I2696	F_Ind_55_64_CL_nfd	Females_Indigenous_55_64_years_Certificate_Level_nfd	I15B	I15b	Certificate Level, nfd|FEMALES
+-I2697	F_Ind_55_64_Ct_III_IV	Females_Indigenous_65_years_and_over_Certificate_III_and_IV_Level	I15B	I15b	Certificate III & IV Level|FEMALES
++I2697	F_Ind_55_64_Ct_III_IV	Females_Indigenous_55_64_years_Certificate_III_and_IV_Level	I15B	I15b	Certificate III & IV Level|FEMALES
+ I2698	F_Ind_55_64_Ct_I_II	Females_Indigenous_55_64_years_Certificate_I_and_II_Level	I15B	I15b	Certificate I & II Level|FEMALES
+ I2699	F_Ind_55_64_LoE_NS	Females_Indigenous_55_64_years_Level_of_education_not_stated	I15B	I15b	Level of education not stated|FEMALES
+ I2700	F_Ind_55_64_Tot	Females_Indigenous_55_64_years_Total	I15B	I15b	Total|FEMALES

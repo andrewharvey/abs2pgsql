@@ -1,0 +1,35 @@
+--- a/TSP.tsv
++++ b/TSP.tsv
+@@ -9616,19 +9616,19 @@
+ T9615	C01_CF_NDCO_4000ov	2001_Census_Couple_family_with_non_dependent_children_only_Mortgage_repayment_4000_and_over	T25A	T25a	Mortgage repayment: $4000 and over|2001 CENSUS
+ T9616	C01_CF_NDCO_NS	2001_Census_Couple_family_with_non_dependent_children_only_Mortgage_repayment_Not_stated	T25A	T25a	Mortgage repayment: Not stated|2001 CENSUS
+ T9617	C01_CF_NDCO_Tot	2001_Census_Couple_family_with_non_dependent_children_only_Total	T25A	T25a	Total|2001 CENSUS
+-T9618	C01_CF_T_0_299	2001_Census_Total_Mortgage_repayment_0_299	T25A	T25a	Mortgage repayment: $1-$299|2001 CENSUS
+-T9619	C01_CF_T_300_449	2001_Census_Total_Mortgage_repayment_300_449	T25A	T25a	Mortgage repayment: $300-$449|2001 CENSUS
+-T9620	C01_CF_T_450_599	2001_Census_Total_Mortgage_repayment_450_599	T25A	T25a	Mortgage repayment: $450-$599|2001 CENSUS
+-T9621	C01_CF_T_600_799	2001_Census_Total_Mortgage_repayment_600_799	T25A	T25a	Mortgage repayment: $600-$799|2001 CENSUS
+-T9622	C01_CF_T_800_999	2001_Census_Total_Mortgage_repayment_800_999	T25A	T25a	Mortgage repayment: $800-$999|2001 CENSUS
+-T9623	C01_CF_T_1000_1399	2001_Census_Total_Mortgage_repayment_1000_1399	T25A	T25a	Mortgage repayment: $1000-$1399|2001 CENSUS
+-T9624	C01_CF_T_1400_1799	2001_Census_Total_Mortgage_repayment_1400_1799	T25A	T25a	Mortgage repayment: $1400-$1799|2001 CENSUS
+-T9625	C01_CF_T_1800_2399	2001_Census_Total_Mortgage_repayment_1800_2399	T25A	T25a	Mortgage repayment: $1800-$2399|2001 CENSUS
+-T9626	C01_CF_T_2400_2999	2001_Census_Total_Mortgage_repayment_2400_2999	T25A	T25a	Mortgage repayment: $2400-$2999|2001 CENSUS
+-T9627	C01_CF_T_3000_3999	2001_Census_Total_Mortgage_repayment_3000_3999	T25A	T25a	Mortgage repayment: $3000-$3999|2001 CENSUS
+-T9628	C01_CF_T_4000ov	2001_Census_Total_Mortgage_repayment_4000_and_over	T25A	T25a	Mortgage repayment: $4000 and over|2001 CENSUS
+-T9629	C01_CF_T_NS	2001_Census_Total_Mortgage_repayment_Not_stated	T25A	T25a	Mortgage repayment: Not stated|2001 CENSUS
+-T9630	C01_CF_T_T	2001_Census_Total_Total	T25A	T25a	Total|2001 CENSUS
++T9618	C01_CF_T_0_299	2001_Census_Couple_family_Total_Mortgage_repayment_0_299	T25A	T25a	Mortgage repayment: $1-$299|2001 CENSUS
++T9619	C01_CF_T_300_449	2001_Census_Couple_family_Total_Mortgage_repayment_300_449	T25A	T25a	Mortgage repayment: $300-$449|2001 CENSUS
++T9620	C01_CF_T_450_599	2001_Census_Couple_family_Total_Mortgage_repayment_450_599	T25A	T25a	Mortgage repayment: $450-$599|2001 CENSUS
++T9621	C01_CF_T_600_799	2001_Census_Couple_family_Total_Mortgage_repayment_600_799	T25A	T25a	Mortgage repayment: $600-$799|2001 CENSUS
++T9622	C01_CF_T_800_999	2001_Census_Couple_family_Total_Mortgage_repayment_800_999	T25A	T25a	Mortgage repayment: $800-$999|2001 CENSUS
++T9623	C01_CF_T_1000_1399	2001_Census_Couple_family_Total_Mortgage_repayment_1000_1399	T25A	T25a	Mortgage repayment: $1000-$1399|2001 CENSUS
++T9624	C01_CF_T_1400_1799	2001_Census_Couple_family_Total_Mortgage_repayment_1400_1799	T25A	T25a	Mortgage repayment: $1400-$1799|2001 CENSUS
++T9625	C01_CF_T_1800_2399	2001_Census_Couple_family_Total_Mortgage_repayment_1800_2399	T25A	T25a	Mortgage repayment: $1800-$2399|2001 CENSUS
++T9626	C01_CF_T_2400_2999	2001_Census_Couple_family_Total_Mortgage_repayment_2400_2999	T25A	T25a	Mortgage repayment: $2400-$2999|2001 CENSUS
++T9627	C01_CF_T_3000_3999	2001_Census_Couple_family_Total_Mortgage_repayment_3000_3999	T25A	T25a	Mortgage repayment: $3000-$3999|2001 CENSUS
++T9628	C01_CF_T_4000ov	2001_Census_Couple_family_Total_Mortgage_repayment_4000_and_over	T25A	T25a	Mortgage repayment: $4000 and over|2001 CENSUS
++T9629	C01_CF_T_NS	2001_Census_Couple_family_Total_Mortgage_repayment_Not_stated	T25A	T25a	Mortgage repayment: Not stated|2001 CENSUS
++T9630	C01_CF_T_T	2001_Census_Couple_family_Total_Total	T25A	T25a	Total|2001 CENSUS
+ T9631	C01_1PF_Cu15DS_0_299	2001_Census_One_parent_family_with_children_under_15_and_dependent_students_Mortgage_repayment_0_299	T25A	T25a	Mortgage repayment: $1-$299|2001 CENSUS
+ T9632	C01_1PF_Cu15DS_300_449	2001_Census_One_parent_family_with_children_under_15_and_dependent_students_Mortgage_repayment_300_449	T25A	T25a	Mortgage repayment: $300-$449|2001 CENSUS
+ T9633	C01_1PF_Cu15DS_450_599	2001_Census_One_parent_family_with_children_under_15_and_dependent_students_Mortgage_repayment_450_599	T25A	T25a	Mortgage repayment: $450-$599|2001 CENSUS
