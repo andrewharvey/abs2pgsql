@@ -93,10 +93,10 @@ B29 Number_of_motor_vehicles_not_stated_Dwellings bcp_number_of_motor_vehicles (
 
 B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually_resident}_{tf:|Non_}Family_households bcp_household_composition (\db:census_2011.number_of_persons_usually_resident, \tf)
 
-B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Dwellings bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
-B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Persons bcp_dwelling_structure (\db:census_2011.dwelling_structure_extended_full)
-B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure (unoccupied)
-B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure (unoccupied)
+B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Dwellings bcp_dwelling_structure_dwellings (\db:census_2011.dwelling_structure_extended_full)
+B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Persons bcp_dwelling_structure_dwellings (\db:census_2011.dwelling_structure_extended_full)
+B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure_dwellings (unoccupied)
+B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure_dwellings (unoccupied)
 
 B32 {db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_tenure_type_and_landlord_type (\db:census_2011.tenure_landlord_type, \db:census_2011.dwelling_structure_simple)
 
@@ -177,7 +177,7 @@ I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.hou
 
 I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_household_income (\tf, \indigenous_household_income)
 
-I15 [:sex:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:age_l:]_{db:census_2011.non_school_level_of_education_simple} ip_ip_non_school_qualification_level_of_education (\age_l, \sex, \ynn, \db:census_2011.non_school_level_of_education_simple)
+I15 [:sex:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:age_l:]_{db:census_2011.non_school_level_of_education_simple} ip_non_school_qualification_level_of_education (\age_l, \sex, \ynn, \db:census_2011.non_school_level_of_education_simple)
 
 I16 [:sex:]_{db:census_2011.employment_status_simple}_Age_[:age_m:] ip_labour_force_status (\age_m, \sex, \db:census_2011.employment_status_simple)
 
@@ -185,7 +185,7 @@ I16 [:sex:]_{db:census_2011.employment_status_simple}_Age_[:age_m:] ip_labour_fo
 ## Time Series Profile
 ##
 
-T03 Age_years_[:age_j:]_{db:census_2011.tsp_years}_Census_[:sex:] tsp_population (\age_j, \sex, \db:census_2011.tsp_years)
+T03 Age_years_[:age_j:]_{db:census_2011.tsp_years}_Census_[:sex:] tsp_age (\age_j, \sex, \db:census_2011.tsp_years)
 
 T04 {db:census_2011.tsp_years}_Census_[:age_g:]_{db:census_2011.registered_marital_status}_[:sex:] tsp_registered_marital_status (\age_g, \sex, \db:census_2011.registered_marital_status, \db:census_2011.tsp_years)
 
