@@ -24,8 +24,9 @@ The DataPack DVD's consist of 7 individual DataPack profiles,
 * Estimated Resident Population (cat. no. 2069.0.30.010)
 
 To actually use these scripts to load the data, you need the data. You
-can either download it from my DataPack DVD mirror (tba) or purchase the
-physical disks from the ABS.
+can either download it from my DataPack DVD mirror (tba, but in the mean
+time I have a slice of the data [here](http://tianjara.net/data/abs/)) or
+purchase the physical disks from the ABS.
 
 # Target PostgreSQL Schema
 These scripts don't to a straight load, if they did it would be much
