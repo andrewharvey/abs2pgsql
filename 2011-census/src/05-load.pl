@@ -29,8 +29,6 @@ if (@ARGV >= 2) {
   exit 1;
 }
 
-print "Loading $profile $structure...\n";
-
 my $dbh = DBI->connect("DBI:Pg:", '', '' , {'RaiseError' => 1, AutoCommit => 1});
 
 my %loads;
@@ -80,7 +78,7 @@ for my $file (sort keys %loads) {
 
   # for each seq id...
   for my $seq (sort keys %{$loads{$file}}) {
-    print "  DataPack $file Sequential ID $seq\n";
+    print "  $profile $structure $file $seq\n";
 
     # ...COPY all the values for each region in this $structure for the current $seq id into the database
     $dbh->do("COPY census_2011." . $loads{$file}->{$seq}->[0] . "_$structure FROM STDIN;");
