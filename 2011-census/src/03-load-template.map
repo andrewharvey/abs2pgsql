@@ -104,7 +104,7 @@ B33 [:mortgage_repayment_band:]_Dwelling_structure_{db:census_2011.dwelling_stru
 
 B34 [:rental_payment_band:]_Landlord_type_{db:census_2011.landlord_type} bcp_rent (\rental_payment_band, \db:census_2011.landlord_type)
 
-B35 [:internet_connection:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_type_of_internet_connection (\internet_connection, \db:census_2011.dwelling_structure_simple)
+B35 [:internet_connection:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_type_of_internet_connection (\db:census_2011.dwelling_structure_simple, \internet_connection)
 
 B36 {db:census_2011.dwelling_structure_extended_minimal}_Number_of_bedrooms_[:bedrooms:] bcp_dwelling_structure_by_number_of_bedrooms (\db:census_2011.dwelling_structure_extended_minimal, \bedrooms)
 
