@@ -346,7 +346,7 @@ CREATE TABLE census_2011.bcp_total_family_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   family_type census_2011.family_type,
-  income_range census_2011.family_income_band,
+  income_range smallint REFERENCES census_2011.family_income_band,
 
   families integer,
 
@@ -369,7 +369,7 @@ CREATE TABLE census_2011.bcp_family_blending_{structure}
 CREATE TABLE census_2011.bcp_total_household_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  income_range census_2011.family_income_band,
+  income_range smallint REFERENCES census_2011.family_income_band,
   family_household boolean,
 
   occupied_private_dwellings integer,
