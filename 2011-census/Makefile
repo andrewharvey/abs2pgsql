@@ -25,7 +25,7 @@ create_tables :
 	
 	# create the tables for each of the products for each of the geographic
 	# areas for which they are available.
-	src/02-create-tables.sh
+	src/02-create-tables.sh bcp ip tsp
 
 prepare_load :
 	src/03-expand-template.pl < src/03-load-template.map | src/04-prepare-from-expansion.pl
@@ -39,49 +39,7 @@ load_metadata_table :
 
 # and finally actually load the ABS Census Data
 load :
-	# Basic Community Profile & Place of Enumeration Profile
-	echo "creating tables for BCP, PEP..."
-	for s in aust state sa4 sa3 sa2 sa1 gccsa sua sos sosr ucl ra sla lga ssc poa ced sed; \
-	do \
-		src/05-load.pl $s BCP < load-template ; \
-		src/05-load.pl $s PEP < load-template ; \
-	done
-	
-	# Indigenous Profile
-	echo "creating tables for IP..."
-	for s in aust state sa4 sa3 sa2 gccsa ireg iare iloc ra sla lga; \
-	do \
-		src/05-load.pl $s IP < load-template ; \
-	done
-	
-	# Time Series Profile & Estimated Resident Population Profile
-	echo "creating tables for TSP, ERP..."
-	for s in aust state sa4 sa3 sa2 gccsa sla lga; \
-	do \
-		src/05-load.pl $s TSP < load-template ; \
-		src/05-load.pl $s ERP < load-template ; \
-	done
-	
-	# Working Population Profile
-	echo "creating tables for WPP..."
-	for s in aust state sa4 sa3 sa2 gccsa lga; \
-	do \
-		src/05-load.pl $s WPP < load-template ; \
-	done
-	
-	# Expanded Community Profile
-	echo "creating tables for XCP..."
-	for s in aust state sa4 sa3 sa2 gccsa sua sla lga; \
-	do \
-		src/05-load.pl $s XCP < load-template ; \
-	done
-	
-	# Socio-Economic Indexes for Areas
-	echo "creating tables for SEIFA..."
-	for s in state sa4 sa3 sa2 sa1 sla lga ssc poa ced; \
-	do \
-		src/05-load.pl $s SEIFA < load-template ; \
-	done
+	src/05-load.sh bcp ip tsp
 	
 	# clean up
 	rm -f load-template
