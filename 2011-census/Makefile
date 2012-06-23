@@ -5,7 +5,7 @@
 # rights to this work.
 # http://creativecommons.org/publicdomain/zero/1.0/
 
-all : clean create_schema create_tables prepare_load load_metadata_table
+all : clean create_schema create_tables prepare_load load_metadata_table load
 
 clean :
 	psql -c "DROP SCHEMA IF EXISTS census_2011 CASCADE;"
