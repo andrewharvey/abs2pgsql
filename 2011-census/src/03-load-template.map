@@ -98,7 +98,7 @@ B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}
 B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure_dwellings (unoccupied)
 B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure_persons (unoccupied)
 
-B32 {db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_tenure_type_and_landlord_type (\db:census_2011.tenure_landlord_type, \db:census_2011.dwelling_structure_simple)
+B32 {db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_tenure_type_and_landlord_type (\db:census_2011.dwelling_structure_simple, \db:census_2011.tenure_landlord_type)
 
 B33 [:mortgage_repayment_band:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_mortgage_repayment (\mortgage_repayment_band, \db:census_2011.dwelling_structure_simple)
 
