@@ -25,53 +25,7 @@ create_tables :
 	
 	# create the tables for each of the products for each of the geographic
 	# areas for which they are available.
-	
-	# details of which products are avaliable for which geographic areas
-	# was obtained from http://www.abs.gov.au/ausstats/abs@.nsf/lookup/2011.0.55.001Main%20Features1202011
-	
-	# Basic Community Profile & Place of Enumeration Profile
-	echo "creating tables for BCP, PEP..."
-	for s in aust state sa4 sa3 sa2 sa1 gccsa sua sos sosr ucl ra sla lga ssc poa ced sed; \
-	do \
-		cat src/02-bcp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-		cat src/02-pep-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-	done
-	
-	# Indigenous Profile
-	echo "creating tables for IP..."
-	for s in aust state sa4 sa3 sa2 gccsa ireg iare iloc ra sla lga; \
-	do \
-		cat src/02-ip-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-	done
-	
-	# Time Series Profile & Estimated Resident Population Profile
-	echo "creating tables for TSP, ERP..."
-	for s in aust state sa4 sa3 sa2 gccsa sla lga; \
-	do \
-		cat src/02-tsp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-		cat src/02-erp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-	done
-	
-	# Working Population Profile
-	echo "creating tables for WPP..."
-	for s in aust state sa4 sa3 sa2 gccsa lga; \
-	do \
-		cat src/02-wpp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-	done
-	
-	# Expanded Community Profile
-	echo "creating tables for XCP..."
-	for s in aust state sa4 sa3 sa2 gccsa sua sla lga; \
-	do \
-		cat src/02-xcp-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-	done
-	
-	# Socio-Economic Indexes for Areas
-	echo "creating tables for SEIFA..."
-	for s in state sa4 sa3 sa2 sa1 sla lga ssc poa ced; \
-	do \
-		cat src/02-seifa-create-schema-template.sql | sed s/{structure}/$$s/g | psql -f - ; \
-	done
+	src/02-create-tables.sh
 
 prepare_load :
 	src/03-expand-template.pl < src/03-load-template.map | src/04-prepare-from-expansion.pl
