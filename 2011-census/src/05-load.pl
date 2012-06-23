@@ -61,7 +61,16 @@ for my $line (<STDIN>) {
 
 # open each DataPack file
 for my $file (sort keys %loads) {
-  open (my $datapack_file, '<', "DataPacks/2011 ". $profile_fullname{$profile} . " Release 1/Sequential Number Descriptor/$structure/AUST/2011Census_${file}_AUST_${structure}_sequential.csv");
+  my $state_to_load = "AUST"; # for example changing this to NSW will just load data for the regions which fall in NSW
+
+  my $state_to_load_directory = "";
+  my $state_to_load_path = "";
+  if ((uc $structure) ne "AUST") {
+    $state_to_load_directory = "${state_to_load}/";
+    $state_to_load_path = "${state_to_load}_";
+  }
+
+  open (my $datapack_file, '<', "DataPacks/2011 ". $profile_fullname{$profile} . " Release 1/Sequential Number Descriptor/$structure/${state_to_load_directory}2011Census_${file}_${state_to_load_path}${structure}_sequential.csv");
 
   # read in this datapack file as a CSV file
   my $csv = Text::CSV->new();
