@@ -437,19 +437,19 @@ CREATE TABLE census_2011.bcp_tenure_type_and_landlord_type_{structure}
 CREATE TABLE census_2011.bcp_mortgage_repayment_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  income_range census_2011.income_band,
+  mortgage_repayment smallint REFERENCES census_2011.mortgage_repayment_band,
   dwelling_structure census_2011.dwelling_structure_simple,
 
   occupied_private_dwellings_being_purchased integer,
 
-  PRIMARY KEY (asgs_code, income_range, dwelling_structure)
+  PRIMARY KEY (asgs_code, mortgage_repayment, dwelling_structure)
 );
 
 -- B34
 CREATE TABLE census_2011.bcp_rent_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  rent_band census_2011.rental_payment_band,
+  rent_band smallint REFERENCES census_2011.rental_payment_band,
   landlord_type census_2011.landlord_type,
 
   occupied_private_dwellings_being_rented integer,
