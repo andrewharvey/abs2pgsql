@@ -94,7 +94,9 @@ for my $file (sort keys %loads) {
 
     for (my $i = 0; $i < scalar @{$datapack{$seq}}; $i++) {
 #      print ($datapack{'region_id'}->[$i] . "\t" . join("\t", @{$loads{$file}->{$seq}->[1]}) . "\t" . $datapack{$seq}->[$i] . "\n");
-      $dbh->pg_putcopydata($datapack{'region_id'}->[$i] . "\t" . join("\t", @{$loads{$file}->{$seq}->[1]}) . "\t" . $datapack{$seq}->[$i] . "\n");
+      my $insert_value = $datapack{$seq}->[$i];
+      $insert_value =~ s/\.\./\\N/;
+      $dbh->pg_putcopydata($datapack{'region_id'}->[$i] . "\t" . join("\t", @{$loads{$file}->{$seq}->[1]}) . "\t$insert_value\n");
     }
 
     $dbh->pg_putcopyend() or die $!;
