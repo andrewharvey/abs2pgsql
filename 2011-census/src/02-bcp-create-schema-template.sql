@@ -290,7 +290,7 @@ CREATE TABLE census_2011.bcp_unpaid_child_care_{structure}
 );
 
 -- B23
-CREATE TABLE census_2011.bcp_relationship_in_houshold_{structure}
+CREATE TABLE census_2011.bcp_relationship_in_household_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
