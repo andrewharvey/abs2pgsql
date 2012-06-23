@@ -1,18 +1,19 @@
 # About
-These scripts are intended to load the 2011 Census data into a PostgreSQL
-database. The target schema aims to be an object-relational schema whist
-trying to be true to the original schema of the data as presented by the
-ABS.
+This is the loader for the ABS 2011 Census data, part of the abs2pgsql
+project. The generic [abs2pgsql README is here](https://github.com/andrewharvey/abs2pgsql),
+what follows is specific to the 2011 Census Data.
 
-The actual census data that these scripts load hasn't been released yet,
-so the code is based on the sample products.
+An Australian census was conducted by the ABS in 2011 and the results of
+that are published under the umbrella term "Census of Population and Housing".
 
-The census was conducted by the ABS in 2011 and the results of which are
-published under the umbrella term "Census of Population and Housing".
 The products which this consists of are [listed in full here](http://www.abs.gov.au/ausstats/abs@.nsf/lookup/2011.0.55.001Main%20Features1262011).
 
-These scripts intend to load the DataPack DVD, Mesh Block Counts, and
-Socio-Economic Indexes for Areas (SEIFA) products.
+This loader is designed to load the DataPack DVD data, however it
+shouldn't have a problem loading the DataPack Downloads also.
+
+The target schema aims to be an object-relational schema whist trying to
+be true to the original schema of the data as presented by the ABS. [See
+below for more information](#target-postgresql-schema).
 
 The DataPack DVD's consist of 7 individual DataPack profiles,
 * Basic Community Profile (cat. no. 2069.0.30.008)
@@ -22,6 +23,10 @@ The DataPack DVD's consist of 7 individual DataPack profiles,
 * Expanded Community Profile (cat. no. 2069.0.30.009)
 * Working Population Profile (cat. no. 2069.0.30.009)
 * Estimated Resident Population (cat. no. 2069.0.30.010)
+
+Two additional products will likely be supported when they are released,
+* Mesh Block Counts
+* Socio-Economic Indexes for Areas (SEIFA)
 
 To actually use these scripts to load the data, you need the data. You
 can either download it from my DataPack DVD mirror (tba, but in the mean
@@ -34,7 +39,7 @@ simpler as you could just COPY from the source csv files. However my aim
 was to produce an object-relational schema rather than the flat schema of
 the source csv files.
 
-In must be noted that this won't load the raw census data, that data
+It must be noted that this won't load the raw census data, that data
 isn't released. It will only load the summary data which the ABS produces
 in the form of "Community Profiles".
 
@@ -84,6 +89,14 @@ schema and subsequently load the data.
 You should ensure you have set your [PG environment variables](http://www.postgresql.org/docs/current/static/libpq-envars.html)
 correctly prior to running the make command.
 
+## Prerequisites
+You will need to have the asgs_2011 schema loaded first using [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
+
+You will also need the following Debian packages (or equivalent for your system),
+
+    postgresql-client-9.2 | postgresql-client-9.1 | postgresql-client-8.4,
+    quilt, libtext-csv-perl | libtext-csv-xs-perl, libdbd-pg-perl, bash (>= 4.0)
+
 ## Tweaking your PostgreSQL database
 A fully loaded census_2011 schema will contain a lot of tables. The main
 reason for so many tables is each DataPack Profile Table will be stored
@@ -99,11 +112,16 @@ from source.
 
 # Copyright
 ## DataPack Metadata Tables
-All files within DataPack-Metadata are works derived from the
+All .tsv files within DataPack-Metadata are works derived from the
 [CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/) licensed
 Metadata/Metadata_2011_*_DataPack.xlsx files from within [the samples here](http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample?opendocument&navpos=250).
 
 They were created via a copy-paste out of LibreOffice.
+
+There are several errors in both these samples and the DVD release, hence
+DataPack-Metadata/patches are patches I've created to fix these errors
+until the ABS makes a release with the fixes. These patches are applied
+automatically during the build process.
 
 Attribution for the original data goes to the [Australian Bureau of Statistics (ABS)](http://abs.gov.au/), Commonwealth of Australia.
 
