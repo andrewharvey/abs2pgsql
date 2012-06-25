@@ -42,7 +42,7 @@ B10 {db:census_2011.birthplace}_Year_of_arrival_[:year_of_arrival_a:] bcp_countr
 
 B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_[:year_of_arrival_b:] bcp_proficiency_in_spoken_english (\year_of_arrival_b, \sex, \db:census_2011.english_proficiency)
 
-B12 Dependent_children_aged_[:age_f:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_proficiency_in_spoken_english_of_parents (\age_f, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
+#B12 Dependent_children_aged_[:age_f:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_proficiency_in_spoken_english_of_parents (\age_f, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
 
 B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, english_only)
 B13 Speaks_other_language_{db:census_2011.language}_[:sex:] bcp_language_spoken_at_home (\sex, \db:census_2011.language)
@@ -75,12 +75,12 @@ B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:age_d:] bcp_relationsh
 
 B24 age_group_of_parent_[:age_g:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_ever_born (\age_g, \db:census_2011.number_of_children)
 
-B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families (couple_family, \tf_1, \tf_2, \tf_3)
-B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families (one_parent_family, \tf_1, \tf_2, \tf_3)
-B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons (couple_family, \tf_1, \tf_2, \tf_3)
-B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons (one_parent_family, \tf_1, \tf_2, \tf_3)
-B25 Other_family_Families bcp_family_composition_families (other_family, false, false, false)
-B25 Other_family_Persons bcp_family_composition_persons (other_family, false, false, false)
+#B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families (couple_family, \tf_1, \tf_2, \tf_3)
+#B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families (one_parent_family, \tf_1, \tf_2, \tf_3)
+#B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons (couple_family, \tf_1, \tf_2, \tf_3)
+#B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons (one_parent_family, \tf_1, \tf_2, \tf_3)
+#B25 Other_family_Families bcp_family_composition_families (other_family, false, false, false)
+#B25 Other_family_Persons bcp_family_composition_persons (other_family, false, false, false)
 
 B26 [:family_income_band:]_{db:census_2011.family_type} bcp_total_family_income (\db:census_2011.family_type, \family_income_band)
 
@@ -95,8 +95,9 @@ B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually
 
 B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Dwellings bcp_dwelling_structure_dwellings (\db:census_2011.dwelling_structure_extended_full)
 B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Persons bcp_dwelling_structure_persons (\db:census_2011.dwelling_structure_extended_full)
-B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure_dwellings (unoccupied)
-B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure_persons (unoccupied)
+# FIXME store the follwing as the long value and have the program find its serial ID
+B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure_dwellings (12)
+B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure_persons (12)
 
 B32 {db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_tenure_type_and_landlord_type (\db:census_2011.dwelling_structure_simple, \db:census_2011.tenure_landlord_type)
 
