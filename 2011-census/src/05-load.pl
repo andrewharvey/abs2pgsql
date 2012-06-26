@@ -94,7 +94,7 @@ for my $file (sort keys %loads) {
 
     for (my $i = 0; $i < scalar @{$datapack{$seq}}; $i++) {
       my $region_id = $datapack{'region_id'}->[$i];
-      $region_id =~ s/^(CED|LGA|POA|SED|SCC|IARE|ILOC|IREG)//;
+      $region_id =~ s/^(CED|LGA|POA|SED|SSC|IARE|ILOC|IREG)//;
       my $insert_value = $datapack{$seq}->[$i];
       $insert_value =~ s/\.\./\\N/;
       $dbh->pg_putcopydata("$region_id\t" . join("\t", @{$loads{$file}->{$seq}->[1]}) . "\t$insert_value\n");
