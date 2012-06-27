@@ -56,6 +56,7 @@ following ABS releases,
   2002.0, 2003.0, 2069.0.30.008)
 
 # Preparation
+## PostgreSQL Environment Variables
 All scripts expect you have set up PG* environment variables. These are
 used to control which PostgreSQL database, hostname, port, username, etc.
 is used to load the data into. Refer to the [PostgreSQL documentation](http://www.postgresql.org/docs/current/static/libpq-envars.html)
@@ -64,6 +65,16 @@ for help.
 For example in your terminal window before running the scripts first run,
 
     export PGDATABASE=abs
+
+## PostgreSQL Performance Tweaks
+There are several ways you can speed up this initial load (assuming you
+want to "build from source" rather than using a pre-made dump as the
+pre-made dump will always be faster). These suggestions are based on the
+fact that you are loading existing data and you don't need durability.
+That is, if the server crashes part way though the load you are happy to
+just start the load from the start again.
+
+I would recommend you follow the advice for [non-durable settings](http://www.postgresql.org/docs/current/static/non-durability.html) at least for the time you are actually loading the data.
 
 # License, Copyright and Attribution
 The licensing of this repository is slightly more complicated than usual.
