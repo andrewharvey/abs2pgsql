@@ -28,12 +28,15 @@ create_tables :
 	src/02-create-tables.sh bcp ip tsp
 
 prepare_load :
-	QUILT_PATCHES=patches
-	cd DataPack-Metadata && quilt push -a && cd ../
+	# push patches
+	export QUILT_PATCHES=patches && cd DataPack-Metadata && quilt push -a && cd ../
+	# expand load template and prepare it
 	src/03-expand-template.pl < src/03-load-template.map | src/04-prepare-from-expansion.pl
+	# pop patches
+	export QUILT_PATCHES=patches && cd DataPack-Metadata && quilt pop -a && cd ../
+	# insert the generated age table data
 	cat age.copy | sort | uniq | psql -c "COPY census_2011.age FROM STDIN;"
 	rm -f age.copy
-	cd DataPack-Metadata && quilt pop -a && cd ../
 
 load_metadata_table :
 	psql -f src/04-create-metadata-schema.sql
