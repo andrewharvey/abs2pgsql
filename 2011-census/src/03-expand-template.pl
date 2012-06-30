@@ -67,14 +67,6 @@ my %expansions = (
       [qw/0_299 300_449 450_599 600_799 800_999 1000_1399 1400_1799 1800_2399 2400_2999 3000_3999 4000_and_over Mortgage_repayment_not_stated/],
       [0..11]
     ],
-  bedrooms => [
-      [qw/None_includes_bedsitters One_bedroom Two_bedrooms Three_bedrooms Four_bedrooms Five_bedrooms Six_or_more_bedrooms Not_stated/],
-      [qw/zero one two three four five six_or_more not_stated/]
-    ],
-  internet_connection => [
-      [qw/No_Internet_connection Type_of_Internet_connection_Broadband Type_of_Internet_connection_Dial_up Type_of_Internet_connection_Other Internet_connection_not_stated/],
-      [qw/none broadband dial_up other not_stated/]
-    ],
   indigenous_income_band => [
       [qw/Negative_Nil_income 1_199 200_299 300_399 400_599 600_799 800_999 1000_or_more Personal_income_not_stated/],
       [0..8]
@@ -220,6 +212,26 @@ sub insert ($$$$) {
     for my $new ( expand($src, "db:$lookup", $inserts, \@values, \@keys) ) {
       insert ($dataset_num, $new->{'src'}, $dst, $new->{'inserts'});
     }
+    return;
+  }
+  
+  if (grep(/^\\dict:[^:]+:.*/, @{$inserts})) {
+    my @new_inserts;
+    for my $insert (@{$inserts}) {
+      if ($insert =~ /^\\dict:([^:]+):(.*)/) {
+        my $dict_lookup_table = $1;
+        my $dict_lookup_long = $2;
+
+        my $sth = $dbh->prepare("SELECT id FROM census_2011.$dict_lookup_table WHERE long = ?;");
+        $sth->execute($dict_lookup_long) or die;
+
+        my $result = $sth->fetchall_arrayref();
+
+        $insert = $result->[0]->[0];
+      }
+      push @new_inserts, $insert;
+    }
+    insert ($dataset_num, $src, $dst, \@new_inserts);
     return;
   }
 

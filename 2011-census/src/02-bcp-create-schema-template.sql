@@ -65,7 +65,7 @@ CREATE TABLE census_2011.bcp_registered_marital_status_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  registered_marital_status census_2011.registered_marital_status,
+  registered_marital_status serial REFERENCES census_2011.registered_marital_status,
 
   persons_aged_15_years_and_over integer,
 
@@ -78,7 +78,7 @@ CREATE TABLE census_2011.bcp_social_marital_status_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  social_marital_status census_2011.social_marital_status,
+  social_marital_status serial REFERENCES census_2011.social_marital_status,
 
   persons_aged_15_years_and_over integer,
 
@@ -102,8 +102,8 @@ CREATE TABLE census_2011.bcp_indigenous_status_{structure}
 CREATE TABLE census_2011.bcp_ancestry_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  parent_birthplace_combination census_2011.parent_birthplace_combination,
-  ancestry census_2011.ancestry,
+  parent_birthplace_combination serial REFERENCES census_2011.parent_birthplace_combination,
+  ancestry serial REFERENCES census_2011.ancestry,
 
   persons integer,
 
@@ -115,7 +115,7 @@ CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_sex_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  country_of_birth census_2011.birthplace,
+  country_of_birth serial REFERENCES census_2011.birthplace,
 
   persons integer,
 
@@ -127,7 +127,7 @@ CREATE TABLE census_2011.bcp_country_of_birth_of_person_by_year_of_arrival_{stru
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   year_of_arrival smallint REFERENCES census_2011.year_of_arrival,
-  country_of_birth census_2011.birthplace,
+  country_of_birth serial REFERENCES census_2011.birthplace,
 
   persons_born_overseas integer,
 
@@ -165,7 +165,7 @@ CREATE TABLE census_2011.bcp_language_spoken_at_home_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  language census_2011.language,
+  language serial REFERENCES census_2011.language,
 
   persons integer,
 
@@ -202,7 +202,7 @@ CREATE TABLE census_2011.bcp_highest_year_of_school_completed_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   age text REFERENCES census_2011.age(range),
-  school_year census_2011.school_year,
+  school_year serial REFERENCES census_2011.school_year,
 
   -- PostgreSQL Limitation
   -- persons_aged_15_years_and_over_who_are_no_longer_attending_primary_or_secondary_school integer,
@@ -282,7 +282,7 @@ CREATE TABLE census_2011.bcp_unpaid_child_care_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  child_care census_2011.child_care,
+  child_care serial REFERENCES census_2011.child_care,
 
   persons_aged_15_years_and_over integer,
 
@@ -307,7 +307,7 @@ CREATE TABLE census_2011.bcp_number_of_children_ever_born_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age_of_parent text REFERENCES census_2011.age(range),
-  number_of_children_ever_born census_2011.number_of_children,
+  number_of_children_ever_born serial REFERENCES census_2011.number_of_children,
 
   females_aged_15_years_and_over integer,
 
@@ -318,7 +318,7 @@ CREATE TABLE census_2011.bcp_number_of_children_ever_born_{structure}
 CREATE TABLE census_2011.bcp_family_composition_families_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  family_type census_2011.family_type,
+  family_type serial REFERENCES census_2011.family_type,
   children_under_15 boolean,
   dependent_students boolean,
   non_dependent_children boolean,
@@ -331,7 +331,7 @@ CREATE TABLE census_2011.bcp_family_composition_families_{structure}
 CREATE TABLE census_2011.bcp_family_composition_persons_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  family_type census_2011.family_type,
+  family_type serial REFERENCES census_2011.family_type,
   children_under_15 boolean,
   dependent_students boolean,
   non_dependent_children boolean,
@@ -345,7 +345,7 @@ CREATE TABLE census_2011.bcp_family_composition_persons_{structure}
 CREATE TABLE census_2011.bcp_total_family_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  family_type census_2011.family_type,
+  family_type serial REFERENCES census_2011.family_type,
   income_range smallint REFERENCES census_2011.family_income_band,
 
   families integer,
@@ -381,7 +381,7 @@ CREATE TABLE census_2011.bcp_total_household_income_{structure}
 CREATE TABLE census_2011.bcp_number_of_motor_vehicles_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  number_of_motor_vehicles census_2011.number_of_motor_vehicles,
+  number_of_motor_vehicles serial REFERENCES census_2011.number_of_motor_vehicles,
 
   occupied_private_dwellings integer,
 
@@ -425,8 +425,8 @@ CREATE TABLE census_2011.bcp_dwelling_structure_persons_{structure}
 CREATE TABLE census_2011.bcp_tenure_type_and_landlord_type_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  dwelling_structure census_2011.dwelling_structure_simple,
-  tenure_landlord_type census_2011.tenure_landlord_type,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_simple,
+  tenure_landlord_type serial REFERENCES census_2011.tenure_landlord_type,
 
   occupied_private_dwellings integer,
 
@@ -438,7 +438,7 @@ CREATE TABLE census_2011.bcp_mortgage_repayment_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   mortgage_repayment smallint REFERENCES census_2011.mortgage_repayment_band,
-  dwelling_structure census_2011.dwelling_structure_simple,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_simple,
 
   occupied_private_dwellings_being_purchased integer,
 
@@ -450,7 +450,7 @@ CREATE TABLE census_2011.bcp_rent_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   rent_band smallint REFERENCES census_2011.rental_payment_band,
-  landlord_type census_2011.landlord_type,
+  landlord_type serial REFERENCES census_2011.landlord_type,
 
   occupied_private_dwellings_being_rented integer,
 
@@ -461,8 +461,8 @@ CREATE TABLE census_2011.bcp_rent_{structure}
 CREATE TABLE census_2011.bcp_type_of_internet_connection_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  dwelling_structure census_2011.dwelling_structure_simple,
-  internet_connection census_2011.internet_connection,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_simple,
+  internet_connection serial REFERENCES census_2011.internet_connection,
 
   occupied_private_dwellings integer,
 
@@ -474,7 +474,7 @@ CREATE TABLE census_2011.bcp_dwelling_structure_by_number_of_bedrooms_{structure
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_minimal,
-  number_of_bedrooms census_2011.number_of_bedrooms,
+  number_of_bedrooms serial REFERENCES census_2011.number_of_bedrooms,
 
   occupied_private_dwellings integer,
 
@@ -516,7 +516,7 @@ CREATE TABLE census_2011.bcp_non_school_qualification_level_of_education_{struct
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  non_school_level_of_education census_2011.non_school_level_of_education,
+  non_school_level_of_education serial REFERENCES census_2011.non_school_level_of_education,
 
   persons_aged_15_years_and_over_with_a_qualification integer,
 
@@ -529,7 +529,7 @@ CREATE TABLE census_2011.bcp_non_school_qualification_field_of_study_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  field_of_study census_2011.field_of_study,
+  field_of_study serial REFERENCES census_2011.field_of_study,
 
   persons_aged_15_years_and_over_with_a_qualification integer,
 
@@ -542,7 +542,7 @@ CREATE TABLE census_2011.bcp_labour_force_status_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  employment_status census_2011.employment_status,
+  employment_status serial REFERENCES census_2011.employment_status,
 
   employed_persons_aged_15_years_and_over integer,
 
@@ -555,7 +555,7 @@ CREATE TABLE census_2011.bcp_industry_of_employment_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  industry census_2011.industry,
+  industry serial REFERENCES census_2011.industry,
 
   employed_persons_aged_15_years_and_over integer,
 
@@ -566,8 +566,8 @@ CREATE TABLE census_2011.bcp_industry_of_employment_{structure}
 CREATE TABLE census_2011.bcp_industry_of_employment_by_occupation_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  industry census_2011.industry,
-  occupation census_2011.occupation,
+  industry serial REFERENCES census_2011.industry,
+  occupation serial REFERENCES census_2011.occupation,
 
   employed_persons_aged_15_years_and_over integer,
 
@@ -580,7 +580,7 @@ CREATE TABLE census_2011.bcp_occupation_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  occupation census_2011.occupation,
+  occupation serial REFERENCES census_2011.occupation,
 
   employed_persons_aged_15_years_and_over integer,
 
@@ -592,7 +592,7 @@ CREATE TABLE census_2011.bcp_method_of_travel_to_work_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  method_of_travel census_2011.method_of_travel,
+  method_of_travel serial REFERENCES census_2011.method_of_travel,
 
   employed_persons_aged_15_years_and_over integer,
 

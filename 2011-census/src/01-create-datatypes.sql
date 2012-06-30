@@ -75,13 +75,38 @@
 -- these would be declared as base types then where they are used the []
 -- is added to make them arrays.
 
+CREATE DOMAIN census_2011.dict_mstp AS char(1);
+CREATE DOMAIN census_2011.dict_mdcp AS char(1);
+CREATE DOMAIN census_2011.dict_ancp AS char(4)[];
+CREATE DOMAIN census_2011.dict_bppp AS char(1);
+CREATE DOMAIN census_2011.dict_bplp AS char(4);
 CREATE DOMAIN census_2011.dict_englp AS char(1)[];
+CREATE DOMAIN census_2011.dict_lanp AS char(4);
+CREATE DOMAIN census_2011.dict_lanp_array AS char(4)[];
 CREATE DOMAIN census_2011.dict_relp AS varchar(4)[];
 CREATE DOMAIN census_2011.dict_typp AS char(2)[];
 CREATE DOMAIN census_2011.dict_typp_i AS char(1)[];
 CREATE DOMAIN census_2011.dict_stup AS char(1)[];
-CREATE DOMAIN census_2011.dict_strd AS char(2)[];
+CREATE DOMAIN census_2011.dict_hscp AS char(1);
+CREATE DOMAIN census_2011.dict_chcarep AS char(1);
+CREATE DOMAIN census_2011.dict_tisp AS char(2);
+CREATE DOMAIN census_2011.dict_fmcf AS char(1);
+CREATE DOMAIN census_2011.dict_vehrd AS char(1);
+CREATE DOMAIN census_2011.dict_strd_array AS char(2)[];
+CREATE DOMAIN census_2011.dict_strd AS varchar(2);
+CREATE DOMAIN census_2011.dict_tenlld AS char(1);
+CREATE DOMAIN census_2011.dict_lldd AS char(2)[];
+CREATE DOMAIN census_2011.dict_nedd AS char(1);
+CREATE DOMAIN census_2011.dict_bedrd AS char(1);
 CREATE DOMAIN census_2011.dict_qallp AS varchar(3)[];
+CREATE DOMAIN census_2011.dict_qalfp AS varchar(6);
+CREATE DOMAIN census_2011.dict_lfsp AS char(1);
+CREATE DOMAIN census_2011.dict_lfsp_array AS char(1)[];
+CREATE DOMAIN census_2011.dict_indp AS varchar(4)[];
+CREATE DOMAIN census_2011.dict_occp AS varchar(4)[];
+CREATE DOMAIN census_2011.dict_mtwp AS char(3);
+CREATE DOMAIN census_2011.dict_ingp AS char(1);
+
 
 -- Originally I planned to just have min, max where the primary keys is
 -- (min,max) and use max=NULL to indicate min or more however in
@@ -130,105 +155,135 @@ CREATE TYPE census_2011.place_of_usual_residence AS ENUM (
 );
 
 
-CREATE TYPE census_2011.registered_marital_status AS ENUM (
-  'married',
-  'separated',
-  'divorced',
-  'widowed',
-  'never_married'
+CREATE TABLE census_2011.registered_marital_status
+(
+  id serial PRIMARY KEY,
+  long text,
+  mstp census_2011.dict_mstp
 );
 
+INSERT INTO census_2011.registered_marital_status (long, mstp) VALUES
+('never_married', 1),
+('widowed', 2),
+('divorced', 3),
+('separated', 4),
+('married', 5);
 
-CREATE TYPE census_2011.social_marital_status AS ENUM (
-  'married_in_a_registered_marriage',
-  'married_in_a_de_facto_marriage',
-  'not_married'
+
+CREATE TABLE census_2011.social_marital_status
+(
+  id serial PRIMARY KEY,
+  long text,
+  mdcp census_2011.dict_mdcp
 );
 
+INSERT INTO census_2011.social_marital_status (long, mdcp) VALUES
+('married_in_a_registered_marriage', 1),
+('married_in_a_de_facto_marriage', 2),
+('not_married', 3);
 
-CREATE TYPE census_2011.ancestry AS ENUM (
-  'Australian',
-  'Australian_Aboriginal',
-  'Chinese',
-  'Croatian',
-  'Dutch',
-  'English',
-  'Filipino',
-  'French',
-  'German',
-  'Greek',
-  'Hungarian',
-  'Indian',
-  'Irish',
-  'Italian',
-  'Korean',
-  'Lebanese',
-  'Macedonian',
-  'Maltese',
-  'Maori',
-  'New_Zealander',
-  'Polish',
-  'Russian',
-  'Scottish',
-  'Serbian',
-  'Sinhalese',
-  'South_African',
-  'Spanish',
-  'Turkish',
-  'Vietnamese',
-  'Welsh',
-  'Other',
-  'Ancestry_not_stated'
+
+CREATE TABLE census_2011.ancestry
+(
+  id serial PRIMARY KEY,
+  long text,
+  ancp census_2011.dict_ancp
 );
 
+INSERT INTO census_2011.ancestry (long, ancp) VALUES
+('Australian', ARRAY[1101]),
+('Australian_Aboriginal', ARRAY[1102]),
+('Chinese', ARRAY[6101]),
+('Croatian', ARRAY[3204]),
+('Dutch', ARRAY[2303]),
+('English', ARRAY[2101]),
+('Filipino', ARRAY[5201]),
+('French', ARRAY[2305]),
+('German', ARRAY[2306]),
+('Greek', ARRAY[3205]),
+('Hungarian', ARRAY[3304]),
+('Indian', ARRAY[7106]),
+('Irish', ARRAY[2201]),
+('Italian', ARRAY[3103]),
+('Korean', ARRAY[6902]),
+('Lebanese', ARRAY[4106]),
+('Macedonian', ARRAY[3206]),
+('Maltese', ARRAY[3104]),
+('Maori', ARRAY[1201]),
+('New_Zealander', ARRAY[1202]),
+('Polish', ARRAY[3307]),
+('Russian', ARRAY[3308]),
+('Scottish', ARRAY[2102]),
+('Serbian', ARRAY[3213]),
+('Sinhalese', ARRAY[7115]),
+('South_African', ARRAY[9215]),
+('Spanish', ARRAY[3106]),
+('Turkish', ARRAY[4907]),
+('Vietnamese', ARRAY[5107]),
+('Welsh', ARRAY[2103]),
+('Other', NULL),
+('Ancestry_not_stated', ARRAY['&&&&']);
 
-CREATE TYPE census_2011.parent_birthplace_combination AS ENUM (
-  'both_parents_born_overseas',
-  'father_only_born_overseas',
-  'mother_only_born_overseas',
-  'both_parents_born_in_australia',
-  'birthplace_not_stated'
+
+CREATE TABLE census_2011.parent_birthplace_combination
+(
+  id serial PRIMARY KEY,
+  long text,
+  bppp census_2011.dict_bppp
 );
 
+INSERT INTO census_2011.parent_birthplace_combination (long, bppp) VALUES
+('both_parents_born_overseas', '1'),
+('father_only_born_overseas', '2'),
+('mother_only_born_overseas', '3'),
+('both_parents_born_in_australia', '4'),
+('birthplace_not_stated', '&');
 
-CREATE TYPE census_2011.birthplace AS ENUM (
-  'Australia',
-  'Bosnia_and_Herzegovina',
-  'Cambodia',
-  'Canada',
-  'China_excl_SARs_and_Taiwan',
-  'Croatia',
-  'Egypt',
-  'Fiji',
-  'Former_Yugoslav_Republic_of_Macedonia_FYROM',
-  'Germany',
-  'Greece',
-  'Hong_Kong_SAR_of_China',
-  'India',
-  'Indonesia',
-  'Iraq',
-  'Ireland',
-  'Italy',
-  'Japan',
-  'Korea_Republic_of_South',
-  'Lebanon',
-  'Malaysia',
-  'Malta',
-  'Netherlands',
-  'New_Zealand',
-  'Philippines',
-  'Poland',
-  'Singapore',
-  'South_Africa',
-  'South_Eastern_Europe_nfd',
-  'Sri_Lanka',
-  'Thailand',
-  'Turkey',
-  'United_Kingdom_Channel_Islands_and_Isle_of_Man',
-  'United_States_of_America',
-  'Vietnam',
-  'Born_elsewhere'
+
+CREATE TABLE census_2011.birthplace
+(
+  id serial PRIMARY KEY,
+  long text,
+  bplp census_2011.dict_bplp
 );
+
+INSERT INTO census_2011.birthplace (long, bplp) VALUES
+('Australia', 1101),
+('Bosnia_and_Herzegovina', 3202),
+('Cambodia', 5102),
+('Canada', 8102),
+('China_excl_SARs_and_Taiwan', 6101),
+('Croatia', 3204),
+('Egypt', 4102),
+('Fiji', 1502),
+('Former_Yugoslav_Republic_of_Macedonia_FYROM', 3206),
+('Germany', 2304),
+('Greece', 3207),
+('Hong_Kong_SAR_of_China', 6102),
+('India', 7103),
+('Indonesia', 5202),
+('Iraq', 4204),
+('Ireland', 2201),
+('Italy', 3104),
+('Japan', 6201),
+('Korea_Republic_of_South',6203),
+('Lebanon', 4208),
+('Malaysia', 5203),
+('Malta', 3105),
+('Netherlands', 2308),
+('New_Zealand', 1201),
+('Philippines', 5204),
+('Poland', 3307),
+('Singapore', 5205),
+('South_Africa', 9925),
+('South_Eastern_Europe_nfd', 3200),
+('Sri_Lanka', 7107),
+('Thailand', 5104),
+('Turkey', 4215),
+('United_Kingdom_Channel_Islands_and_Isle_of_Man', 2100),
+('United_States_of_America', 8104),
+('Vietnam', 5105),
+('Born_elsewhere', NULL);
 
 
 CREATE TABLE census_2011.year_of_arrival
@@ -290,92 +345,104 @@ INSERT INTO census_2011.english_proficiency (long, englp) VALUES
 ('speaks_other_language_and_speaks_engilsh_proficiency_in_english_not_stated', ARRAY['&']); -- FIXME is this 6 or &
 
 
-CREATE TYPE census_2011.language AS ENUM (
-  'english_only',
-  'arabic',
-  'assyrian',
-  'australian_indigenous_languages',
-  'chinese_languages_cantonese',
-  'chinese_languages_mandarin',
-  'chinese_languages_other',
-  'croatian',
-  'dutch',
-  'french',
-  'german',
-  'greek',
-  'hungarian',
-  'indo_aryan_languages_bengali',
-  'indo_aryan_languages_hindi',
-  'indo_aryan_languages_punjabi',
-  'indo_aryan_languages_sinhalese',
-  'indo_aryan_languages_urdu',
-  'indo_aryan_languages_other',
-  'iranic_languages_dari',
-  'iranic_languages_persian_excluding_dari',
-  'iranic_languages_other',
-  'italian',
-  'japanese',
-  'khmer',
-  'korean',
-  'macedonian',
-  'maltese',
-  'polish',
-  'portuguese',
-  'russian',
-  'samoan',
-  'serbian',
-  'southeast_asian_austronesian_languages_filipino',
-  'southeast_asian_austronesian_languages_indonesian',
-  'southeast_asian_austronesian_languages_tagalog',
-  'southeast_asian_austronesian_languages_other',
-  'spanish',
-  'tamil',
-  'thai',
-  'turkish',
-  'vietnamese',
-  'other',
-  'not_stated'
+CREATE TABLE census_2011.language
+(
+  id serial PRIMARY KEY,
+  long text,
+  lanp census_2011.dict_lanp
 );
 
+INSERT INTO census_2011.language (long, lanp) VALUES
+('english_only', 1201),
+('arabic', 4202),
+('assyrian', 4206),
+('australian_indigenous_languages', 8000),
+('chinese_languages_cantonese', 7101),
+('chinese_languages_mandarin', 7104),
+('chinese_languages_other', NULL),
+('croatian', 3503),
+('dutch', 1401),
+('french', 2101),
+('german', 1301),
+('greek', 2201),
+('hungarian', 3301),
+('indo_aryan_languages_bengali', 5201),
+('indo_aryan_languages_hindi', 5203),
+('indo_aryan_languages_punjabi', 5207),
+('indo_aryan_languages_sinhalese', 5211),
+('indo_aryan_languages_urdu', 5212),
+('indo_aryan_languages_other', NULL),
+('iranic_languages_dari', 4105),
+('iranic_languages_persian_excluding_dari', 4106),
+('iranic_languages_other', NULL),
+('italian', 2401),
+('japanese', 7201),
+('khmer', 6301),
+('korean', 7301),
+('macedonian', 3504),
+('maltese', 2501),
+('polish', 3602),
+('portuguese', 2302),
+('russian', 3402),
+('samoan', 9308),
+('serbian', 3505),
+('southeast_asian_austronesian_languages_filipino', 6512),
+('southeast_asian_austronesian_languages_indonesian', 6504),
+('southeast_asian_austronesian_languages_tagalog', 6511),
+('southeast_asian_austronesian_languages_other', NULL),
+('spanish', 2303),
+('tamil', 5103),
+('thai', 6402),
+('turkish', 4301),
+('vietnamese', 6302),
+('other', NULL),
+('not_stated', '&&&&');
 
-CREATE TYPE census_2011.language_tsp AS ENUM (
-  'english_only',
-  'arabic_includes_lebanese',
-  'assyrian',
-  'australian_indigenous_languages',
-  'chinese_languages_cantonese',
-  'chinese_languages_mandarin',
-  'chinese_languages_other',
-  'croatian',
-  'dutch',
-  'french',
-  'german',
-  'greek',
-  'hindi',
-  'indonesian',
-  'italian',
-  'japanese',
-  'khmer',
-  'korean',
-  'macedonian',
-  'maltese',
-  'persian_includes_dari',
-  'polish',
-  'portuguese',
-  'punjabi',
-  'russian',
-  'samoan',
-  'serbian',
-  'sinhalese',
-  'spanish',
-  'tagalog_includes_filipino',
-  'tamil',
-  'thai',
-  'turkish',
-  'vietnamese',
-  'other',
-  'not_stated'
+
+CREATE TABLE census_2011.language_tsp
+(
+  id serial PRIMARY KEY,
+  long text,
+  lanp census_2011.dict_lanp_array
 );
+
+INSERT INTO census_2011.language_tsp (long, lanp) VALUES
+('english_only', ARRAY[1201]),
+('arabic_includes_lebanese', ARRAY[4202]),
+('assyrian', ARRAY[4206]),
+('australian_indigenous_languages', ARRAY[8000]),
+('chinese_languages_cantonese', ARRAY[7101]),
+('chinese_languages_mandarin', ARRAY[7104]),
+('chinese_languages_other', NULL),
+('croatian', ARRAY[3503]),
+('dutch', ARRAY[1401]),
+('french', ARRAY[2101]),
+('german', ARRAY[1301]),
+('greek', ARRAY[2201]),
+('hindi', ARRAY[3301]),
+('indonesian', ARRAY[6504]),
+('italian', ARRAY[2401]),
+('japanese', ARRAY[7201]),
+('khmer', ARRAY[6301]),
+('korean', ARRAY[7301]),
+('macedonian', ARRAY[3504]),
+('maltese', ARRAY[2501]),
+('persian_includes_dari', ARRAY[4105, 4106]),
+('polish', ARRAY[3602]),
+('portuguese', ARRAY[2302]),
+('punjabi', ARRAY[5207]),
+('russian', ARRAY[3402]),
+('samoan', ARRAY[9308]),
+('serbian', ARRAY[3505]),
+('sinhalese', ARRAY[5211]),
+('spanish', ARRAY[2303]),
+('tagalog_includes_filipino', ARRAY[6511,6512]),
+('tamil', ARRAY[5103]),
+('thai', ARRAY[6402]),
+('turkish', ARRAY[4301]),
+('vietnamese', ARRAY[6302]),
+('other', NULL),
+('not_stated', ARRAY['&&&&']);
 
 
 CREATE TABLE census_2011.religious_affiliation
@@ -479,15 +546,21 @@ INSERT INTO census_2011.indigenous_educational_institution (long, typp, stup, ag
 ('type_of_educational_institution_not_stated', ARRAY['&'], NULL, NULL);
 
 
-CREATE TYPE census_2011.school_year AS ENUM (
-  'year_12_or_equivalent',
-  'year_11_or_equivalent',
-  'year_10_or_equivalent',
-  'year_9_or_equivalent',
-  'year_8_or_below',
-  'did_not_go_to_school',
-  'highest_year_of_school_not_stated'
+CREATE TABLE census_2011.school_year
+(
+  id serial PRIMARY KEY,
+  long text,
+  hscp census_2011.dict_hscp
 );
+
+INSERT INTO census_2011.school_year (long, hscp) VALUES
+('year_12_or_equivalent', 1),
+('year_11_or_equivalent', 2),
+('year_10_or_equivalent', 3),
+('year_9_or_equivalent', 4),
+('year_8_or_below', 5),
+('did_not_go_to_school',  6),
+('highest_year_of_school_not_stated', '&');
 
 
 CREATE TABLE census_2011.income_band
@@ -547,13 +620,19 @@ INSERT INTO census_2011.unpaid_domestic_work (code, min, max) VALUES
 (5, NULL, NULL); -- not_stated
 
 
-CREATE TYPE census_2011.child_care AS ENUM (
-  'cared_for_own_child_children_only',
-  'cared_for_other_child_children_only',
-  'cared_for_own_child_children_and_other_child_children',
-  'did_not_provide_child_care',
-  'unpaid_child_care_not_stated'
+CREATE TABLE census_2011.child_care
+(
+  id serial PRIMARY KEY,
+  long text,
+  chcarep census_2011.dict_chcarep
 );
+
+INSERT INTO census_2011.child_care (long, chcarep) VALUES
+('cared_for_own_child_children_only', 2),
+('cared_for_other_child_children_only', 3),
+('cared_for_own_child_children_and_other_child_children', 4),
+('did_not_provide_child_care', 1),
+('unpaid_child_care_not_stated','&');
 
 
 CREATE TYPE census_2011.household_relationship AS ENUM (
@@ -572,24 +651,36 @@ CREATE TYPE census_2011.household_relationship AS ENUM (
 );
 
 
-CREATE TYPE census_2011.number_of_children AS ENUM (
-  'no_children',
-  'one_child',
-  'two_children',
-  'three_children',
-  'four_children',
-  'five_children',
-  'six_or_more_children',
-  'not_stated'
+CREATE TABLE census_2011.number_of_children
+(
+  id serial PRIMARY KEY,
+  long text,
+  tisp census_2011.dict_tisp
 );
 
+INSERT INTO census_2011.number_of_children (long, tisp) VALUES
+('no_children', '00'),
+('one_child', '01'),
+('two_children', '02'),
+('three_children', '03'),
+('four_children', '04'),
+('five_children', '05'),
+('six_or_more_children', NULL),
+('not_stated', '&&');
 
-CREATE TYPE census_2011.family_type AS ENUM (
-  'couple_family_with_no_children',
-  'couple_family_with_children',
-  'one_parent_family',
-  'other_family'
+
+CREATE TABLE census_2011.family_type
+(
+  id serial PRIMARY KEY,
+  long text,
+  fmcf census_2011.dict_fmcf
 );
+
+INSERT INTO census_2011.family_type (long, fmcf) VALUES
+('couple_family_with_no_children', '1'),
+('couple_family_with_children', '2'),
+('one_parent_family', '3'),
+('other_family', '9');
 
 
 CREATE TYPE census_2011.household_type AS ENUM (
@@ -669,14 +760,20 @@ INSERT INTO census_2011.indigenous_household_income_band (code, min, max) VALUES
 (14, NULL, NULL); -- All_incomes_not_stated
 
 
-CREATE TYPE census_2011.number_of_motor_vehicles AS ENUM (
-  'no_motor_vehicles',
-  'one_motor_vehicle',
-  'two_motor_vehicles',
-  'three_motor_vehicles',
-  'four_or_more_motor_vehicles',
-  'not_stated'
+CREATE TABLE census_2011.number_of_motor_vehicles
+(
+  id serial PRIMARY KEY,
+  long text,
+  vehrd census_2011.dict_vehrd
 );
+
+INSERT INTO census_2011.number_of_motor_vehicles (long, vehrd) VALUES
+('no_motor_vehicles', 0),
+('one_motor_vehicle', 1),
+('two_motor_vehicles', 2),
+('three_motor_vehicles', 3),
+('four_or_more_motor_vehicles', 4),
+('not_stated', '&');
 
 
 CREATE TYPE census_2011.number_of_persons_usually_resident AS ENUM (
@@ -689,31 +786,43 @@ CREATE TYPE census_2011.number_of_persons_usually_resident AS ENUM (
 );
 
 
-CREATE TYPE census_2011.dwelling_structure_simple AS ENUM (
-  'separate_house',
-  'semi_detached_row_or_terrace_house_townhouse_etc',
-  'flat_unit_or_apartment',
-  'other_dwelling',
-  'not_stated'
+CREATE TABLE census_2011.dwelling_structure_simple
+(
+  id serial PRIMARY KEY,
+  long text,
+  strd census_2011.dict_strd
 );
 
+INSERT INTO census_2011.dwelling_structure_simple (long, strd) VALUES
+('separate_house', '1'),
+('semi_detached_row_or_terrace_house_townhouse_etc', '2'),
+('flat_unit_or_apartment', '3'),
+('other_dwelling', '9'),
+('not_stated', '&&');
 
-CREATE TYPE census_2011.dwelling_structure_indigenous AS ENUM (
-  'separate_house',
-  'semi_detached_row_or_terrace_house_townhouse_etc',
-  'flat_unit_or_apartment',
-  'other_dwelling_caravan_cabin_houseboat',
-  'other_dwelling_improvised_home_tent_sleepers_out',
-  'other_dwelling_house_or_flat_attached_to_a_shop_office_etc',
-  'not_stated'
+
+CREATE TABLE census_2011.dwelling_structure_indigenous
+(
+  id serial PRIMARY KEY,
+  long text,
+  strd census_2011.dict_strd
 );
+
+INSERT INTO census_2011.dwelling_structure_indigenous (long, strd) VALUES
+('separate_house', '1'),
+('semi_detached_row_or_terrace_house_townhouse_etc', '2'),
+('flat_unit_or_apartment', '3'),
+('other_dwelling_caravan_cabin_houseboat', '91'),
+('other_dwelling_improvised_home_tent_sleepers_out', '93'),
+('other_dwelling_house_or_flat_attached_to_a_shop_office_etc', '94'),
+('not_stated', '&&');
 
 
 CREATE TABLE census_2011.dwelling_structure_extended_minimal
 (
   id serial PRIMARY KEY,
   long text,
-  strd census_2011.dict_strd
+  strd census_2011.dict_strd_array
 );
 
 INSERT INTO census_2011.dwelling_structure_extended_minimal (long, strd) VALUES
@@ -732,7 +841,7 @@ CREATE TABLE census_2011.dwelling_structure_extended_full
 (
   id serial PRIMARY KEY,
   long text,
-  strd census_2011.dict_strd
+  strd census_2011.dict_strd_array
 );
 
 INSERT INTO census_2011.dwelling_structure_extended_full (long, strd) VALUES
@@ -750,28 +859,40 @@ INSERT INTO census_2011.dwelling_structure_extended_full (long, strd) VALUES
 ('unoccupied', ARRAY['@@']); -- FIXME doublecheck
 
 
-CREATE TYPE census_2011.tenure_landlord_type AS ENUM (
-  'owned_outright',
-  'owned_with_a_mortgage',
-  'rented_real_estate_agent',
-  'rented_state_or_territory_housing_authority',
-  'rented_person_not_in_same_household',
-  'rented_housing_co_operative_community_church_group',
-  'rented_other_landlord_type',
-  'rented_landlord_type_not_stated',
-  'other_tenure_type',
-  'tenure_type_not_stated'
+CREATE TABLE census_2011.tenure_landlord_type
+(
+  id serial PRIMARY KEY,
+  long text,
+  tenlld census_2011.dict_tenlld
 );
 
+INSERT INTO census_2011.tenure_landlord_type (long, tenlld) VALUES
+('owned_outright', 1),
+('owned_with_a_mortgage', 2),
+('rented_real_estate_agent', 3),
+('rented_state_or_territory_housing_authority', 4),
+('rented_person_not_in_same_household', 5),
+('rented_housing_co_operative_community_church_group', 6),
+('rented_other_landlord_type', 7),
+('rented_landlord_type_not_stated', 8),
+('other_tenure_type', 9),
+('tenure_type_not_stated', '&');
 
-CREATE TYPE census_2011.landlord_type AS ENUM (
-  'real_estate_agent',
-  'state_or_territory_housing_authority',
-  'person_not_in_same_household',
-  'housing_co_operative_community_church_group',
-  'other_landlord_type',
-  'not_stated'
+
+CREATE TABLE census_2011.landlord_type
+(
+  id serial PRIMARY KEY,
+  long text,
+  lldd census_2011.dict_lldd
 );
+
+INSERT INTO census_2011.landlord_type (long, lldd) VALUES
+('real_estate_agent', ARRAY['10']),
+('state_or_territory_housing_authority', ARRAY['20']),
+('person_not_in_same_household', ARRAY['31', '32']),
+('housing_co_operative_community_church_group', ARRAY['60']),
+('other_landlord_type',ARRAY['40', '51', '52']),
+('not_stated', ARRAY['&&']);
 
 
 CREATE TABLE census_2011.rental_payment_band
@@ -818,25 +939,37 @@ INSERT INTO census_2011.mortgage_repayment_band (code, min, max) VALUES
 (11, NULL, NULL); -- NotStated
 
 
-CREATE TYPE census_2011.internet_connection AS ENUM (
-  'none',
-  'dial_up',
-  'broadband',
-  'other',
-  'not_stated'
+CREATE TABLE census_2011.internet_connection
+(
+  id serial PRIMARY KEY,
+  long text,
+  nedd census_2011.dict_nedd
 );
 
+INSERT INTO census_2011.internet_connection (long, nedd) VALUES
+('none', 1),
+('dial_up', 3),
+('broadband', 2),
+('other', 4),
+('not_stated', '&');
 
-CREATE TYPE census_2011.number_of_bedrooms AS ENUM (
-  'zero',
-  'one',
-  'two',
-  'three',
-  'four',
-  'five',
-  'six_or_more',
-  'not_stated'
+
+CREATE TABLE census_2011.number_of_bedrooms
+(
+  id serial PRIMARY KEY,
+  long text,
+  bedrd census_2011.dict_bedrd
 );
+
+INSERT INTO census_2011.number_of_bedrooms (long, bedrd) VALUES
+('zero', 0),
+('one', 1),
+('two', 2),
+('three', 3),
+('four', 4),
+('five', 5),
+('six_or_more', 6),
+('not_stated', '&');
 
 
 CREATE TYPE census_2011.previous_place_of_usual_residence AS ENUM (
@@ -856,17 +989,23 @@ CREATE TYPE census_2011.previous_place_of_usual_residence AS ENUM (
 );
 
 
-CREATE TYPE census_2011.non_school_level_of_education AS ENUM (
-  'postgraduate_degree_level',
-  'graduate_diploma_and_graduate_certificate_level',
-  'bachelor_degree_level',
-  'advanced_diploma_and_diploma_level',
-  'certificate_level_certificate_level_nfd',
-  'certificate_level_certificate_iii_and_iv_level',
-  'certificate_level_certificate_i_and_ii_level',
-  'level_of_education_inadequately_described',
-  'level_of_education_not_stated'
+CREATE TABLE census_2011.non_school_level_of_education
+(
+  id serial PRIMARY KEY,
+  long text,
+  qallp census_2011.dict_qallp
 );
+
+INSERT INTO census_2011.non_school_level_of_education (long, qallp) VALUES
+('postgraduate_degree_level', ARRAY['1']),
+('graduate_diploma_and_graduate_certificate_level', ARRAY['2']),
+('bachelor_degree_level', ARRAY['3']),
+('advanced_diploma_and_diploma_level', ARRAY['4']),
+('certificate_level_certificate_level_nfd', ARRAY['50']),
+('certificate_level_certificate_iii_and_iv_level', ARRAY['51']),
+('certificate_level_certificate_i_and_ii_level', ARRAY['52']),
+('level_of_education_inadequately_described', ARRAY['011']),
+('level_of_education_not_stated', ARRAY['&&&']);
 
 
 CREATE TABLE census_2011.non_school_level_of_education_simple
@@ -886,127 +1025,169 @@ INSERT INTO census_2011.non_school_level_of_education_simple (long, qallp) VALUE
 ('level_of_education_not_stated', ARRAY['&&&']);
 
 
-CREATE TYPE census_2011.field_of_study AS ENUM (
-  'natural_and_physical_sciences',
-  'information_technology',
-  'engineering_and_related_technologies',
-  'architecture_and_building',
-  'agriculture_environmental_and_related_studies',
-  'health',
-  'education',
-  'management_and_commerce',
-  'society_and_culture',
-  'creative_arts',
-  'food_hospitality_and_personal_services',
-  'mixed_field_programmes',
-  'field_of_study_inadequately_described',
-  'field_of_study_not_stated'
+CREATE TABLE census_2011.field_of_study
+(
+  id serial PRIMARY KEY,
+  long text,
+  qalfp census_2011.dict_qalfp
 );
 
+INSERT INTO census_2011.field_of_study (long, qalfp) VALUES
+('natural_and_physical_sciences', '01'),
+('information_technology', '02'),
+('engineering_and_related_technologies', '03'),
+('architecture_and_building', '04'),
+('agriculture_environmental_and_related_studies', '05'),
+('health', '06'),
+('education', '07'),
+('management_and_commerce', '08'),
+('society_and_culture', '09'),
+('creative_arts', '10'),
+('food_hospitality_and_personal_services', '11'),
+('mixed_field_programmes', '12'),
+('field_of_study_inadequately_described', '000110'),
+('field_of_study_not_stated', '&&&&&&');
 
-CREATE TYPE census_2011.employment_status AS ENUM (
-  'employed_worked_full_time',
-  'employed_worked_part_time',
-  'employed_away_from_work',
-  'hours_worked_not_stated',
-  'unemployed_looking_for_full_time_work',
-  'unemployed_looking_for_part_time_work',
-  'not_in_the_labour_force',
-  'labour_force_status_not_stated'
+
+CREATE TABLE census_2011.employment_status
+(
+  id serial PRIMARY KEY,
+  long text,
+  lfsp census_2011.dict_lfsp
 );
 
+INSERT INTO census_2011.employment_status (long, lfsp) VALUES
+('employed_worked_full_time', 1),
+('employed_worked_part_time', 2),
+('employed_away_from_work', 3),
+('hours_worked_not_stated', NULL),-- FIXME double check
+('unemployed_looking_for_full_time_work', 4),
+('unemployed_looking_for_part_time_work', 5),
+('not_in_the_labour_force', 6),
+('labour_force_status_not_stated', '&');
 
-CREATE TYPE census_2011.employment_status_simple AS ENUM (
-  'employed_worked_full_time',
-  'employed_worked_part_time',
-  'employed_away_from_work',
-  'unemployed',
-  'not_in_the_labour_force',
-  'labour_force_status_not_stated'
+
+CREATE TABLE census_2011.employment_status_simple
+(
+  id serial PRIMARY KEY,
+  long text,
+  lfsp census_2011.dict_lfsp_array
 );
 
+INSERT INTO census_2011.employment_status_simple (long, lfsp) VALUES
+('employed_worked_full_time', ARRAY[1]),
+('employed_worked_part_time', ARRAY[2]),
+('employed_away_from_work', ARRAY[3]),
+('unemployed', ARRAY[4, 5]),
+('not_in_the_labour_force', ARRAY[6]),
+('labour_force_status_not_stated', ARRAY['&']);
 
-CREATE TYPE census_2011.industry AS ENUM (
-  'agriculture_forestry_and_fishing',
-  'mining',
-  'manufacturing',
-  'electricity_gas_water_and_waste_services',
-  'construction',
-  'wholesale_trade',
-  'retail_trade',
-  'accommodation_and_food_services',
-  'transport_postal_and_warehousing',
-  'information_media_and_telecommunications',
-  'financial_and_insurance_services',
-  'rental_hiring_and_real_estate_services',
-  'professional_scientific_and_technical_services',
-  'administrative_and_support_services',
-  'public_administration_and_safety',
-  'education_and_training',
-  'health_care_and_social_assistance',
-  'arts_and_recreation_services',
-  'other_services',
-  'inadequately_described_not_stated'
+
+CREATE TABLE census_2011.industry
+(
+  id serial PRIMARY KEY,
+  long text,
+  indp census_2011.dict_indp
 );
 
+INSERT INTO census_2011.industry (long, indp) VALUES
+('agriculture_forestry_and_fishing', ARRAY['A']),
+('mining', ARRAY['B']),
+('manufacturing', ARRAY['C']),
+('electricity_gas_water_and_waste_services', ARRAY['D']),
+('construction', ARRAY['E']),
+('wholesale_trade', ARRAY['F']),
+('retail_trade', ARRAY['G']),
+('accommodation_and_food_services', ARRAY['H']),
+('transport_postal_and_warehousing', ARRAY['I']),
+('information_media_and_telecommunications', ARRAY['J']),
+('financial_and_insurance_services', ARRAY['K']),
+('rental_hiring_and_real_estate_services', ARRAY['L']),
+('professional_scientific_and_technical_services', ARRAY['M']),
+('administrative_and_support_services', ARRAY['N']),
+('public_administration_and_safety', ARRAY['O']),
+('education_and_training', ARRAY['P']),
+('health_care_and_social_assistance', ARRAY['Q']),
+('arts_and_recreation_services', ARRAY['R']),
+('other_services', ARRAY['S']),
+('inadequately_described_not_stated', ARRAY['T', '&&&&']);
 
-CREATE TYPE census_2011.occupation AS ENUM (
-  'managers',
-  'professionals',
-  'technicians_and_trades_workers',
-  'community_and_personal_service_workers',
-  'clerical_and_administrative_workers',
-  'sales_workers',
-  'machinery_operators_and_drivers',
-  'labourers',
-  'inadequately_described_not_stated'
+
+CREATE TABLE census_2011.occupation
+(
+  id serial PRIMARY KEY,
+  long text,
+  occp census_2011.dict_occp
 );
 
+INSERT INTO census_2011.occupation (long, occp) VALUES
+('managers', ARRAY['1']),
+('professionals', ARRAY['2']),
+('technicians_and_trades_workers', ARRAY['3']),
+('community_and_personal_service_workers', ARRAY['4']),
+('clerical_and_administrative_workers', ARRAY['5']),
+('sales_workers', ARRAY['6']),
+('machinery_operators_and_drivers', ARRAY['7']),
+('labourers', ARRAY['8']),
+('inadequately_described_not_stated', ARRAY['0998', '&&&&']);
 
-CREATE TYPE census_2011.method_of_travel AS ENUM (
-  'one_method_train',
-  'one_method_bus',
-  'one_method_ferry',
-  'one_method_tram_includes_light_rail',
-  'one_method_taxi',
-  'one_method_car_as_driver',
-  'one_method_car_as_passenger',
-  'one_method_truck',
-  'one_method_motorbike_scooter',
-  'one_method_bicycle',
-  'one_method_other',
-  'one_method_walked_only',
 
-  'two_methods_train_and_bus',
-  'two_methods_train_and_ferry',
-  'two_methods_train_and_tram_includes_light_rail',
-  'two_methods_train_and_car_as_driver',
-  'two_methods_train_and_car_as_passenger',
-  'two_methods_train_and_other',
-  'two_methods_bus_and_ferry',
-  'two_methods_bus_and_tram_includes_light_rail',
-  'two_methods_bus_and_car_as_driver',
-  'two_methods_bus_and_car_as_passenger',
-  'two_methods_bus_and_other',
-  'two_methods_other_two_methods',
-
-  'three_methods_train_and_two_other_methods',
-  'three_methods_bus_and_two_other_methods_excludes_train',
-  'three_methods_other_three_methods',
-
-  'worked_at_home',
-  'did_not_go_to_work',
-  'method_of_travel_to_work_not_stated'
+CREATE TABLE census_2011.method_of_travel
+(
+  id serial PRIMARY KEY,
+  long text,
+  mtwp census_2011.dict_mtwp
 );
 
+INSERT INTO census_2011.method_of_travel (long, mtwp) VALUES
+('one_method_train', '001'),
+('one_method_bus', '002'),
+('one_method_ferry', '003'),
+('one_method_tram_includes_light_rail', '004'),
+('one_method_taxi', '005'),
+('one_method_car_as_driver', '006'),
+('one_method_car_as_passenger', '007'),
+('one_method_truck', '008'),
+('one_method_motorbike_scooter', '009'),
+('one_method_bicycle', '010'),
+('one_method_other', '011'),
+('one_method_walked_only', '232'),
 
-CREATE TYPE census_2011.indigenous_status AS ENUM (
-  'indigenous_persons_aboriginal',
-  'indigenous_persons_torres_strait_islander',
-  'indigenous_persons_both_aboriginal_and_torres_strait_islander',
-  'non_indigenous_persons',
-  'indigenous_status_not_stated'
+('two_methods_train_and_bus', '012'),
+('two_methods_train_and_ferry', '013'),
+('two_methods_train_and_tram_includes_light_rail', '014'),
+('two_methods_train_and_car_as_driver', '016'),
+('two_methods_train_and_car_as_passenger', '017'),
+('two_methods_train_and_other', '021'),
+('two_methods_bus_and_ferry', '022'),
+('two_methods_bus_and_tram_includes_light_rail', '023'),
+('two_methods_bus_and_car_as_driver', '025'),
+('two_methods_bus_and_car_as_passenger', '026'),
+('two_methods_bus_and_other', '030'), -- FIXME 030 or 024,027,028,029,030 ?
+('two_methods_other_two_methods', NULL),
+
+('three_methods_train_and_two_other_methods', NULL),
+('three_methods_bus_and_two_other_methods_excludes_train', NULL),
+('three_methods_other_three_methods', NULL),
+
+('worked_at_home', '233'),
+('did_not_go_to_work', '234'),
+('method_of_travel_to_work_not_stated', '&&&');
+
+
+CREATE TABLE census_2011.indigenous_status
+(
+  id serial PRIMARY KEY,
+  long text,
+  ingp census_2011.dict_ingp
 );
+
+INSERT INTO census_2011.indigenous_status (long, ingp) VALUES
+('indigenous_persons_aboriginal', 2),
+('indigenous_persons_torres_strait_islander', 3),
+('indigenous_persons_both_aboriginal_and_torres_strait_islander', 4),
+('non_indigenous_persons', 1),
+('indigenous_status_not_stated', '&');
 
 
 CREATE TYPE census_2011.tsp_years AS ENUM (

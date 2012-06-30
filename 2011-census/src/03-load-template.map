@@ -46,9 +46,9 @@ B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_[:year_of_arriv
 
 #B12 Dependent_children_aged_[:age_f:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_proficiency_in_spoken_english_of_parents (\age_f, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
 
-B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, english_only)
+B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, \dict:language:english_only)
 B13 Speaks_other_language_{db:census_2011.language}_[:sex:] bcp_language_spoken_at_home (\sex, \db:census_2011.language)
-B13 Language_spoken_at_home_not_stated_[:sex:] bcp_language_spoken_at_home (\sex, not_stated)
+B13 Language_spoken_at_home_not_stated_[:sex:] bcp_language_spoken_at_home (\sex, \dict:language:not_stated)
 
 B14 {db:census_2011.religious_affiliation}_[:sex:] bcp_religious_affiliation (\sex, \db:census_2011.religious_affiliation)
 
@@ -91,15 +91,14 @@ B27 {db:census_2011.blended_family_type}_family_with_{tf:|no_}other_children_pre
 B28 [:family_income_band:]_{tf:|Non_}Family_households bcp_total_household_income (\family_income_band, \tf)
 
 B29 Number_of_motor_vehicles_per_dwelling_{db:census_2011.number_of_motor_vehicles}_Dwellings bcp_number_of_motor_vehicles (\db:census_2011.number_of_motor_vehicles)
-B29 Number_of_motor_vehicles_not_stated_Dwellings bcp_number_of_motor_vehicles (not_stated)
+B29 Number_of_motor_vehicles_not_stated_Dwellings bcp_number_of_motor_vehicles (\dict:number_of_motor_vehicles:not_stated)
 
 B30 Number_of_Persons_usually_resident_{db:census_2011.number_of_persons_usually_resident}_{tf:|Non_}Family_households bcp_household_composition (\db:census_2011.number_of_persons_usually_resident, \tf)
 
 B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Dwellings bcp_dwelling_structure_dwellings (\db:census_2011.dwelling_structure_extended_full)
 B31 Occupied_private_dwellings_{db:census_2011.dwelling_structure_extended_full}_Persons bcp_dwelling_structure_persons (\db:census_2011.dwelling_structure_extended_full)
-# FIXME store the follwing as the long value and have the program find its serial ID
-B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure_dwellings (12)
-B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure_persons (12)
+B31 Unoccupied_private_dwellings_Dwellings bcp_dwelling_structure_dwellings (\dict:dwelling_structure_extended_full:unoccupied)
+B31 Unoccupied_private_dwellings_Persons bcp_dwelling_structure_persons (\dict:dwelling_structure_extended_full:unoccupied)
 
 B32 {db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_tenure_type_and_landlord_type (\db:census_2011.dwelling_structure_simple, \db:census_2011.tenure_landlord_type)
 
@@ -107,9 +106,14 @@ B33 [:mortgage_repayment_band:]_Dwelling_structure_{db:census_2011.dwelling_stru
 
 B34 [:rental_payment_band:]_Landlord_type_{db:census_2011.landlord_type} bcp_rent (\rental_payment_band, \db:census_2011.landlord_type)
 
-B35 [:internet_connection:]_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_type_of_internet_connection (\db:census_2011.dwelling_structure_simple, \internet_connection)
+B35 No_Internet_connection_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_type_of_internet_connection (\db:census_2011.dwelling_structure_simple, \dict:internet_connection:none)
+B35 Type_of_Internet_connection_{db:census_2011.internet_connection}_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_type_of_internet_connection (\db:census_2011.dwelling_structure_simple, \db:census_2011.internet_connection)
+B35 Internet_connection_not_stated_Dwelling_structure_{db:census_2011.dwelling_structure_simple} bcp_type_of_internet_connection (\db:census_2011.dwelling_structure_simple, \dict:internet_connection:not_stated)
 
-B36 {db:census_2011.dwelling_structure_extended_minimal}_Number_of_bedrooms_[:bedrooms:] bcp_dwelling_structure_by_number_of_bedrooms (\db:census_2011.dwelling_structure_extended_minimal, \bedrooms)
+B36 {db:census_2011.dwelling_structure_extended_minimal}_Number_of_bedrooms_None_includes_bedsitters bcp_dwelling_structure_by_number_of_bedrooms (\db:census_2011.dwelling_structure_extended_minimal, \dict:number_of_bedrooms:zero)
+B36 {db:census_2011.dwelling_structure_extended_minimal}_Number_of_bedrooms_One_bedroom bcp_dwelling_structure_by_number_of_bedrooms (\db:census_2011.dwelling_structure_extended_minimal, \dict:number_of_bedrooms:one)
+B36 {db:census_2011.dwelling_structure_extended_minimal}_Number_of_bedrooms_{db:census_2011.number_of_bedrooms}_bedrooms bcp_dwelling_structure_by_number_of_bedrooms (\db:census_2011.dwelling_structure_extended_minimal, \db:census_2011.number_of_bedrooms)
+B36 {db:census_2011.dwelling_structure_extended_minimal}_Number_of_bedrooms_Not_stated bcp_dwelling_structure_by_number_of_bedrooms (\db:census_2011.dwelling_structure_extended_minimal, \dict:number_of_bedrooms:not_stated)
 
 B38 Same_usual_address_1_year_ago_as_in_2011_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, same_usual_address)
 B38 Different_usual_address_1_year_ago_Same_Statistical_Area_Level_2_SA2_[:sex:] bcp_place_of_usual_residence_1_year_ago (\sex, different_usual_address_same_sa2)
@@ -200,9 +204,9 @@ T08 {db:census_2011.birthplace}_{db:census_2011.tsp_years}_Census_[:sex:] tsp_co
 
 T09 {db:census_2011.tsp_years}_Census_{db:census_2011.ancestry}_{db:census_2011.parent_birthplace_combination} tsp_ancestry (\db:census_2011.ancestry, \db:census_2011.parent_birthplace_combination, \db:census_2011.tsp_years)
 
-T10 Speaks_English_only_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, english_only, \db:census_2011.tsp_years)
+T10 Speaks_English_only_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, \dict:language_tsp:english_only, \db:census_2011.tsp_years)
 T10 Speaks_other_language_{db:census_2011.language_tsp}_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, \db:census_2011.language_tsp, \db:census_2011.tsp_years)
-T10 Language_spoken_at_home_not_stated_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, not_stated, \db:census_2011.tsp_years)
+T10 Language_spoken_at_home_not_stated_{db:census_2011.tsp_years}_Census_[:sex:] tsp_language_spoken_at_home (\sex, \dict:language_tsp:not_stated, \db:census_2011.tsp_years)
 
 T13 {db:census_2011.educational_institution}_{db:census_2011.tsp_years}_Census_[:sex:] tsp_type_of_educational_institution_attending (\sex, \db:census_2011.educational_institution, \db:census_2011.tsp_years)
 
