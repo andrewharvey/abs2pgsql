@@ -44,7 +44,7 @@ B10 {db:census_2011.birthplace}_Year_of_arrival_[:year_of_arrival_a:] bcp_countr
 
 B11 [:sex:]_{db:census_2011.english_proficiency}_Year_of_arrival_[:year_of_arrival_b:] bcp_proficiency_in_spoken_english (\year_of_arrival_b, \sex, \db:census_2011.english_proficiency)
 
-#B12 Dependent_children_aged_[:age_f:]_female_parent_{db:census_2011.english_proficiency}_male_parent_{db:census_2011.english_proficiency} bcp_proficiency_in_spoken_english_of_parents (\age_f, \db:census_2011.english_proficiency, \db:census_2011.english_proficiency)
+B12 Dependent_children_aged_[:age_f:]_female_parent_{db:census_2011.english_proficiency:a}_male_parent_{db:census_2011.english_proficiency:b} bcp_proficiency_in_spoken_english_of_parents (\age_f, \db:census_2011.english_proficiency:b, \db:census_2011.english_proficiency:a)
 
 B13 Speaks_English_only_[:sex:] bcp_language_spoken_at_home (\sex, \dict:language:english_only)
 B13 Speaks_other_language_{db:census_2011.language}_[:sex:] bcp_language_spoken_at_home (\sex, \db:census_2011.language)

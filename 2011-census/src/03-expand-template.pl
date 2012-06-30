@@ -205,11 +205,14 @@ sub insert ($$$$) {
 
   # replace all db lookups
   if (curlyMatch($src, 'db')) {
-    my ($lookup) = $src =~ /{db:([^}]*)}/;
+    my ($lookup, $ref) = $src =~ /{db:([^}:]*)(:[^}]*)?}/;
+    if (!defined $ref) {
+      $ref = "";
+    };
     my $dict_hashref = dictLookup($lookup);
     my @keys = keys $dict_hashref;
     my @values = values $dict_hashref;
-    for my $new ( expand($src, "db:$lookup", $inserts, \@values, \@keys) ) {
+    for my $new ( expand($src, "db:$lookup$ref", $inserts, \@values, \@keys) ) {
       insert ($dataset_num, $new->{'src'}, $dst, $new->{'inserts'});
     }
     return;
