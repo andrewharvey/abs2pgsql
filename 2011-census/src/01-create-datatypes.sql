@@ -341,8 +341,8 @@ CREATE TABLE census_2011.english_proficiency
 INSERT INTO census_2011.english_proficiency (long, englp) VALUES
 ('speaks_english_only', ARRAY[1]),
 ('speaks_other_language_and_speaks_english_very_well_or_well', ARRAY[2, 3]),
-('speaks_other_language_and_speaks_engilsh_not_well_or_not_at_all', ARRAY[4, 5]),
-('speaks_other_language_and_speaks_engilsh_proficiency_in_english_not_stated', ARRAY['&']); -- FIXME is this 6 or &
+('speaks_other_language_and_speaks_english_not_well_or_not_at_all', ARRAY[4, 5]),
+('speaks_other_language_and_speaks_english_proficiency_in_english_not_stated', ARRAY['&']); -- FIXME is this 6 or &
 
 
 CREATE TABLE census_2011.language
