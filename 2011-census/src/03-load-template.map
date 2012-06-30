@@ -77,12 +77,8 @@ B23 [:sex:]_{db:census_2011.household_relationship}_Age_[:age_d:] bcp_relationsh
 
 B24 age_group_of_parent_[:age_g:]_Number_of_children_ever_born_{db:census_2011.number_of_children} bcp_number_of_children_ever_born (\age_g, \db:census_2011.number_of_children)
 
-#B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families (couple_family, \tf_1, \tf_2, \tf_3)
-#B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Families bcp_family_composition_families (one_parent_family, \tf_1, \tf_2, \tf_3)
-#B25 Couple_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons (couple_family, \tf_1, \tf_2, \tf_3)
-#B25 One_parent_family_with_{tf_1:|no_}children_under_15_and_{tf_2:|no_}dependent_students_and_{tf_3:|no_}non_dependent_children_Persons bcp_family_composition_persons (one_parent_family, \tf_1, \tf_2, \tf_3)
-#B25 Other_family_Families bcp_family_composition_families (other_family, false, false, false)
-#B25 Other_family_Persons bcp_family_composition_persons (other_family, false, false, false)
+B25 {db:census_2011.family_composition}_Families bcp_family_composition_families (\db:census_2011.family_composition)
+B25 {db:census_2011.family_composition}_Persons bcp_family_composition_persons (\db:census_2011.family_composition)
 
 B26 [:family_income_band:]_{db:census_2011.family_type} bcp_total_family_income (\db:census_2011.family_type, \family_income_band)
 

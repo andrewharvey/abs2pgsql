@@ -318,27 +318,21 @@ CREATE TABLE census_2011.bcp_number_of_children_ever_born_{structure}
 CREATE TABLE census_2011.bcp_family_composition_families_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  family_type serial REFERENCES census_2011.family_type,
-  children_under_15 boolean,
-  dependent_students boolean,
-  non_dependent_children boolean,
+  family_composition serial REFERENCES census_2011.family_composition,
 
   families integer,
 
-  PRIMARY KEY (asgs_code, family_type, children_under_15, dependent_students, non_dependent_children)
+  PRIMARY KEY (asgs_code, family_composition)
 );
 
 CREATE TABLE census_2011.bcp_family_composition_persons_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  family_type serial REFERENCES census_2011.family_type,
-  children_under_15 boolean,
-  dependent_students boolean,
-  non_dependent_children boolean,
+  family_composition serial REFERENCES census_2011.family_composition,
 
   persons integer,
 
-  PRIMARY KEY (asgs_code, family_type, children_under_15, dependent_students, non_dependent_children)
+  PRIMARY KEY (asgs_code, family_composition)
 );
 
 -- B26

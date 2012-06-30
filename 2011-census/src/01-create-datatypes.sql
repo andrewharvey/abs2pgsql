@@ -90,7 +90,7 @@ CREATE DOMAIN census_2011.dict_stup AS char(1)[];
 CREATE DOMAIN census_2011.dict_hscp AS char(1);
 CREATE DOMAIN census_2011.dict_chcarep AS char(1);
 CREATE DOMAIN census_2011.dict_tisp AS char(2);
-CREATE DOMAIN census_2011.dict_fmcf AS char(1);
+CREATE DOMAIN census_2011.dict_fmcf AS varchar(4);
 CREATE DOMAIN census_2011.dict_vehrd AS char(1);
 CREATE DOMAIN census_2011.dict_strd_array AS char(2)[];
 CREATE DOMAIN census_2011.dict_strd AS varchar(2);
@@ -667,6 +667,32 @@ INSERT INTO census_2011.number_of_children (long, tisp) VALUES
 ('five_children', '05'),
 ('six_or_more_children', NULL),
 ('not_stated', '&&');
+
+
+CREATE TABLE census_2011.family_composition
+(
+  id serial PRIMARY KEY,
+  long text,
+  fmcf census_2011.dict_fmcf
+);
+
+INSERT INTO census_2011.family_composition (long, fmcf) VALUES
+('couple_family_with_no_children', 1222),
+('couple_family_with_children_under_15_and_dependent_students_and_non_dependent_children', 2111),
+('couple_family_with_children_under_15_and_dependent_students_and_no_non_dependent_children', 2112),
+('couple_family_with_children_under_15_and_no_dependent_students_and_non_dependent_children', 2121),
+('couple_family_with_children_under_15_and_no_dependent_students_and_no_non_dependent_children', 2122),
+('couple_family_with_no_children_under_15_and_dependent_students_and_non_dependent_children', 2211),
+('couple_family_with_no_children_under_15_and_dependent_students_and_no_non_dependent_children', 2212),
+('couple_family_with_no_children_under_15_and_no_dependent_students_and_non_dependent_children', 2221),
+('one_parent_family_with_children_under_15_and_dependent_students_and_non_dependent_children', 3111),
+('one_parent_family_with_children_under_15_and_dependent_students_and_no_non_dependent_children', 3112),
+('one_parent_family_with_children_under_15_and_no_dependent_students_and_non_dependent_children', 3121),
+('one_parent_family_with_children_under_15_and_no_dependent_students_and_no_non_dependent_children', 3122),
+('one_parent_family_with_no_children_under_15_and_dependent_students_and_non_dependent_children', 3211),
+('one_parent_family_with_no_children_under_15_and_dependent_students_and_no_non_dependent_children', 3212),
+('one_parent_family_with_no_children_under_15_and_no_dependent_students_and_non_dependent_children', 3221),
+('other_family', 9222);
 
 
 CREATE TABLE census_2011.family_type
