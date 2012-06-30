@@ -13,6 +13,8 @@
 ## Basic Community Profile
 ##
 
+B02 (Median_age_of_persons, Median_mortgage_repayment_monthly, Median_total_personal_income_weekly, Median_rent_weekly, Median_total_family_income_weekly, Average_number_of_Persons_per_bedroom, Median_total_household_income_weekly, Average_household_size) bcp_selected_medians_and_averages
+
 B03 Counted_at_home_on_Census_Night_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, counted_at_home, NULL)
 B03 Visitor_from_Same_Statistical_Area_Level_2_SA2_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, visitor_from_same_sa2, NULL)
 B03 Visitor_from_Different_SA2_In_New_South_Wales_Age_[:age_d:] bcp_place_of_usual_residence_on_census_night (\age_d, visitor_from_different_sa2_nsw, 1)

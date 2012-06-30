@@ -79,7 +79,31 @@ for my $line (<STDIN>) {
     $line_count++;
 
     # "parse" the schema translation definition
-    if ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
+    if ($line =~ /^(\w\d+) \(([^\)]*)\) ([^\s]+)$/) {
+      # special lines to load multiple values together
+      my ($dataset_num, $insert_value_order, $dst_table) = ($1, $2, $3);
+      
+      # convert string list representation into a real list
+      my @insert_values = split(/,/, $insert_value_order);
+
+      # trim whitespace from each value in the insert list
+      map { s/^\s*//g; s/\s*$//g } @insert_values;
+      
+      my @seqs;
+      for my $long (@insert_values) {
+        my $metadata = $metadata_contents{$dataset_num . " " . lc($long)};
+
+        # keep track of lines from the expanded load template which we couldn't find in the metadata table
+        if (defined $metadata) {
+          push @seqs, $metadata->{'seq'};
+        }else{
+          $not_found_in_metadata{$dataset_num . " ". lc($long)} = '';
+        }
+      }
+      # meaning of the line is LOAD seqs FROM file INTO table
+      print $load_file join (",", @seqs) . " " . $dataset_num . " " . $dst_table . "\n";
+    }elsif ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
+      # regular lines
       my ($dataset_num, $long, $table, $insert) = ($1, $2, $3, $4);
       $insert =~ s/^\((.*)\)$/$1/;
       my @insert_values = split(/,/, $insert);

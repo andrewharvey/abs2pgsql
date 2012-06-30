@@ -137,7 +137,13 @@ for my $line (<STDIN>) {
   # and unless it is a comment or empty line...
   unless (($line =~ /^#/) || ($line =~ /^\s*$/)) {
     # "parse" the schema translation definition
-    if ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
+    if ($line =~ /^(\w\d+) \(([^\)]*)\) ([^\s]+)$/) {
+      # special lines to load multiple values together
+      my ($dataset_num, $insert_value_order, $dst_table) = ($1, $2, $3);
+      
+      print "$line\n";
+    }elsif ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
+      # regular lines
       my ($dataset_num, $src_template, $dst_template, $table_orders) = ($1, $2, $3, $4);
 
       # trim parenthesis from string list representation

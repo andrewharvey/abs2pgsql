@@ -26,9 +26,9 @@ CREATE TABLE census_2011.bcp_selected_medians_and_averages_{structure}
   median_total_personal_income_weekly integer,
   median_rent_weekly integer,
   median_total_family_income_weekly integer,
-  average_number_of_persons_per_bedroom integer,
+  average_number_of_persons_per_bedroom real,
   median_total_household_income_weekly integer,
-  average_household_size integer,
+  average_household_size real,
 
   PRIMARY KEY (asgs_code)
 );
