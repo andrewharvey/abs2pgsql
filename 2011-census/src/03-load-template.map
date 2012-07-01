@@ -182,7 +182,7 @@ I11 Type_of_Internet_connection_{db:census_2011.internet_connection}_{tf:Househo
 I11 Internet_connection_not_stated_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \dict:internet_connection:not_stated)
 
 I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.household_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, \db:census_2011.household_type, \db:census_2011.number_of_persons_usually_resident)
-I12 {tf:Households_with_Indigenous_persons|Other_Households}_Group_household_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, \dict:household_type:group_households, \db:census_2011.number_of_persons_usually_resident)
+I12 {tf:Households_with_Indigenous_persons|Other_Households}_Group_household_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, group_households, \db:census_2011.number_of_persons_usually_resident)
 
 I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_household_income (\tf, \indigenous_household_income)
 
