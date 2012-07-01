@@ -16,6 +16,24 @@
 -- http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample?opendocument&navpos=250
 
 
+-- T02
+CREATE TABLE census_2011.tsp_selected_medians_and_averages_{structure}
+(
+  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  year census_2011.tsp_years,
+
+  median_age_of_persons integer,
+  median_mortgage_repayment_monthly integer,
+  median_total_personal_income_weekly integer,
+  median_rent_weekly integer,
+  median_total_family_income_weekly integer,
+  average_number_of_persons_per_bedroom real,
+  median_total_household_income_weekly integer,
+  average_household_size real,
+
+  PRIMARY KEY (asgs_code, year)
+);
+
 -- T03
 CREATE TABLE census_2011.tsp_age_{structure}
 (
@@ -47,7 +65,7 @@ CREATE TABLE census_2011.tsp_registered_marital_status_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  registered_marital_status census_2011.registered_marital_status,
+  registered_marital_status serial REFERENCES census_2011.registered_marital_status,
   year census_2011.tsp_years,
 
   persons_aged_15_years_and_over integer,
@@ -61,7 +79,7 @@ CREATE TABLE census_2011.tsp_social_marital_status_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  social_marital_status census_2011.social_marital_status,
+  social_marital_status serial REFERENCES census_2011.social_marital_status,
   year census_2011.tsp_years,
 
   persons_aged_15_years_and_over integer,
@@ -90,7 +108,7 @@ CREATE TABLE census_2011.tsp_country_of_birth_of_person_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  country_of_birth census_2011.birthplace,
+  country_of_birth serial REFERENCES census_2011.birthplace,
   year census_2011.tsp_years,
 
   persons integer,
@@ -102,8 +120,8 @@ CREATE TABLE census_2011.tsp_country_of_birth_of_person_{structure}
 CREATE TABLE census_2011.tsp_ancestry_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  ancestry census_2011.ancestry,
-  birthplace_of_parents census_2011.parent_birthplace_combination,
+  ancestry serial REFERENCES census_2011.ancestry,
+  birthplace_of_parents serial REFERENCES census_2011.parent_birthplace_combination,
   year census_2011.tsp_years,
 
   persons integer,
@@ -116,7 +134,7 @@ CREATE TABLE census_2011.tsp_language_spoken_at_home_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  language census_2011.language_tsp,
+  language serial REFERENCES census_2011.language_tsp,
   year census_2011.tsp_years,
 
   persons integer,
@@ -129,7 +147,7 @@ CREATE TABLE census_2011.tsp_type_of_educational_institution_attending_{structur
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  educational_institution census_2011.educational_institution,
+  educational_institution serial REFERENCES census_2011.educational_institution,
   year census_2011.tsp_years,
 
   persons_attending_an_educational_institution integer,
@@ -144,8 +162,8 @@ CREATE TABLE census_2011.tsp_dwelling_structure_by_household_comp_and_fam_comp_{
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   household_composition census_2011.household_type_simple,
-  family_composition census_2011.family_type,
-  dwelling_structure census_2011.dwelling_structure_extended_full,
+  family_composition serial REFERENCES census_2011.family_type,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_full,
   year census_2011.tsp_years,
 
   occupied_private_dwellings integer,
@@ -160,7 +178,7 @@ CREATE TABLE census_2011.tsp_dwelling_structure_by_num_persons_usually_resident_
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   number_of_persons_usually_resident census_2011.number_of_persons_usually_resident,
-  dwelling_structure census_2011.dwelling_structure_extended_full,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_full,
   year census_2011.tsp_years,
 
   occupied_private_dwellings integer,
