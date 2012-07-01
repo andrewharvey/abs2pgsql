@@ -162,6 +162,9 @@ I02 {db:census_2011.indigenous_status}_[:sex:] ip_indigenous_status (\sex, \db:c
 
 I03 Age_years_[:age_b:]_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_age (\age_b, \sex, \ynn)
 
+#I04 (Median_age_of_persons_Indigenous_persons_households_with_Indigenous_persons, Median_total_personal_income_weekly_Indigenous_persons_households_with_Indigenous_persons, Median_total_household_income_weekly_Indigenous_persons_households_with_Indigenous_persons, Median_mortgage_repayment_monthly_Indigenous_persons_households_with_Indigenous_persons, Median_rent_weekly_Indigenous_persons_households_with_Indigenous_persons, Average_number_of_persons_per_bedroom_Indigenous_persons_households_with_Indigenous_persons, Average_household_size_Indigenous_persons_households_with_Indigenous_persons, Proportion_of_dwellings_that_need_1_or_more_extra_bedrooms_Indigenous_persons_households_with_Indigenous_persons) bcp_selected_medians_and_averages (true)
+#I04 (Median_age_of_persons_Non_Indigenous_persons_other_households, Median_total_personal_income_weekly_Non_Indigenous_persons_other_households, Median_total_household_income_weekly_Non_Indigenous_persons_other_households, Median_mortgage_repayment_monthly_Non_Indigenous_persons_other_households, Median_rent_weekly_Non_Indigenous_persons_other_households, Average_number_of_persons_per_bedroom_Non_Indigenous_persons_other_households, Average_household_size_Non_Indigenous_persons_other_households, Proportion_of_dwellings_that_need_1_or_more_extra_bedrooms_Non_Indigenous_persons_other_households) bcp_selected_medians_and_averages (false)
+
 I05 {db:census_2011.indigenous_educational_institution}_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated}_[:sex:] ip_type_of_educational_institution_attending (\sex, \db:census_2011.indigenous_educational_institution, \ynn)
 
 I06 [:sex:]_{db:census_2011.school_year}_{ynn:Indigenous|Non_Indigenous|Indigenous_status_not_stated} ip_highest_year_of_school_completed (\sex, \db:census_2011.school_year, \ynn)
@@ -174,9 +177,12 @@ I09 [:sex:]_[:age_l:]_{ynn:Provided_unpaid_assistance|No_unpaid_assistance_provi
 
 I10 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.tenure_landlord_type}_Dwelling_structure_{db:census_2011.dwelling_structure_indigenous} ip_tenure_type_and_landlord_type (\db:census_2011.dwelling_structure_indigenous, \db:census_2011.tenure_landlord_type, \tf)
 
-I11 [:internet_connection:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \internet_connection)
+I11 No_Internet_connection_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \dict:internet_connection:none)
+I11 Type_of_Internet_connection_{db:census_2011.internet_connection}_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \db:census_2011.internet_connection)
+I11 Internet_connection_not_stated_{tf:Households_with_Indigenous_persons|Other_Households} ip_internet_connection_type (\tf, \dict:internet_connection:not_stated)
 
 I12 {tf:Households_with_Indigenous_persons|Other_Households}_{db:census_2011.household_type}_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, \db:census_2011.household_type, \db:census_2011.number_of_persons_usually_resident)
+I12 {tf:Households_with_Indigenous_persons|Other_Households}_Group_household_Number_of_persons_usually_resident_{db:census_2011.number_of_persons_usually_resident} ip_household_composition (\tf, \dict:household_type:group_households, \db:census_2011.number_of_persons_usually_resident)
 
 I13 [:indigenous_household_income:]_{tf:Households_with_Indigenous_persons|Other_Households} ip_household_income (\tf, \indigenous_household_income)
 

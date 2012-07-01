@@ -22,7 +22,7 @@ CREATE TABLE census_2011.ip_indigenous_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  indigenous_status census_2011.indigenous_status,
+  indigenous_status serial REFERENCES census_2011.indigenous_status,
 
   persons integer,
 
@@ -53,8 +53,8 @@ CREATE TABLE census_2011.ip_selected_medians_and_averages_{structure}
   median_total_household_income_weekly integer,
   median_mortgage_repayment_monthly integer,
   median_rent_weekly integer,
-  average_number_of_persons_per_bedroom integer,
-  average_household_size integer,
+  average_number_of_persons_per_bedroom real,
+  average_household_size real,
   proportion_of_dwellings_that_need_1_or_more_extra_bedrooms integer,
 
   PRIMARY KEY (asgs_code, indigenous)
@@ -70,7 +70,7 @@ CREATE TABLE census_2011.ip_type_of_educational_institution_attending_{structure
 
   persons_attending_an_educational_institution integer,
 
-  PRIMARY KEY (asgs_code, sex, educational_institution)
+  PRIMARY KEY (asgs_code, sex, educational_institution, indigenous_status)
 );
 
 -- I06
@@ -78,7 +78,7 @@ CREATE TABLE census_2011.ip_highest_year_of_school_completed_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
-  school_year census_2011.school_year,
+  school_year serial REFERENCES census_2011.school_year,
   indigenous_status census_2011.yes_no_notstated,
 
   -- PostgreSQL Limitation
@@ -130,8 +130,8 @@ CREATE TABLE census_2011.ip_unpaid_assistance_to_a_person_with_a_disability_{str
 CREATE TABLE census_2011.ip_tenure_type_and_landlord_type_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  dwelling_structure census_2011.dwelling_structure_indigenous,
-  tenure_landlord_type census_2011.tenure_landlord_type,
+  dwelling_structure serial REFERENCES census_2011.dwelling_structure_indigenous,
+  tenure_landlord_type serial REFERENCES census_2011.tenure_landlord_type,
   indigenous_household boolean,
 
   occupied_private_dwellings integer,
@@ -144,7 +144,7 @@ CREATE TABLE census_2011.ip_internet_connection_type_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   indigenous_household boolean,
-  internet_connection census_2011.internet_connection,
+  internet_connection serial REFERENCES census_2011.internet_connection,
 
   occupied_private_dwellings integer,
 
@@ -169,7 +169,7 @@ CREATE TABLE census_2011.ip_household_income_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   indigenous_household boolean,
-  income_range census_2011.indigenous_household_income_band,
+  income_range smallint REFERENCES census_2011.indigenous_household_income_band,
 
   occupied_private_dwellings integer,
 
@@ -183,7 +183,7 @@ CREATE TABLE census_2011.ip_non_school_qualification_level_of_education_{structu
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
   indigenous_status census_2011.yes_no_notstated,
-    
+
   non_school_level_of_education serial REFERENCES census_2011.non_school_level_of_education_simple,
 
   persons_aged_15_years_and_over_with_a_qualification integer,
@@ -197,7 +197,7 @@ CREATE TABLE census_2011.ip_labour_force_status_{structure}
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
   age text REFERENCES census_2011.age(range),
   sex census_2011.sex,
-  employment_status census_2011.employment_status_simple,
+  employment_status serial REFERENCES census_2011.employment_status_simple,
 
   indigenous_persons_aged_15_years_and_over integer,
 
