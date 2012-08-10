@@ -1,7 +1,7 @@
 -- create the final tables with the ideal schema
 -- and load the date from the staging table
 
-CREATE TABLE abs_8731_0_state
+CREATE TABLE abs_8731_0_ste
 (
   "code" asgs_2011.ste_code PRIMARY KEY REFERENCES asgs_2011.ste(code),
 
@@ -33,7 +33,7 @@ WITH selection AS (
      abs_8731_0_staging
    WHERE
      asgs_2011.match_abs_structure_code(code) = 'state'
-) INSERT INTO abs_8731_0_state SELECT * from selection;
+) INSERT INTO abs_8731_0_ste SELECT * from selection;
 
 
 CREATE TABLE abs_8731_0_gccsa
