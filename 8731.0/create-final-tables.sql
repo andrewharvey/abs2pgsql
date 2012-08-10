@@ -3,7 +3,7 @@
 
 CREATE TABLE abs_8731_0_state
 (
-  "code" asgs_2011.state_code PRIMARY KEY REFERENCES asgs_2011.state(code),
+  "code" asgs_2011.ste_code PRIMARY KEY REFERENCES asgs_2011.ste(code),
 
   "new_houses" integer,
   "new_other_residential_building" integer,
@@ -19,7 +19,7 @@ CREATE TABLE abs_8731_0_state
 
 WITH selection AS (
   SELECT
-    code::asgs_2011.state_code,
+    code::asgs_2011.ste_code,
     new_houses,
     new_other_residential_building,
     total_dwellings,
