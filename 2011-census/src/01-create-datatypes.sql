@@ -42,12 +42,6 @@
 --
 -- As per the statement at http://www.abs.gov.au/websitedbs/D3310114.nsf/Home/%C2%A9+Copyright?opendocument#from-banner=GB
 
---
--- # TODO
---
--- FIXME the serial types declared here can be updated to smallserial
--- this will create a dependence on PostgreSQL >= 9.2
-
 
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
@@ -157,7 +151,7 @@ CREATE TYPE census_2011.place_of_usual_residence AS ENUM (
 
 CREATE TABLE census_2011.registered_marital_status
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   mstp census_2011.dict_mstp
 );
@@ -172,7 +166,7 @@ INSERT INTO census_2011.registered_marital_status (long, mstp) VALUES
 
 CREATE TABLE census_2011.social_marital_status
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   mdcp census_2011.dict_mdcp
 );
@@ -185,7 +179,7 @@ INSERT INTO census_2011.social_marital_status (long, mdcp) VALUES
 
 CREATE TABLE census_2011.ancestry
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   ancp census_2011.dict_ancp
 );
@@ -227,7 +221,7 @@ INSERT INTO census_2011.ancestry (long, ancp) VALUES
 
 CREATE TABLE census_2011.parent_birthplace_combination
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   bppp census_2011.dict_bppp
 );
@@ -242,7 +236,7 @@ INSERT INTO census_2011.parent_birthplace_combination (long, bppp) VALUES
 
 CREATE TABLE census_2011.birthplace
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   bplp census_2011.dict_bplp
 );
@@ -333,7 +327,7 @@ INSERT INTO census_2011.year_of_arrival_b (id, min, max) VALUES
 
 CREATE TABLE census_2011.english_proficiency
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   englp census_2011.dict_englp
 );
@@ -347,7 +341,7 @@ INSERT INTO census_2011.english_proficiency (long, englp) VALUES
 
 CREATE TABLE census_2011.language
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   lanp census_2011.dict_lanp
 );
@@ -401,7 +395,7 @@ INSERT INTO census_2011.language (long, lanp) VALUES
 
 CREATE TABLE census_2011.language_tsp
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   lanp census_2011.dict_lanp_array
 );
@@ -447,7 +441,7 @@ INSERT INTO census_2011.language_tsp (long, lanp) VALUES
 
 CREATE TABLE census_2011.religious_affiliation
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   relp census_2011.dict_relp
 );
@@ -486,7 +480,7 @@ INSERT INTO census_2011.religious_affiliation (long, relp) VALUES
 -- TYPP
 CREATE TABLE census_2011.educational_institution
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   typp census_2011.dict_typp,
   stup census_2011.dict_stup,
@@ -521,7 +515,7 @@ INSERT INTO census_2011.educational_institution (long, typp, stup, age) VALUES
 
 CREATE TABLE census_2011.indigenous_educational_institution
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   typp census_2011.dict_typp_i,
   stup census_2011.dict_stup,
@@ -548,7 +542,7 @@ INSERT INTO census_2011.indigenous_educational_institution (long, typp, stup, ag
 
 CREATE TABLE census_2011.school_year
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   hscp census_2011.dict_hscp
 );
@@ -622,7 +616,7 @@ INSERT INTO census_2011.unpaid_domestic_work (code, min, max) VALUES
 
 CREATE TABLE census_2011.child_care
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   chcarep census_2011.dict_chcarep
 );
@@ -653,7 +647,7 @@ CREATE TYPE census_2011.household_relationship AS ENUM (
 
 CREATE TABLE census_2011.number_of_children
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   tisp census_2011.dict_tisp
 );
@@ -671,7 +665,7 @@ INSERT INTO census_2011.number_of_children (long, tisp) VALUES
 
 CREATE TABLE census_2011.family_composition
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   fmcf census_2011.dict_fmcf
 );
@@ -697,7 +691,7 @@ INSERT INTO census_2011.family_composition (long, fmcf) VALUES
 
 CREATE TABLE census_2011.family_type
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   fmcf census_2011.dict_fmcf
 );
@@ -788,7 +782,7 @@ INSERT INTO census_2011.indigenous_household_income_band (code, min, max) VALUES
 
 CREATE TABLE census_2011.number_of_motor_vehicles
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   vehrd census_2011.dict_vehrd
 );
@@ -814,7 +808,7 @@ CREATE TYPE census_2011.number_of_persons_usually_resident AS ENUM (
 
 CREATE TABLE census_2011.dwelling_structure_simple
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   strd census_2011.dict_strd
 );
@@ -829,7 +823,7 @@ INSERT INTO census_2011.dwelling_structure_simple (long, strd) VALUES
 
 CREATE TABLE census_2011.dwelling_structure_indigenous
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   strd census_2011.dict_strd
 );
@@ -846,7 +840,7 @@ INSERT INTO census_2011.dwelling_structure_indigenous (long, strd) VALUES
 
 CREATE TABLE census_2011.dwelling_structure_extended_minimal
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   strd census_2011.dict_strd_array
 );
@@ -865,7 +859,7 @@ INSERT INTO census_2011.dwelling_structure_extended_minimal (long, strd) VALUES
 
 CREATE TABLE census_2011.dwelling_structure_extended_full
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   strd census_2011.dict_strd_array
 );
@@ -887,7 +881,7 @@ INSERT INTO census_2011.dwelling_structure_extended_full (long, strd) VALUES
 
 CREATE TABLE census_2011.tenure_landlord_type
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   tenlld census_2011.dict_tenlld
 );
@@ -907,7 +901,7 @@ INSERT INTO census_2011.tenure_landlord_type (long, tenlld) VALUES
 
 CREATE TABLE census_2011.landlord_type
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   lldd census_2011.dict_lldd
 );
@@ -967,7 +961,7 @@ INSERT INTO census_2011.mortgage_repayment_band (code, min, max) VALUES
 
 CREATE TABLE census_2011.internet_connection
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   nedd census_2011.dict_nedd
 );
@@ -982,7 +976,7 @@ INSERT INTO census_2011.internet_connection (long, nedd) VALUES
 
 CREATE TABLE census_2011.number_of_bedrooms
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   bedrd census_2011.dict_bedrd
 );
@@ -1017,7 +1011,7 @@ CREATE TYPE census_2011.previous_place_of_usual_residence AS ENUM (
 
 CREATE TABLE census_2011.non_school_level_of_education
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   qallp census_2011.dict_qallp
 );
@@ -1036,7 +1030,7 @@ INSERT INTO census_2011.non_school_level_of_education (long, qallp) VALUES
 
 CREATE TABLE census_2011.non_school_level_of_education_simple
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   qallp census_2011.dict_qallp
 );
@@ -1053,7 +1047,7 @@ INSERT INTO census_2011.non_school_level_of_education_simple (long, qallp) VALUE
 
 CREATE TABLE census_2011.field_of_study
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   qalfp census_2011.dict_qalfp
 );
@@ -1077,7 +1071,7 @@ INSERT INTO census_2011.field_of_study (long, qalfp) VALUES
 
 CREATE TABLE census_2011.employment_status
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   lfsp census_2011.dict_lfsp
 );
@@ -1095,7 +1089,7 @@ INSERT INTO census_2011.employment_status (long, lfsp) VALUES
 
 CREATE TABLE census_2011.employment_status_simple
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   lfsp census_2011.dict_lfsp_array
 );
@@ -1111,7 +1105,7 @@ INSERT INTO census_2011.employment_status_simple (long, lfsp) VALUES
 
 CREATE TABLE census_2011.industry
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   indp census_2011.dict_indp
 );
@@ -1141,7 +1135,7 @@ INSERT INTO census_2011.industry (long, indp) VALUES
 
 CREATE TABLE census_2011.occupation
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   occp census_2011.dict_occp
 );
@@ -1160,7 +1154,7 @@ INSERT INTO census_2011.occupation (long, occp) VALUES
 
 CREATE TABLE census_2011.method_of_travel
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   mtwp census_2011.dict_mtwp
 );
@@ -1203,7 +1197,7 @@ INSERT INTO census_2011.method_of_travel (long, mtwp) VALUES
 
 CREATE TABLE census_2011.indigenous_status
 (
-  id serial PRIMARY KEY,
+  id smallserial PRIMARY KEY,
   long text,
   ingp census_2011.dict_ingp
 );
