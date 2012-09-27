@@ -93,10 +93,14 @@ correctly prior to running the make command.
 ## Prerequisites
 You will need to have the asgs_2011 schema loaded first using [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
 
+This loader requires your PostgreSQL version to be 9.2 or greater. The loader
+used to work with older versions, so if that is really important to you you can
+use an older version.
+
 You will also need the following Debian packages (or equivalent for your system),
 
-    postgresql-client-9.2 | postgresql-client-9.1 | postgresql-client-8.4,
-    quilt, libtext-csv-perl | libtext-csv-xs-perl, libdbd-pg-perl, bash (>= 4.0)
+    postgresql-client-9.2, quilt, libtext-csv-perl | libtext-csv-xs-perl,
+    libdbd-pg-perl, bash (>= 4.0)
 
 ## Tweaking your PostgreSQL database
 A fully loaded census_2011 schema will contain a lot of tables. The main
