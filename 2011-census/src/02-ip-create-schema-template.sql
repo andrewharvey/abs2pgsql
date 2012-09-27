@@ -33,7 +33,7 @@ CREATE TABLE census_2011.ip_indigenous_status_{structure}
 CREATE TABLE census_2011.ip_age_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   indigenous_status census_2011.yes_no_notstated,
 
@@ -104,7 +104,7 @@ CREATE TABLE census_2011.ip_personal_income_{structure}
 CREATE TABLE census_2011.ip_core_activity_need_for_assistance_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   need_assistance census_2011.yes_no_notstated,
 
@@ -117,7 +117,7 @@ CREATE TABLE census_2011.ip_core_activity_need_for_assistance_{structure}
 CREATE TABLE census_2011.ip_unpaid_assistance_to_a_person_with_a_disability_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   provided_assistance census_2011.yes_no_notstated,
 
@@ -180,7 +180,7 @@ CREATE TABLE census_2011.ip_household_income_{structure}
 CREATE TABLE census_2011.ip_non_school_qualification_level_of_education_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   indigenous_status census_2011.yes_no_notstated,
 
@@ -195,7 +195,7 @@ CREATE TABLE census_2011.ip_non_school_qualification_level_of_education_{structu
 CREATE TABLE census_2011.ip_labour_force_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   employment_status serial REFERENCES census_2011.employment_status_simple,
 

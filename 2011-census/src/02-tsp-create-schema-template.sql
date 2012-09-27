@@ -38,7 +38,7 @@ CREATE TABLE census_2011.tsp_selected_medians_and_averages_{structure}
 CREATE TABLE census_2011.tsp_age_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   year census_2011.tsp_years,
 
@@ -63,7 +63,7 @@ CREATE TABLE census_2011.tsp_overseas_visitors_{structure}
 CREATE TABLE census_2011.tsp_registered_marital_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   registered_marital_status serial REFERENCES census_2011.registered_marital_status,
   year census_2011.tsp_years,
@@ -77,7 +77,7 @@ CREATE TABLE census_2011.tsp_registered_marital_status_{structure}
 CREATE TABLE census_2011.tsp_social_marital_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   social_marital_status serial REFERENCES census_2011.social_marital_status,
   year census_2011.tsp_years,
@@ -91,7 +91,7 @@ CREATE TABLE census_2011.tsp_social_marital_status_{structure}
 CREATE TABLE census_2011.tsp_indigenous_status_{structure}
 (
   asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
-  age text REFERENCES census_2011.age(range),
+  age census_2011.age,
   sex census_2011.sex,
   indigenous census_2011.yes_no_notstated,
   year census_2011.tsp_years,

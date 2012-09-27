@@ -102,22 +102,8 @@ CREATE DOMAIN census_2011.dict_mtwp AS char(3);
 CREATE DOMAIN census_2011.dict_ingp AS char(1);
 
 
--- Originally I planned to just have min, max where the primary keys is
--- (min,max) and use max=NULL to indicate min or more however in
--- PostgreSQL the primary key cannot consist of a NULL value.
--- We need the table to have a primary key so it can be used as part of
--- the primary key of the tables which reference this age type.
--- If only I could make the max a union type of smallint | boolean and
--- only use the boolean for "or more" and the smallint otherwise, then I
--- could avoid using NULL and hence make it a primary key.
---
--- In lieu of this I use the text code as the primary key.
-CREATE TABLE census_2011.age
-(
-  range text PRIMARY KEY,
-  min smallint NOT NULL,
-  max smallint -- use NULL to indicate "{min} years and over"
-);
+-- age range
+CREATE TYPE census_2011.age AS int4range;
 
 
 CREATE TYPE census_2011.sex AS ENUM (

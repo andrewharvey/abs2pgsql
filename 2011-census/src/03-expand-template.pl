@@ -85,8 +85,6 @@ my %expansions = (
     ]
 );
 
-my @age_inserts;
-
 for my $k (keys %age_expansions) {
   my @values = split / /, $age_expansions{$k};
 
@@ -96,19 +94,13 @@ for my $k (keys %age_expansions) {
   for my $v (@values) {
     if ($v =~ /^(\d+)\.\.(\d+)$/) {
       push @long_names, $1..$2;
-      push @target_values, $1..$2;
-
-      map {push @age_inserts, $_ . "\t" . $_ . "\t" . $_} $1..$2;
+      map {push @target_values, "[$_]" } $1..$2; # will push onto @target_values [0], [1], ...
     }elsif ($v =~ /^(\d+)-(\d+)$/) {
       push @long_names, "$1_$2_years";
-      push @target_values, "$1-$2";
-
-      push @age_inserts, "$1" . "-" . $2 . "\t" . $1 . "\t" . $2;
+      push @target_values, "[$1,$2]"; # postgres range syntax for $1 to $2, inclusive of $1 and $2
     }elsif ($v =~ /^(\d+)\+$/) {
       push @long_names, "$1_years_and_over";
-      push @target_values, "$1+";
-
-      push @age_inserts, $1 . "+\t" . $1 . "\t" . "\\N";
+      push @target_values, "[$1,)"; # postgres range syntax for $1 and greater
     }else{
       die;
     }
@@ -116,12 +108,6 @@ for my $k (keys %age_expansions) {
 
   $expansions{"age_" . $k} = [\@long_names, \@target_values];
 }
-
-# produce a .copy file so we can load the data from the age_expansions
-# hash into our target schema
-open (my $age_copy, '>', "age.copy");
-map {print $age_copy "$_\n"} @age_inserts;
-close $age_copy;
 
 # read in every line of our schema map definition file
 for my $line (<STDIN>) {
