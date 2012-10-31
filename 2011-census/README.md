@@ -96,7 +96,8 @@ You should ensure you have set your [PG environment variables](http://www.postgr
 correctly prior to running the make command.
 
 ## Prerequisites
-You will need to have the asgs_2011 schema loaded first using [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
+Although not required, it is recommended to have the asgs_2011 schema loaded
+first using [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
 
 This loader requires your PostgreSQL version to be 9.2 or greater. The loader
 used to work with older versions, so if that is really important to you you can
