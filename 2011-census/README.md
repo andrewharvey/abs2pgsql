@@ -30,9 +30,14 @@ Two additional products will likely be supported when they are released,
 
 To actually use these scripts to load the data, you need the data. You
 can either download it from my [DataPack DVD mirror](http://tianjara.net/data/abs/)
-or purchase the physical disks from the ABS. I'm was assured that the DVD
-contents were CC-BY but that was just over the phone and can't be relied
-on. I've [expressed my disappointment over the rigour of licensing details in comic format](http://tianjara.net/hosted/letter-to-abs-re-census-dvd-license.png).
+or purchase the physical disks from the ABS.
+
+The DVD's starting from Release 2 (after I [expressed my disappointment over the rigour of licensing details in comic format](http://tianjara.net/hosted/letter-to-abs-re-census-dvd-license.png)
+are clearly marked as CC BY 2.5 AU.
+
+To create the files on my DataPack DVD mirror from the source DVD I used,
+
+    ./src/00-repack-datapack-dvd.sh /media/cdrom
 
 # Target PostgreSQL Schema
 These scripts don't to a straight load, if they did it would be much
