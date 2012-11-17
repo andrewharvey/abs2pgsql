@@ -83,9 +83,19 @@ For this reason I use a [DEP-5 style copyright file](http://dep.debian.net/deps/
 called `copyright`.
 
 The short version is the contents of this repository are licensed under the 
-Creative Commons Zero 1.0 license, except for some select files which contain
+[Creative Commons Zero 1.0](http://creativecommons.org/publicdomain/zero/1.0/)
+license, except for some select files which contain
 almost verbatim copied data from copyrighted works. Again refer to the
 `copyright` file for details.
+
+Although not required, I would prefer you give Attribution to the project
+if you distribute it and release derived works or modifications under the same
+CC0 license.
+
+    To the extent possible under law, the person who associated CC0
+    with this work has waived all copyright and related or neighboring
+    rights to this work.
+    http://creativecommons.org/publicdomain/zero/1.0/
 
 # Running the scripts
 Refer to the README within each of the separate loaders within this
