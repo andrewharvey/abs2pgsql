@@ -29,6 +29,7 @@ the project and some guiding principles to adhere to.
 * Eventually target schemas will be released as stable versions to allow
   third parties to rely on the schema.
 * Terminology should be kept consistent with the source statistics.
+* Use a normalised database model.
 
 ## ASGS
 In cases where ABS data is linked to the ASGS (Australian Statistical
