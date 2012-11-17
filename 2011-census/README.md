@@ -44,7 +44,7 @@ To create the files on my DataPack DVD mirror from the source DVD I used,
     ./src/00-repack-datapack-dvd.sh /media/cdrom
 
 If you choose to use these repacks you will need to extract the .tar.xz into a directory named
-`DataPacks` within the 2011-census directory from this repository.
+`DataPacks` within the `2011-census` directory from this repository.
 
 If you choose to download the data from the ABS web site you will need to ensure you extract
 that data into the same structure that you would get from extracting my repacked tar.xz.
@@ -95,7 +95,7 @@ classification. This makes it difficult to present the census data in
 PostgreSQL with referential integrity to the classifications.
 
 Currently I only model the profile versions of these classifications in
-01-create-datatypes.sql. To produce a more elegant data model in this
+`01-create-datatypes.sql`. To produce a more elegant data model in this
 PostgreSQL schema we could load the classifications into their own schema
 and maintain faithful references to them from the profiles.
 
@@ -104,21 +104,21 @@ The scripts are designed to be run via the Makefile as such a simple,
 
     make
 
-will clean out any existing census_2011 schema, create the census_2011
+will clean out any existing `census_2011` schema, create the `census_2011`
 schema and subsequently load the data.
 
 You should ensure you have set your [PG environment variables](http://www.postgresql.org/docs/current/static/libpq-envars.html)
 correctly prior to running the make command.
 
 ## Prerequisites
-It is required to have a minimal asgs_2011 schema loaded first using
+It is required to have a minimal `asgs_2011` schema loaded first using
 [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
 
-The minimal asgs_2011 schema just contains the asgs_2011 types which are
-included in stage2/03a-create-asgs-schema.sql and
-stage2/10a-australia-hack.sql of asgs2pgsql.
+The minimal `asgs_2011` schema just contains the `asgs_2011` types which are
+included in `stage2/03a-create-asgs-schema.sql` and
+`stage2/10a-australia-hack.sql of asgs2pgsql`.
 
-If you have the full asgs_2011 schema loaded then full foreign key
+If you have the full `asgs_2011` schema loaded then full foreign key
 relationships will be created to the underlying geometry of each
 geographical area, otherwise they won't be.
 
@@ -132,15 +132,15 @@ You will also need the following Debian packages (or equivalent for your system)
     libdbd-pg-perl, bash (>= 4.0)
 
 ## Tweaking your PostgreSQL database
-A fully loaded census_2011 schema will contain a lot of tables. The main
+A fully loaded `census_2011` schema will contain a lot of tables. The main
 reason for so many tables is each DataPack Profile Table will be stored
 as a PostgreSQL table once for each geographic structure for which there
 is data released. This results in a lot of tables. As such you will
 probably need to increase the `max_locks_per_transaction` option in your
-postgresql.conf file.
+`postgresql.conf` file.
 
 # Using a DB Dump
-Eventually I will publish a pg_dump of the loaded database, so if you
+Eventually I will publish a `pg_dump` of the loaded database, so if you
 wish you can simply load the dump rather than build up and load the data
 from source.
 
@@ -148,14 +148,14 @@ If the lack of this is holding you back, please email me and let me know.
 
 # Copyright
 ## DataPack Metadata Tables
-All .tsv files within DataPack-Metadata are works derived from the
+All `*.tsv` files within DataPack-Metadata are works derived from the
 [CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/) licensed
-Metadata/Metadata_2011_*_DataPack.xlsx files from the R2 DataPack DVD's.
+`Metadata/Metadata_2011_*_DataPack.xlsx` files from the R2 DataPack DVD's.
 
 They were created via a copy-paste out of LibreOffice.
 
 I believe there is an error in the latest versions of these spreadsheets, hence
-DataPack-Metadata/patches are patches I've created to fix this error
+`DataPack-Metadata/patches` are patches I've created to fix this error
 until the ABS makes a release with the fixes. This patch is applied
 automatically during the build process.
 
