@@ -51,7 +51,7 @@ for my $line (<STDIN>) {
       }
     }elsif ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
       my ($seq, $file, $table, $insert) = ($1, $2, $3, $4);
-      my @insert_values = split(/,/, $insert);
+      my @insert_values = split(/\t/, $insert);
 
       # change NULL into \N which COPY will interpret as a NULL value
       map { s/NULL/\\N/g } @insert_values;

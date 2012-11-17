@@ -224,7 +224,7 @@ sub insert ($$$$) {
     return;
   }
 
-  print "$dataset_num $src $dst (".join(',', @{$inserts}).")\n";
+  print "$dataset_num $src $dst (".join("\t", @{$inserts}).")\n";
 }
 
 # look for a [:foo:] template to expand

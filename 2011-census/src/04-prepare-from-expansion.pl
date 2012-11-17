@@ -84,7 +84,7 @@ for my $line (<STDIN>) {
       my ($dataset_num, $insert_value_order, $dst_table) = ($1, $2, $3);
       
       # convert string list representation into a real list
-      my @insert_values = split(/,/, $insert_value_order);
+      my @insert_values = split(/\t/, $insert_value_order);
 
       # trim whitespace from each value in the insert list
       map { s/^\s*//g; s/\s*$//g } @insert_values;
@@ -106,7 +106,7 @@ for my $line (<STDIN>) {
       # regular lines
       my ($dataset_num, $long, $table, $insert) = ($1, $2, $3, $4);
       $insert =~ s/^\((.*)\)$/$1/;
-      my @insert_values = split(/,/, $insert);
+      my @insert_values = split(/\t/, $insert);
 
       my $metadata = $metadata_contents{$dataset_num . " " . lc($long)};
 
