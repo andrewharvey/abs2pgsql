@@ -96,8 +96,16 @@ You should ensure you have set your [PG environment variables](http://www.postgr
 correctly prior to running the make command.
 
 ## Prerequisites
-Although not required, it is recommended to have the asgs_2011 schema loaded
-first using [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
+It is required to have a minimal asgs_2011 schema loaded first using
+[asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
+
+The minimal asgs_2011 schema just contains the asgs_2011 types which are
+included in stage2/03a-create-asgs-schema.sql of asgs2pgsql. You must
+also load stage2/10a-australia-hack.sql of asgs2pgsql.
+
+If you have the full asgs_2011 schema loaded then full foreign key
+relationships will be created to the underlying geometry of each
+geographical area.
 
 This loader requires your PostgreSQL version to be 9.2 or greater. The loader
 used to work with older versions, so if that is really important to you you can
