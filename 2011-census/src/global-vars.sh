@@ -11,3 +11,6 @@ h=( [bcp]="aust ste sa4 sa3 sa2 sa1 gccsa lga ssc poa ced sed" \
     [wpp]="aust ste sa4 sa3 sa2 gccsa lga" \
     [xcp]="aust ste sa4 sa3 sa2 gccsa lga" \
     [seifa]="ste sa4 sa3 sa2 sa1 lga ssc poa ced" )
+
+# which DataPack release to use
+release=2

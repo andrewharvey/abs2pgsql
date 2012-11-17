@@ -14,6 +14,7 @@ use DBI;
 
 my $structure;
 my $profile;
+my $release;
 
 my %profile_fullname = (
   "BCP" => "Basic Community Profile",
@@ -21,9 +22,10 @@ my %profile_fullname = (
   "TSP" => "Time Series Profile"
 );
 
-if (@ARGV >= 2) {
-  $structure = uc($ARGV[0]);
-  $profile = uc($ARGV[1]);
+if (@ARGV >= 3) {
+  $release = $ARGV[0];
+  $structure = uc($ARGV[1]);
+  $profile = uc($ARGV[2]);
 }else{
   print STDERR "Usage: $0 <ASGS_Structure> <Census_Profile>\n";
   exit 1;
@@ -78,7 +80,7 @@ for my $file (sort (keys %loads, keys %loads_multiple_values)) {
     $state_to_load_path = "${state_to_load}_";
   }
 
-  open (my $datapack_file, '<', "DataPacks/2011 ". $profile_fullname{$profile} . " Release 1/Sequential Number Descriptor/$structure/${state_to_load_directory}2011Census_${file}_${state_to_load_path}${structure}_sequential.csv");
+  open (my $datapack_file, '<', "DataPacks/2011 ". $profile_fullname{$profile} . " Release $release/Sequential Number Descriptor/$structure/${state_to_load_directory}2011Census_${file}_${state_to_load_path}${structure}_sequential.csv");
 
   # read in this datapack file as a CSV file
   my $csv = Text::CSV->new();
