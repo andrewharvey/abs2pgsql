@@ -64,7 +64,7 @@ for my $line (<STDIN>) {
         $loads{$file}->{$seq} = [$table, \@insert_values];
       }
     }else{
-      die "Map file line of unexpected format: $line\n";
+      warn "Map file line of unexpected format: $line\n";
     }
   }
 }
