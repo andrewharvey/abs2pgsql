@@ -94,7 +94,7 @@ for my $k (keys %age_expansions) {
   for my $v (@values) {
     if ($v =~ /^(\d+)\.\.(\d+)$/) {
       push @long_names, $1..$2;
-      map {push @target_values, "[$_]" } $1..$2; # will push onto @target_values [0], [1], ...
+      map {push @target_values, "[$_,$_]" } $1..$2; # will push onto @target_values [0,0], [1,1], ...
     }elsif ($v =~ /^(\d+)-(\d+)$/) {
       push @long_names, "$1_$2_years";
       push @target_values, "[$1,$2]"; # postgres range syntax for $1 to $2, inclusive of $1 and $2
