@@ -103,7 +103,7 @@ CREATE DOMAIN census_2011.dict_ingp AS char(1);
 
 
 -- age range
-CREATE TYPE census_2011.age AS int4range;
+CREATE DOMAIN census_2011.age AS int4range;
 
 
 CREATE TYPE census_2011.sex AS ENUM (
