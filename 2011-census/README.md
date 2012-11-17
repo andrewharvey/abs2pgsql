@@ -6,10 +6,12 @@ what follows is specific to the 2011 Census Data.
 An Australian census was conducted by the ABS in 2011 and the results of
 that are published under the umbrella term "Census of Population and Housing".
 
-The products which this consists of are [listed in full here](http://www.abs.gov.au/ausstats/abs@.nsf/lookup/2011.0.55.001Main%20Features1262011).
+The results of the census are released in a series of "products" which are
+[listed in full here](http://www.abs.gov.au/ausstats/abs@.nsf/lookup/2011.0.55.001Main%20Features1262011).
 
 This loader is designed to load the DataPack DVD data, however it
-shouldn't have a problem loading the DataPack Downloads also.
+shouldn't have a problem loading the DataPack downloads if you would prefer to
+use them.
 
 The target schema aims to be an object-relational schema whist trying to
 be true to the original schema of the data as presented by the ABS. [See
@@ -24,11 +26,13 @@ The DataPack DVD's consist of 7 individual DataPack profiles,
 * Working Population Profile (cat. no. 2069.0.30.009)
 * Estimated Resident Population (cat. no. 2069.0.30.010)
 
-Two additional products will likely be supported when they are released,
+There are also two additional products which aren't part of the DataPack DVD's.
 * Mesh Block Counts
 * Socio-Economic Indexes for Areas (SEIFA)
 
-To actually use these scripts to load the data, you need the data. You
+I plan to support them as well, when they are released,
+
+To actually use these scripts to load the data, you first need the data. You
 can either download it from my [DataPack DVD mirror](http://tianjara.net/data/abs/)
 or purchase the physical disks from the ABS.
 
@@ -39,9 +43,15 @@ To create the files on my DataPack DVD mirror from the source DVD I used,
 
     ./src/00-repack-datapack-dvd.sh /media/cdrom
 
+If you choose to use these repacks you will need to extract the .tar.xz into a directory named
+`DataPacks` within the 2011-census directory from this repository.
+
+If you choose to download the data from the ABS web site you will need to ensure you extract
+that data into the same structure that you would get from extracting my repacked tar.xz.
+
 # Target PostgreSQL Schema
 These scripts don't to a straight load, if they did it would be much
-simpler as you could just COPY from the source csv files. However my aim
+simpler as you could just `COPY` from the source csv files. However my aim
 was to produce an object-relational schema rather than the flat schema of
 the source csv files.
 
@@ -52,10 +62,18 @@ in the form of "Community Profiles".
 I had some guiding principles I tried to abide by when defining my target
 PostgreSQL schema.
 
-* Don't include statistics that can be calculated from other available data.
+* [Database normalization](//en.wikipedia.org/wiki/Database_normalization).
+  So don't include statistics that can be calculated from other available data.
   i.e. if Persons = Male + Female, then don't store persons data, just store
   male and female in the database.
-* Try to maintain the same terminology as the source schema.
+
+  To quote Wikipedia,
+
+      A standard piece of database design guidance is that the designer should
+      create a fully normalized design; selective denormalization can
+      subsequently be performed for performance reasons.
+
+* Maintain the same terminology as the source schema.
 
 ## PostgreSQL Limitations
 PostgreSQL imposes some limitations which in some cases prevented the
@@ -82,9 +100,6 @@ PostgreSQL schema we could load the classifications into their own schema
 and maintain faithful references to them from the profiles.
 
 # Running the Scripts
-Although there is no data to load yet. You can still create the schema
-and potentially load some sample data.
-
 The scripts are designed to be run via the Makefile as such a simple,
 
     make
@@ -100,12 +115,12 @@ It is required to have a minimal asgs_2011 schema loaded first using
 [asgs2pgsql](https://github.com/andrewharvey/asgs2pgsql).
 
 The minimal asgs_2011 schema just contains the asgs_2011 types which are
-included in stage2/03a-create-asgs-schema.sql of asgs2pgsql. You must
-also load stage2/10a-australia-hack.sql of asgs2pgsql.
+included in stage2/03a-create-asgs-schema.sql and
+stage2/10a-australia-hack.sql of asgs2pgsql.
 
 If you have the full asgs_2011 schema loaded then full foreign key
 relationships will be created to the underlying geometry of each
-geographical area.
+geographical area, otherwise they won't be.
 
 This loader requires your PostgreSQL version to be 9.2 or greater. The loader
 used to work with older versions, so if that is really important to you you can
@@ -129,17 +144,19 @@ Eventually I will publish a pg_dump of the loaded database, so if you
 wish you can simply load the dump rather than build up and load the data
 from source.
 
+If the lack of this is holding you back, please email me and let me know.
+
 # Copyright
 ## DataPack Metadata Tables
 All .tsv files within DataPack-Metadata are works derived from the
 [CC BY 2.5 AU](http://creativecommons.org/licenses/by/2.5/au/) licensed
-Metadata/Metadata_2011_*_DataPack.xlsx files from within [the samples here](http://www.abs.gov.au/websitedbs/censushome.nsf/home/datapackssample?opendocument&navpos=250).
+Metadata/Metadata_2011_*_DataPack.xlsx files from the R2 DataPack DVD's.
 
 They were created via a copy-paste out of LibreOffice.
 
-There are several errors in both these samples and the DVD release, hence
-DataPack-Metadata/patches are patches I've created to fix these errors
-until the ABS makes a release with the fixes. These patches are applied
+I believe there is an error in the latest versions of these spreadsheets, hence
+DataPack-Metadata/patches are patches I've created to fix this error
+until the ABS makes a release with the fixes. This patch is applied
 automatically during the build process.
 
 Attribution for the original data goes to the [Australian Bureau of Statistics (ABS)](http://abs.gov.au/), Commonwealth of Australia.
