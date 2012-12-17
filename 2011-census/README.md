@@ -30,7 +30,7 @@ There are also two additional products which aren't part of the DataPack DVD's.
 * Mesh Block Counts
 * Socio-Economic Indexes for Areas (SEIFA)
 
-I plan to support them as well, when they are released,
+The first one is supported, and the second one will be when it is released,
 
 To actually use these scripts to load the data, you first need the data. You
 can either download it from my [DataPack DVD mirror](http://tianjara.net/data/abs/)
@@ -48,6 +48,9 @@ If you choose to use these repacks you will need to extract the .tar.xz into a d
 
 If you choose to download the data from the ABS web site you will need to ensure you extract
 that data into the same structure that you would get from extracting my repacked tar.xz.
+
+The data for the Mesh Block Counts and SEIFA is provided on the ABS website.
+Make targets exist for downloading it on demand.
 
 # Target PostgreSQL Schema
 These scripts don't to a straight load, if they did it would be much

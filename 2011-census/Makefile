@@ -5,7 +5,7 @@
 # rights to this work.
 # http://creativecommons.org/publicdomain/zero/1.0/
 
-all : clean create_schema create_tables prepare_load load_metadata_table load
+all : clean create_schema create_tables prepare_load load_metadata_table load mb_counts
 
 clean :
 	psql -c "DROP SCHEMA IF EXISTS census_2011 CASCADE;"
@@ -41,3 +41,6 @@ load :
 	
 	# clean up
 	rm -f load-template
+
+mb_counts :
+	cd mb-counts && make -f Makefile
