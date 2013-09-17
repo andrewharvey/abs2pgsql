@@ -119,7 +119,7 @@ It is required to have a minimal `asgs_2011` schema loaded first using
 
 The minimal `asgs_2011` schema just contains the `asgs_2011` types which are
 included in `stage2/03a-create-asgs-schema.sql` and
-`stage2/10a-australia-hack.sql of asgs2pgsql`.
+`stage2/10a-australia-hack.sql` of asgs2pgsql.
 
 If you have the full `asgs_2011` schema loaded then full foreign key
 relationships will be created to the underlying geometry of each
