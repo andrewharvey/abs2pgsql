@@ -47,6 +47,9 @@ for my $line (<STDIN>) {
       my @seqs = split(/,/, $seq);
       # if the table for the line read is for the same profile as the program was invoked with
       if (lc(substr($table, 0, 1)) eq lc(substr($profile, 0, 1))) {
+        if (!exists $loads_multiple_values{$file}) {
+            $loads_multiple_values{$file} = {};
+        }
         $loads_multiple_values{$file}->{$table} = \@seqs;
       }
     }elsif ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
