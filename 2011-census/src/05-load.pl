@@ -33,6 +33,9 @@ if (@ARGV >= 3) {
 
 my $dbh = DBI->connect("DBI:Pg:", '', '' , {'RaiseError' => 1, AutoCommit => 1});
 
+# populate %sa1_fullcode
+my $sa1_fullcode = $dbh->selectall_hashref("SELECT code_7digit, code FROM asgs_2011.sa1;", 'code_7digit');
+
 my %loads;
 my %loads_multiple_values;
 
@@ -118,6 +121,15 @@ for my $file (sort (keys %loads, keys %loads_multiple_values)) {
         $region_id =~ s/^(CED|LGA|POA|SED|SSC|IARE|ILOC|IREG)//;
         my $insert_value = $datapack{$seq}->[$i];
         $insert_value =~ s/\.\./\\N/;
+
+        # CSV data files for SA1 use shorter 7 digit code, but sa1(code) PK is
+        # full 11 digit code, so rather than hack a reference to the code_7digit
+        # column, lets just translate the 7 digit code to the 11 digit for the
+        # insert statement
+        if ($structure eq "SA1") {
+            $region_id = $sa1_fullcode->{$region_id}{'code'};
+        }
+
         $dbh->pg_putcopydata("$region_id\t" . join("\t", @{$loads{$file}->{$seq}->[1]}) . "\t$insert_value\n");
       }
 
@@ -141,7 +153,17 @@ for my $file (sort (keys %loads, keys %loads_multiple_values)) {
         for my $s (@seqs) {
           push @insert_values, $datapack{$s}->[$i];
         }
+
         map { s/\.\./\\N/; } @insert_values;
+
+        # CSV data files for SA1 use shorter 7 digit code, but sa1(code) PK is
+        # full 11 digit code, so rather than hack a reference to the code_7digit
+        # column, lets just translate the 7 digit code to the 11 digit for the
+        # insert statement
+        if ($structure eq "SA1") {
+            $region_id = $sa1_fullcode->{$region_id}{'code'};
+        }
+
         $dbh->pg_putcopydata("$region_id\t" . join("\t", @insert_values) . "\n");
       }
     
