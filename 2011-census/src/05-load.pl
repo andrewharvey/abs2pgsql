@@ -41,7 +41,7 @@ for my $line (<STDIN>) {
   chomp $line;
   # and unless it is a comment or empty line...
   unless (($line =~ /^#/) || ($line =~ /^\s*$/)) {
-    # "parse" the line
+    # "parse" the line (so is it a multiple inserts line or not?)
     if ($line =~ /^([^\s]+) ([^\s]+) ([^\s]+)$/) {
       my ($seq, $file, $table) = ($1, $2, $3);
       my @seqs = split(/,/, $seq);
