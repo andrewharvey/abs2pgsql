@@ -119,7 +119,7 @@ for my $line (<STDIN>) {
       # special lines to load multiple values together
       my ($dataset_num, $insert_value_order, $dst_table) = ($1, $2, $3);
       
-      print "$line\n";
+      print "$line\n\n";
     }elsif ($line =~ /^(\w\d+) ([^\s]+) ([^\s]+) (.*)$/) {
       # regular lines
       my ($dataset_num, $src_template, $dst_template, $table_orders) = ($1, $2, $3, $4);
