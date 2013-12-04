@@ -56,6 +56,9 @@ if [ $found_zip -eq 0 ] ; then # we found something
         '2011 Datapacks BCP_IP_TSP_Release 2.zip')
             datapack="BCP_IP_TSP.R2"
             ;;
+        '2011 DataPacks BCP IP TSP Release 3.zip')
+            datapack="BCP_IP_TSP.R3"
+            ;;
         *)
             echo "Although we found a zip file, $zip_basename isn't recognised."
             exit
@@ -66,7 +69,7 @@ if [ $found_zip -eq 0 ] ; then # we found something
     unzipped_dir=`mktemp -d datapack-dvd-XXX`
     must_rm_unzipped_dir=yes # set this flag for later removal of this temp dir
     rm -rf $unzipped_dir # need this because unzip will complain if the directory already exists
-    unzip "$1/$base" -d $unzipped_dir/
+    unzip "$1/$zip_basename" -d $unzipped_dir/
 
 else # didn't find a zip. perhaps this is an unzipped directory?
     if [ -d "$1/Metadata" ] ; then
@@ -92,7 +95,7 @@ if [ -z $datapack ] ; then
 fi
 
 case $datapack in
-    'BCP_IP_TSP.R2'|'BCP_IP_TSP.R1'|'BCP_IP_TSP.R1.1')
+    'BCP_IP_TSP.R3'|'BCP_IP_TSP.R2'|'BCP_IP_TSP.R1'|'BCP_IP_TSP.R1.1')
         xz_name="ABS.2011.Census.DataPacks.$datapack"
 
         # create the CSV-Minimal tar.xz
