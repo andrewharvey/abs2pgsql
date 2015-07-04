@@ -5,7 +5,7 @@
 # rights to this work.
 # http://creativecommons.org/publicdomain/zero/1.0/
 
-all : clean create_schema create_tables prepare_load load_metadata_table load mb_counts
+all : clean create_schema create_tables prepare_load load_metadata_table load_psql mb_counts
 
 clean :
 	psql -c "DROP SCHEMA IF EXISTS census_2011 CASCADE;"
@@ -36,7 +36,7 @@ load_metadata_table :
 	rm -f datapack-metadata.copy
 
 # and finally actually load the ABS Census Data
-load :
+load_psql :
 	src/05-load.sh bcp ip tsp
 	
 	# clean up
