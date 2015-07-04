@@ -7,7 +7,7 @@
 
 f=censuscounts_mb_2011_aust.csv
 
-all : clean download create_schema load
+all : clean download create_schema load_psql
 
 clean :
 	rm -f $f
@@ -19,5 +19,5 @@ download :
 create_schema :
 	psql -f create-table.sql
 
-load :
+load_psql :
 	cat $f | head --lines=-3 | psql -c "COPY census_2011.mb_counts FROM STDIN WITH (FORMAT csv, HEADER);"
