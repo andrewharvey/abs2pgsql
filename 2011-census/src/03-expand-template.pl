@@ -196,8 +196,8 @@ sub insert ($$$$) {
       $ref = "";
     };
     my $dict_hashref = dictLookup($lookup);
-    my @keys = keys $dict_hashref;
-    my @values = values $dict_hashref;
+    my @keys = keys %{$dict_hashref};
+    my @values = values %{$dict_hashref};
     for my $new ( expand($src, "db:$lookup$ref", $inserts, \@values, \@keys) ) {
       insert ($dataset_num, $new->{'src'}, $dst, $new->{'inserts'});
     }
@@ -302,7 +302,7 @@ sub dictLookup($) {
     my $sth = $dbh->prepare("SELECT id, long FROM $lookup;");
     $sth->execute() or die;
     my %result;
-    for my $v (values $sth->fetchall_hashref("id")) {
+    for my $v (values %{$sth->fetchall_hashref("id")}) {
       my $key = $v->{'id'};
       my $value = $v->{'long'};
       $result{$key} = $value;
