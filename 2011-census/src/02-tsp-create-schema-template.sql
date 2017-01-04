@@ -19,7 +19,7 @@
 -- T02
 CREATE TABLE census_2011.tsp_selected_medians_and_averages_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   year census_2011.tsp_years,
 
   median_age_of_persons integer,
@@ -37,7 +37,7 @@ CREATE TABLE census_2011.tsp_selected_medians_and_averages_{structure}
 -- T03
 CREATE TABLE census_2011.tsp_age_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   age census_2011.age,
   sex census_2011.sex,
   year census_2011.tsp_years,
@@ -50,7 +50,7 @@ CREATE TABLE census_2011.tsp_age_{structure}
 -- T03
 CREATE TABLE census_2011.tsp_overseas_visitors_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   year census_2011.tsp_years,
 
@@ -62,7 +62,7 @@ CREATE TABLE census_2011.tsp_overseas_visitors_{structure}
 -- T04
 CREATE TABLE census_2011.tsp_registered_marital_status_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   age census_2011.age,
   sex census_2011.sex,
   registered_marital_status serial REFERENCES census_2011.registered_marital_status,
@@ -76,7 +76,7 @@ CREATE TABLE census_2011.tsp_registered_marital_status_{structure}
 -- T05
 CREATE TABLE census_2011.tsp_social_marital_status_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   age census_2011.age,
   sex census_2011.sex,
   social_marital_status serial REFERENCES census_2011.social_marital_status,
@@ -90,7 +90,7 @@ CREATE TABLE census_2011.tsp_social_marital_status_{structure}
 -- T06
 CREATE TABLE census_2011.tsp_indigenous_status_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   age census_2011.age,
   sex census_2011.sex,
   indigenous census_2011.yes_no_notstated,
@@ -106,7 +106,7 @@ CREATE TABLE census_2011.tsp_indigenous_status_{structure}
 -- T08
 CREATE TABLE census_2011.tsp_country_of_birth_of_person_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   country_of_birth serial REFERENCES census_2011.birthplace,
   year census_2011.tsp_years,
@@ -119,7 +119,7 @@ CREATE TABLE census_2011.tsp_country_of_birth_of_person_{structure}
 -- T09
 CREATE TABLE census_2011.tsp_ancestry_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   ancestry serial REFERENCES census_2011.ancestry,
   birthplace_of_parents serial REFERENCES census_2011.parent_birthplace_combination,
   year census_2011.tsp_years,
@@ -132,7 +132,7 @@ CREATE TABLE census_2011.tsp_ancestry_{structure}
 -- T10
 CREATE TABLE census_2011.tsp_language_spoken_at_home_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   language serial REFERENCES census_2011.language_tsp,
   year census_2011.tsp_years,
@@ -145,7 +145,7 @@ CREATE TABLE census_2011.tsp_language_spoken_at_home_{structure}
 -- T13
 CREATE TABLE census_2011.tsp_type_of_educational_institution_attending_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   sex census_2011.sex,
   educational_institution serial REFERENCES census_2011.educational_institution,
   year census_2011.tsp_years,
@@ -160,7 +160,7 @@ CREATE TABLE census_2011.tsp_type_of_educational_institution_attending_{structur
 -- census_2011.tsp_dwelling_structure_by_household_composition_and_family_composition_{structure}
 CREATE TABLE census_2011.tsp_dwelling_structure_by_household_comp_and_fam_comp_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   household_composition census_2011.household_type_simple,
   family_composition serial REFERENCES census_2011.family_type,
   dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_full,
@@ -176,7 +176,7 @@ CREATE TABLE census_2011.tsp_dwelling_structure_by_household_comp_and_fam_comp_{
 -- census_2011.tsp_dwelling_structure_by_number_of_persons_usually_resident_{structure}
 CREATE TABLE census_2011.tsp_dwelling_structure_by_num_persons_usually_resident_{structure}
 (
-  asgs_code asgs_2011.{structure}_code REFERENCES asgs_2011.{structure},
+  asgs_code asgs.{structure}_code REFERENCES asgs_2011.{structure},
   number_of_persons_usually_resident census_2011.number_of_persons_usually_resident,
   dwelling_structure serial REFERENCES census_2011.dwelling_structure_extended_full,
   year census_2011.tsp_years,
