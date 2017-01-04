@@ -9,52 +9,48 @@ that are published under the umbrella term "Census of Population and Housing".
 The results of the census are released in a series of "products" which are
 [listed in full here](http://www.abs.gov.au/ausstats/abs@.nsf/lookup/2011.0.55.001Main%20Features1262011).
 
-This loader is designed to load the DataPack DVD data, however it
-shouldn't have a problem loading the DataPack downloads if you would prefer to
-use them.
+This loader is designed to load the Online DataPacks data.
 
 The target schema aims to be an object-relational schema whist trying to
 be true to the original schema of the data as presented by the ABS. [See
 below for more information](#target-postgresql-schema).
 
-The DataPack DVD's consist of 7 individual DataPack profiles,
-* Basic Community Profile (cat. no. 2069.0.30.008)
-* Indigenous Profile (cat. no. 2069.0.30.008)
-* Time Series Profile (cat. no. 2069.0.30.008)
-* Place of Enumeration Profile (cat. no. 2069.0.30.009)
-* Expanded Community Profile (cat. no. 2069.0.30.009)
-* Working Population Profile (cat. no. 2069.0.30.009)
-* Estimated Resident Population (cat. no. 2069.0.30.010)
+There are 7 individual DataPack profiles:
+* Basic Community Profile ([cat. no. 2069.0.30.008](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2069.0.30.008))
+* Indigenous Profile ([cat. no. 2069.0.30.008](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2069.0.30.008))
+* Time Series Profile ([cat. no. 2069.0.30.008](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2069.0.30.008))
+* Place of Enumeration Profile ([cat. no. 2069.0.30.009](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2069.0.30.009))
+* Expanded Community Profile ([cat. no. 2069.0.30.009](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2069.0.30.009))
+* Working Population Profile ([cat. no. 2069.0.30.009](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2069.0.30.009))
+* Estimated Resident Population ([cat. no. 2069.0.30.010](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2069.0.30.010))
 
-There are also two additional products which aren't part of the DataPack DVD's.
-* Mesh Block Counts
-* Socio-Economic Indexes for Areas (SEIFA)
+Plus two additional products:
+* Mesh Block Counts ([cat. no. 2074.0](http://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2074.0main+features12011))
+* Socio-Economic Indexes for Areas (SEIFA) ([cat. no. 2033.0.55.001](http://www.abs.gov.au/ausstats/abs@.nsf/mf/2033.0.55.001))
 
-The first one is supported, and the second one will be when it is released,
+# Download DataPacks
+## Download from ABS
+Visit https://www.censusdata.abs.gov.au/datapacks/DataPacks?release=2011 register and download each DataPack with the "Sequential header" descriptor type and get "All geographies" for "Aust". Place these in the DataPacksOnline folder. It should look like this:
 
-To actually use these scripts to load the data, you first need the data. You
-can either download it from my [DataPack DVD mirror](http://tianjara.net/data/abs/)
-or purchase the physical disks from the ABS.
+* 2011_BCP_ALL_for_AUST_sequential-header.zip
+* 2011_ERP_ALL_for_AUST_sequential-header.zip
+* 2011_IP_ALL_for_AUST_sequential-header.zip
+* 2011_PEP_ALL_for_AUST_sequential-header.zip
+* 2011_TSP_ALL_for_AUST_sequential-header.zip
+* 2011_WPP_ALL_for_AUST_sequential-header.zip
+* 2011_XCP_ALL_for_AUST_sequential-header.zip
 
-To easy downloading from my server just run
+Then run:
 
-    ./src/00-tianjara-download.sh
+    ./src/00-extract-datapacks-online.sh
 
-The DVD's starting from Release 2 (after I [expressed my disappointment over the rigour of licensing details in comic format](http://tianjara.net/hosted/letter-to-abs-re-census-dvd-license.png)
-are clearly marked as CC BY 2.5 AU.
+Mesh Block Counts and SEIFA data downloads are automated by the scripts.
 
-To create the files on my DataPack DVD mirror from the source DVD I used,
+## Automated Download from a mirror
+If you prefer not to create an account on the ABS website you can just:
 
-    ./src/00-repack-datapack-dvd.sh /media/cdrom
-
-If you choose to use these repacks you will need to extract the .tar.xz into a directory named
-`DataPacks` within the `2011-census` directory from this repository.
-
-If you choose to download the data from the ABS web site you will need to ensure you extract
-that data into the same structure that you would get from extracting my repacked tar.xz.
-
-The data for the Mesh Block Counts and SEIFA is provided on the ABS website.
-Make targets exist for downloading it on demand.
+    wget https://tianjara.net/data/abs2pgsql/ABS_Census_2011.tar.xz
+    tar -xvvJf ABS_Census_2011.tar.xz
 
 # Target PostgreSQL Schema
 These scripts don't to a straight load, if they did it would be much
